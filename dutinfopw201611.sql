@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Mer 12 Octobre 2022 à 16:39
+-- Généré le :  Mer 19 Octobre 2022 à 09:39
 -- Version du serveur :  5.7.39-0ubuntu0.18.04.2
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.13
 
@@ -19,6 +19,19 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `dutinfopw201611`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Chapitre`
+--
+
+CREATE TABLE `Chapitre` (
+  `ID` bigint(20) UNSIGNED NOT NULL,
+  `titre` varchar(25) NOT NULL,
+  `numeroChap` int(11) NOT NULL,
+  `id_livre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -59,6 +72,18 @@ CREATE TABLE `Livre` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `Page`
+--
+
+CREATE TABLE `Page` (
+  `ID` bigint(20) UNSIGNED NOT NULL,
+  `numeroPage` int(11) NOT NULL,
+  `id_chapitre` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `Suggestion`
 --
 
@@ -90,6 +115,13 @@ CREATE TABLE `Utilisateur` (
 --
 
 --
+-- Index pour la table `Chapitre`
+--
+ALTER TABLE `Chapitre`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `ID` (`ID`);
+
+--
 -- Index pour la table `Etat`
 --
 ALTER TABLE `Etat`
@@ -112,6 +144,13 @@ ALTER TABLE `Livre`
   ADD UNIQUE KEY `titre` (`titre`);
 
 --
+-- Index pour la table `Page`
+--
+ALTER TABLE `Page`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `ID` (`ID`);
+
+--
 -- Index pour la table `Suggestion`
 --
 ALTER TABLE `Suggestion`
@@ -132,6 +171,11 @@ ALTER TABLE `Utilisateur`
 --
 
 --
+-- AUTO_INCREMENT pour la table `Chapitre`
+--
+ALTER TABLE `Chapitre`
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT pour la table `Etat`
 --
 ALTER TABLE `Etat`
@@ -146,6 +190,11 @@ ALTER TABLE `Genre`
 --
 ALTER TABLE `Livre`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `Page`
+--
+ALTER TABLE `Page`
+  MODIFY `ID` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `Suggestion`
 --
