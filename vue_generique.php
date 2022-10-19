@@ -7,3 +7,5 @@ class VueGenerique{
         return ob_get_clean();
     }
 }
+?>
+
