@@ -1,0 +1,14 @@
+.ConnexionForm{ 
+    
+   margin-top: 200px;
+    margin-left: 800px;
+    margin-right: 800px;
+}
+
+.toast {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+}
+
