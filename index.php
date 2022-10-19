@@ -1,6 +1,7 @@
 
 <?php
     require_once("composant/comp_navBar/composant_navBar.php");
+    require_once("composant/comp_Footer/Comp_Footer.php");
     require_once("vue_generique.php");
     $vue_gen = new VueGenerique();
 ?>
@@ -8,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="fr">
     <head>
-        
+
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,21 +19,14 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
     </head>
-        <?php
-            $navBar = new ComposantNavBar();
-        ?>
+
     <body>
-        <header>
-            <nav>
-                <h1>oui</h1>
-                <h2>non</h2>
-            </nav>
-        </header>
         <?php
-        require_once("composant/comp_Footer/Comp_Footer.php");
+        $navBar = new ComposantNavBar();
+
         $footer=new Comp_Footer();
         ?>
-        
+
     </body>
 </html>
 <?php
