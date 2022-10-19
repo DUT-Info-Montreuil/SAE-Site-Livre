@@ -12,7 +12,16 @@
 
     </head>
     <body>
-        
+        <header>
+            <nav>
+                <h1>oui</h1>
+                <h2>non</h2>
+            </nav>
+        </header>
+        <?php
+        require_once("composant/comp_Footer/Comp_Footer.php");
+        $footer=new Comp_Footer();
+        ?>
         
     </body>
 </html>
