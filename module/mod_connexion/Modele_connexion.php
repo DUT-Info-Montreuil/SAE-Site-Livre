@@ -5,8 +5,7 @@ class Modele_connexion extends Connexion {
 
     }
     public function login(){
-        $prepare = parent::$bdd->prepare("SELECT passWord FROM Utilisateur where login = ?");
-
+        $prepare = parent::$bdd->prepare("SELECT passWord FROM Utilisateur where userName = ?");
         $tab = array($_POST["identifiant"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetch();
