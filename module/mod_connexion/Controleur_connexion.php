@@ -31,11 +31,11 @@ class Controleur_connexion{
        if (isset($_POST["identifiant"])){
         if ($this->modele->login()){
             $this->vue->Success("Bonjour ".$_SESSION["identifiant"]." vous êtes connecté");
-           
+            header("Location: index.php?module=accueil");
 
        }else {
         
-        //header("Location: index.php?module=connexion&action=print_login");
+        header("Location: index.php?module=connexion&action=print_login");
         $this->vue->Error("Identifiant ou mot de passe incorrect");
         
 
@@ -50,18 +50,18 @@ class Controleur_connexion{
             if ($this->modele->signup()){
                 
                 $this->vue->Success("Inscription réussie");
-                header("Location: index.php?module=accueil");
+                header("Location: index.php?module=connexion&action=print_login");
                
             }
             else{
-                //header("Location: index.php?module=connexion&action=print_signup");
+                header("Location: index.php?module=connexion&action=print_signup");
                 $this->vue->Error("Inscription échouée");
             }
 
     }
     public function Deco(){
         $this->modele->deco();
-
+        header("Location: index.php?module=accueil");
 
     }
    

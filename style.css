@@ -1,10 +1,13 @@
-
-.ConnexionForm{ 
+.ConnexionForm{
     
-   margin-top: 200px;
-    margin-left: 800px;
-    margin-right: 800px;
+    display: inline-block;
+    margin-left: 40%;
+    margin-right: 25%;
+    margin-top: 5%;
+    margin-bottom: 35%;
+   
 }
+
 
 .toast {
     position: fixed;
@@ -13,18 +16,21 @@
 
 }
 
-
-#carouselExampleIndicators{
-    position: center;
-    border: solid 1px pink;
-    width: 50%;
+#carouselExampleCaptions{
+    margin: auto;
+    width: 25%;
 
 }
 
-.sr-only{
-    color: red;
+#ppDropDown{
+    background-color: red;
+    width: 40px;
+    height: 40px;
 }
-.d-block w-100{
-    color: black;
-}
+#EcrireLivre{
+    margin: auto;
 
+}
+#regarderLivre{
+    margin: auto;
+}
