@@ -1,3 +1,4 @@
+
 .ConnexionForm{ 
     
    margin-top: 200px;
@@ -10,5 +11,20 @@
     bottom: 0;
     right: 0;
 
+}
+
+
+#carouselExampleIndicators{
+    position: center;
+    border: solid 1px pink;
+    width: 50%;
+
+}
+
+.sr-only{
+    color: red;
+}
+.d-block w-100{
+    color: black;
 }
 

@@ -1,12 +1,10 @@
 <?php
 
-class vueGenerique
-{
-    public function __construct()
-    {
-
+class vueGenerique{
+    public function __construct(){
         ob_start();
     }
+
 
     public function getAffichage()
     {
@@ -66,6 +64,7 @@ class vueGenerique
         </html>
 <?php
     }
+
 }
 
 ?>
