@@ -1,5 +1,5 @@
 <?php
-require_once("D:/xampp/htdocs/SAE-Site-Livre/vue_generique.php");
+require_once("vue_generique.php");
 class VueNavBar extends VueGenerique {
     public function __construct()
     {
