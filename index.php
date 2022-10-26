@@ -42,7 +42,7 @@
     
 
     //echo $_SESSION["connected"] ; 
-    echo isset($_SESSION["connected"]);
+    //echo isset($_SESSION["connected"]);
     if (isset($_SESSION["connected"])){
         echo "<a href=\"index.php?action=disconnect&module=connexion\">".$_SESSION["identifiant"]."</a><br/>";
     }else{

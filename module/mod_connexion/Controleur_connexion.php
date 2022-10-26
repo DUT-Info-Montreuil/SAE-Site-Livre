@@ -22,13 +22,23 @@ class Controleur_connexion{
     }
 
     public function ExecLogin(){
+        if (isset($_SESSION["connected"])){
+            header("Location: index.php?module=accueil");
+            return ;
+        }
+
+
        if (isset($_POST["identifiant"])){
         if ($this->modele->login()){
             $this->vue->Success("Bonjour ".$_SESSION["identifiant"]." vous êtes connecté");
            
 
        }else {
+        
+        //header("Location: index.php?module=connexion&action=print_login");
         $this->vue->Error("Identifiant ou mot de passe incorrect");
+        
+
        }
     }
         
@@ -38,11 +48,13 @@ class Controleur_connexion{
     public function ExecSignup(){
        
             if ($this->modele->signup()){
-                echo"yes";
+                
                 $this->vue->Success("Inscription réussie");
+                header("Location: index.php?module=accueil");
                
             }
             else{
+                //header("Location: index.php?module=connexion&action=print_signup");
                 $this->vue->Error("Inscription échouée");
             }
 

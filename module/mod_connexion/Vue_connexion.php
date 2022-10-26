@@ -13,15 +13,15 @@ class Vue_connexion extends vueGenerique{
     
     public function login()
     {
-        echo "login";
+        
         ?>
         <html>
 
 
             <form class=ConnexionForm method="post" action="index.php?action=login&module=connexion">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Adresse Mail</label>
-                <input name=identifiant type="" class="form-control"  aria-describedby="emailHelp" placeholder="name@example.com">
+                <label for="exampleInputEmail1" class="form-label">Identifiant</label>
+                <input name=identifiant type="" class="form-control"  aria-describedby="emailHelp" placeholder="user541247">
                 <div  class="form-text">On partage pas :> </div>
             </div>
             <div class="mb-3">

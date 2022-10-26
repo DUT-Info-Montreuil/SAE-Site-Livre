@@ -11,12 +11,11 @@ class Modele_connexion extends Connexion {
         $result = $prepare->fetch();
         $psw = $result[0] ; 
         if (password_verify($_POST["pwd"] , $psw)){
-            echo "ok";
+            
             $_SESSION["connected"] = true ; 
             $_SESSION["identifiant"] = $_POST["identifiant"];
             return true ;
         }else {
-            echo "pas ok";
             return false ;
         }
 
