@@ -1,3 +1,19 @@
+
+.ConnexionForm{ 
+    
+   margin-top: 200px;
+    margin-left: 800px;
+    margin-right: 800px;
+}
+
+.toast {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+}
+
+
 #carouselExampleIndicators{
     position: center;
     border: solid 1px pink;
@@ -11,3 +27,4 @@
 .d-block w-100{
     color: black;
 }
+
