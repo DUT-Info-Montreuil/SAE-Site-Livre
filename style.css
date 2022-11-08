@@ -1,0 +1,36 @@
+.ConnexionForm{
+    
+    display: inline-block;
+    margin-left: 40%;
+    margin-right: 25%;
+    margin-top: 5%;
+    margin-bottom: 35%;
+   
+}
+
+
+.toast {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+}
+
+#carouselExampleCaptions{
+    margin: auto;
+    width: 25%;
+
+}
+
+#ppDropDown{
+    background-color: red;
+    width: 40px;
+    height: 40px;
+}
+#EcrireLivre{
+    margin: auto;
+
+}
+#regarderLivre{
+    margin: auto;
+}
