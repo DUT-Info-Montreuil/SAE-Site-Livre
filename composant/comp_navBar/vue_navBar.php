@@ -43,9 +43,6 @@ class VueNavBar extends VueGenerique
                                 <li><a class="dropdown-item" href="index.php?module=connexion&action=disconnect">deconnexion</a></li>
                             </ul>
                         </div>
-
-
-
                     <?php
 
                     } else { ?>
