@@ -13,7 +13,7 @@ class Connexion {
 
     public static function  initConnexion()
     {
-        $dns = "mysql:host=database-etudiants.iut.univ-paris8.fr;dbname=dutinfopw201611";
+        $dns = "mysql:host=database-etudiants.iut.univ-paris8.fr;dbname=dutinfopw201611;charset=utf8";
         $user = "dutinfopw201611";
         $pass = "semugepu";
         self::$bdd = new PDO($dns , $user , $pass);
