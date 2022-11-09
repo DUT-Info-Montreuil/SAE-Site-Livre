@@ -7,7 +7,6 @@ $vue_gen = new VueGenerique();
 ?>
 
     <!DOCTYPE html>
-    <html lang="fr">
 
     <head>
 
@@ -26,7 +25,7 @@ $vue_gen = new VueGenerique();
     </head>
 
 
-    </html>
+
 
 
 <?php
@@ -34,6 +33,7 @@ session_start();
 require_once("Connexion.php");
 require_once('module/mod_connexion/Module_connexion.php');
 require_once("module/mod_profil/module_profil.php");
+require_once("module/mod_parametre/module_parametre.php");
 require_once("vue_generique.php");
 Connexion::initConnexion();
 
@@ -54,6 +54,9 @@ switch ($module) {
         break;
     case "profil":
         $mod_profil = new Module_profil();
+        break;
+    case "parametre":
+        $mod_parametre = new Module_parametre();
         break;
 }
 
