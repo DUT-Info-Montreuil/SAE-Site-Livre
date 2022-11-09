@@ -8,10 +8,21 @@ class Module_Biblio
     public function __construct()
     {
         $this->controleur = new Controleur_Biblio();
-        $this->action = $_GET['action'] != null ? $_GET['action'] : "";
+        //$this->action = isset($_GET['action']) != false ? $_GET['action'] : "default";
+        if (isset($_GET['action']) != false) {
+            $this->action = $_GET['action'];
+        } else {
+            echo'erreur';
+            
+            $_GET['action'] = "wallo";
+        }
         if (isset($_GET['action'])) {
-
             switch ($this->action) {
+                case "wallo":
+                    $navBar = new ComposantNavBar();
+                    $this->controleur->afficherLivre();
+                    $footer = new Comp_Footer();
+                    break;
                 default:
                     $navBar = new ComposantNavBar();
                     $this->controleur->afficherLivre();

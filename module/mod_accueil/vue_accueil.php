@@ -15,7 +15,7 @@ class Vue_Accueil extends vueGenerique
       <div>
         
           <button type="button" class="btn btn-primary btn-lg" id="EcrireLivre">Ecrire livre</button>
-          <a href="index.php?action=print_create_book&module=bibliotheque" class="btn btn-primary btn-lg" role="button" id="VoireLIVRE">Voir plus de livre</a>
+          <a href="index.php?module=bibliotheque" class="btn btn-primary btn-lg" role="button" id="VoireLIVRE">Voir plus de livre</a>
         
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
           <div class="carousel-indicators">
