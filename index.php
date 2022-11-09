@@ -23,7 +23,7 @@ $vue_gen = new VueGenerique();
 </head>
 
 
-</html>
+
 
 
 <?php
@@ -63,7 +63,8 @@ $result = $vue_gen->getAffichage();
 //echo isset($_SESSION["connected"]);
 /*if (isset($_SESSION["connected"])){
         echo "<a href=\"index.php?action=disconnect&module=connexion\">".$_SESSION["identifiant"]."</a><br/>";
-    }else{
+    }else{cho $key["id"];
+                    echo $genre["id"];
         echo "<a href=\"index.php?action=print_login&module=connexion\">login</a><br/>";
     }
     echo "<a href=\"index.php?action=print_signup&module=connexion\">signup</a><br/>";
@@ -73,3 +74,6 @@ echo $result;
 
 
 ?>
+
+
+</html>

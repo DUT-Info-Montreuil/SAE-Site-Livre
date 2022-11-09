@@ -15,7 +15,8 @@ class Controleur_CLivre{
     public  function print_create_book()
     {
         if (isset($_SESSION['connected'])) {
-            $this->vue->print_create_book();
+            $result = $this->modele->get_genre();
+            $this->vue->print_create_book($result);
         } else {
             header('Location: index.php?module=connexion&action=print_login');
         }
