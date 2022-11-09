@@ -9,7 +9,11 @@ class Module_parametre{
             switch($_GET['action']){
                 case "afficheParametre":
                     $this->controleur->afficheParametre();
+                    break;
             }
+        }
+        else {
+            $this->controleur->afficheParametre();
         }
     }
 }

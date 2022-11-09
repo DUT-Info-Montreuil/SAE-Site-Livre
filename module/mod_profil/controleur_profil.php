@@ -13,6 +13,18 @@ require_once("vue_profil.php");
          $this->modele->recupInfoAffichage();
          $this->vue->print_profil();
      }
+     public function modifierNom(){
+         $this->modele->changeNom();
+         $this->vue->print_profil();
+     }
+     public function modifierEmail(){
+         $this->modele->changeEmail();
+         $this->vue->print_profil();
+     }
+     public function modifierMDP(){
+         $this->modele->changeMDP();
+         $this->vue->print_profil();
+     }
  }
 
 
