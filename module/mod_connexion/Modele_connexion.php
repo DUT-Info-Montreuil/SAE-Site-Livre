@@ -35,6 +35,7 @@ class Modele_connexion extends Connexion {
     public function deco(){
         unset($_SESSION["connected"]);
         unset($_SESSION["identifiant"]);
+        unset($_SESSION["email"]);
     }
     
 }
