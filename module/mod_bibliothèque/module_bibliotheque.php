@@ -8,12 +8,9 @@ class Module_Biblio
     public function __construct()
     {
         $this->controleur = new Controleur_Biblio();
-        //$this->action = isset($_GET['action']) != false ? $_GET['action'] : "default";
         if (isset($_GET['action']) != false) {
             $this->action = $_GET['action'];
         } else {
-            echo'erreur';
-            
             $_GET['action'] = "default";
         }
         if (isset($_GET['action'])) {
@@ -23,7 +20,6 @@ class Module_Biblio
                     $this->controleur->afficherLivre();
                     $footer = new Comp_Footer();
                     break;
-                
             }
         }
     }
