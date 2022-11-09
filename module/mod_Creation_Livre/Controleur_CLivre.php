@@ -26,7 +26,11 @@ class Controleur_CLivre{
     public function create_book()
     {
         if (isset($_SESSION['connected'])) {
-            $this->modele->create_book();
+            $result = $this->modele->create_book();
+            if ($result != false){
+                $this->modele->saveIMG($result);
+                //header('Location: index.php');
+            }
         } else {
             header('Location: index.php?module=connexion&action=print_login');
         }

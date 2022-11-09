@@ -9,7 +9,6 @@ class FonctionUtile extends Connexion {
         $prepare = parent::$bdd->prepare("SELECT * FROM Livre where id = (SELECT MAX(id) FROM Livre)");
         $exec = $prepare->execute();
         $result = $prepare->fetch();
-        echo $result["id"];
         return $result;
 
     }
