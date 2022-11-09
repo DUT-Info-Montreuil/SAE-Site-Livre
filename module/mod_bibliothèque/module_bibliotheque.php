@@ -14,20 +14,16 @@ class Module_Biblio
         } else {
             echo'erreur';
             
-            $_GET['action'] = "wallo";
+            $_GET['action'] = "default";
         }
         if (isset($_GET['action'])) {
             switch ($this->action) {
-                case "wallo":
+                case "default":
                     $navBar = new ComposantNavBar();
                     $this->controleur->afficherLivre();
                     $footer = new Comp_Footer();
                     break;
-                default:
-                    $navBar = new ComposantNavBar();
-                    $this->controleur->afficherLivre();
-                    $footer = new Comp_Footer();
-                    break;
+                
             }
         }
     }
