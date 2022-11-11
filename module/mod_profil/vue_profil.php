@@ -24,7 +24,7 @@ class vue_profil extends vueGenerique
                     <div class="col">
                         <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                             <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="index.php?module=accueil">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">User</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">User Profile</li>
                             </ol>
@@ -56,30 +56,68 @@ class vue_profil extends vueGenerique
                                 </div>
                             </div>
                         </div>
-                        <div class="card mb-4 mb-lg-0">
-                            <div class="card-body p-0">
-                                <ul class="list-group list-group-flush rounded-3">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fas fa-globe fa-lg text-warning"></i>
-                                        <p class="mb-0">https://mdbootstrap.com</p>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                                        <p class="mb-0">mdbootstrap</p>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                                        <p class="mb-0">@mdbootstrap</p>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                                        <p class="mb-0">mdbootstrap</p>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                                        <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                                        <p class="mb-0">mdbootstrap</p>
-                                    </li>
-                                </ul>
+                        <div class="card mb-4 mb-lg-4">
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-center">Historique</h5>
+                                <div class="btn-group mb-lg-4" role="group">
+                                    <input type="radio" class="btn-check" name="HistoryBtnRadio" id="btnHistoryRead"
+                                           autocomplete="off" checked>
+                                    <label class="btn btn-outline-secondary" for="btnHistoryRead">
+                                        Lecture
+                                    </label>
+
+                                    <input type="radio" class="btn-check" name="HistoryBtnRadio" id="btnHistoryWrite"
+                                           autocomplete="off">
+                                    <label class="btn btn-outline-secondary" for="btnHistoryWrite">
+                                        Ecriture
+                                    </label>
+                                </div>
+                                <div class="list-group">
+                                    <div class="list-group-item card mb-3" style="max-width: 540px;">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="ressource/livreTest.png" class="img-fluid rounded-start"
+                                                     alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-head">
+                                                    <h5 class="card-title">Titre du livre lu 1</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="card-text">résumé rapide du livre</p>
+                                                    <button type="button" class="btn btn-outline-primary">reprendre la lecture</button>
+                                                </div>
+                                                <div class="card-bottom">
+                                                    <p class="card-text"><small class="text-muted">lu il y a 5 minutes</small></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-item card mb-3" style="max-width: 540px;">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="ressource/drawinglibraryTest.png" class="img-fluid rounded-start"
+                                                     alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-head">
+                                                    <h5 class="card-title">Titre du livre lu 2</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="card-text">résumé rapide du livre</p>
+                                                    <button type="button" class="btn btn-outline-primary">reprendre la lecture</button>
+                                                </div>
+                                                <div class="card-bottom">
+                                                    <p class="card-text"><small class="text-muted">lu il y a 10 minutes</small></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="card-bottom text-center mb-2">
+                                <button type="button" class="btn btn-outline-secondary">voir plus</button>
                             </div>
                         </div>
                     </div>
@@ -87,8 +125,8 @@ class vue_profil extends vueGenerique
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-0">Full Name</p>
+                                    <div class="col-sm-5">
+                                        <p class="mb-0 p-1">Nom</p>
                                     </div>
                                     <?php
                                     if (isset($_GET["changeNameClicked"]) && $_GET["changeNameClicked"] == "true") {
@@ -103,7 +141,8 @@ class vue_profil extends vueGenerique
                                                 </div>
                                                 <div class="col-auto">
                                                     <button id="ConfirmChangeNameButton" type="submit"
-                                                            name="subAction" value="confirm" class="btn btn-outline-success mb-2">
+                                                            name="subAction" value="confirm"
+                                                            class="btn btn-outline-success mb-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                              fill="currentColor" class="bi bi-check-lg"
                                                              viewBox="0 0 16 16">
@@ -112,7 +151,8 @@ class vue_profil extends vueGenerique
                                                     </button>
                                                 </div>
                                                 <div class="col-auto">
-                                                    <button id="cancelChangeNameButton" type="submit" class="btn btn-outline-danger mb-2" formnovalidate>
+                                                    <button id="cancelChangeNameButton" type="submit"
+                                                            class="btn btn-outline-danger mb-2" formnovalidate>
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                              fill="currentColor" class="bi bi-x"
                                                              viewBox="0 0 16 16">
@@ -125,7 +165,7 @@ class vue_profil extends vueGenerique
                                         <?php
                                     } else {
                                         ?>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-2">
                                             <p id="name" class="text-muted mb-0">
                                                 <?php echo $_SESSION["identifiant"] ?>
                                             </p>
@@ -148,7 +188,7 @@ class vue_profil extends vueGenerique
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">Email</p>
+                                    <p class="mb-1 ms-4">Email</p>
                                 </div>
                                 <?php
                                 if (isset($_GET["changeEmailClicked"]) && $_GET["changeEmailClicked"] == "true") {
@@ -163,7 +203,8 @@ class vue_profil extends vueGenerique
                                             </div>
                                             <div class="col-auto">
                                                 <button id="confirmChangeEmailButton" type="submit"
-                                                        name="subAction" value="confirm" class="btn btn-outline-success mb-2">
+                                                        name="subAction" value="confirm"
+                                                        class="btn btn-outline-success mb-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-check-lg"
                                                          viewBox="0 0 16 16">
@@ -172,7 +213,8 @@ class vue_profil extends vueGenerique
                                                 </button>
                                             </div>
                                             <div class="col-auto">
-                                                <button id="cancelChangeEmailButton" type="submit" class="btn btn-outline-danger mb-2" formnovalidate>
+                                                <button id="cancelChangeEmailButton" type="submit"
+                                                        class="btn btn-outline-danger mb-2" formnovalidate>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-x"
                                                          viewBox="0 0 16 16">
@@ -207,7 +249,7 @@ class vue_profil extends vueGenerique
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">Mot de passe</p>
+                                    <p class="mb-1 ms-4">Mot de passe</p>
                                 </div>
                                 <?php
                                 if (isset($_GET["changeMDPClicked"]) && $_GET["changeMDPClicked"] == "true") {
@@ -223,7 +265,8 @@ class vue_profil extends vueGenerique
                                             </div>
                                             <div class="col-auto">
                                                 <button id="confirmChangeMDPButton" type="submit"
-                                                        name="subAction" value="confirm" class="btn btn-outline-success mb-2">
+                                                        name="subAction" value="confirm"
+                                                        class="btn btn-outline-success mb-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-check-lg"
                                                          viewBox="0 0 16 16">
@@ -232,7 +275,8 @@ class vue_profil extends vueGenerique
                                                 </button>
                                             </div>
                                             <div class="col-auto">
-                                                <button id="cancelChangeMDPButton" type="submit" class="btn btn-outline-danger mb-2" formnovalidate>
+                                                <button id="cancelChangeMDPButton" type="submit"
+                                                        class="btn btn-outline-danger mb-2" formnovalidate>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-x"
                                                          viewBox="0 0 16 16">
@@ -247,7 +291,7 @@ class vue_profil extends vueGenerique
 
                                     ?>
                                     <div class="col-sm-4">
-                                        <p class="text-muted mb-0">**********</p>
+                                        <p class="text-muted mb-0 ms-4">**********</p>
                                     </div>
                                     <div class="col-sm-1">
                                         <a role="button" id="swapToChangeMDPButton" type="button"
@@ -259,28 +303,20 @@ class vue_profil extends vueGenerique
                                             </svg>
                                         </a>
                                     </div>
-                                <?php
+                                    <?php
                                 }
                                 ?>
                             </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">Mobile</p>
+                                    <p class="mb-3 ms-4">Example</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0">(098) 765-4321</p>
+                                    <p class="text-muted mb-0">example content</p>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Address</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="row">
@@ -365,10 +401,6 @@ class vue_profil extends vueGenerique
                     </div>
                 </div>
             </div>
-            </div>
-            <p id="test">
-                aaaa
-            </p>
         </section>
         </body>
 
