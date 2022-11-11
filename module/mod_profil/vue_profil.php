@@ -19,19 +19,7 @@ class vue_profil extends vueGenerique
         </svg>-->
         <body>
         <section style="background-color: #eee;">
-            <div class="container py-5">
-                <div class="row">
-                    <div class="col">
-                        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
-                            <ol class="breadcrumb mb-0">
-                                <li class="breadcrumb-item"><a href="index.php?module=accueil">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">User</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-
+            <div class="container py-4">
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="card mb-4">
@@ -62,17 +50,17 @@ class vue_profil extends vueGenerique
                                 <div class="btn-group mb-lg-4" role="group">
                                     <input type="radio" class="btn-check" name="HistoryBtnRadio" id="btnHistoryRead"
                                            autocomplete="off" checked>
-                                    <label class="btn btn-outline-secondary" for="btnHistoryRead">
+                                    <label class="btn btn-outline-secondary" for="btnHistoryRead" id="btnHistoryReadLabel">
                                         Lecture
                                     </label>
 
                                     <input type="radio" class="btn-check" name="HistoryBtnRadio" id="btnHistoryWrite"
                                            autocomplete="off">
-                                    <label class="btn btn-outline-secondary" for="btnHistoryWrite">
+                                    <label class="btn btn-outline-secondary" for="btnHistoryWrite" id="btnHistoryWriteLabel">
                                         Ecriture
                                     </label>
                                 </div>
-                                <div class="list-group">
+                                <div class="list-group" id="read-list-history">
                                     <div class="list-group-item card mb-3" style="max-width: 540px;">
                                         <div class="row g-0">
                                             <div class="col-md-4">
@@ -113,8 +101,71 @@ class vue_profil extends vueGenerique
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
+
+                                <div class="list-group d-none" id="write-list-history">
+                                    <div class="list-group-item card mb-3" style="max-width: 540px;">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="ressource/rainbowpencilTest.png" class="img-fluid rounded-start"
+                                                     alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-head">
+                                                    <h5 class="card-title">Titre du livre écrit 1</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="card-text">résumé rapide du livre</p>
+                                                    <button type="button" class="btn btn-outline-primary">reprendre l'écriture</button>
+                                                </div>
+                                                <div class="card-bottom">
+                                                    <p class="card-text"><small class="text-muted">modifié il y a 5 minutes</small></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="list-group-item card mb-3" style="max-width: 540px;">
+                                        <div class="row g-0">
+                                            <div class="col-md-4">
+                                                <img src="ressource/drawinglibraryTest.png" class="img-fluid rounded-start"
+                                                     alt="...">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="card-head">
+                                                    <h5 class="card-title">Titre du livre écrit 2</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="card-text">résumé rapide du livre</p>
+                                                    <button type="button" class="btn btn-outline-primary">reprendre l'écriture</button>
+                                                </div>
+                                                <div class="card-bottom">
+                                                    <p class="card-text"><small class="text-muted">modifié il y a 10 minutes</small></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <script>
+                                    var readListHistory = document.getElementById("read-list-history");
+                                    var writeListHistory = document.getElementById("write-list-history");
+                                    var btnHistoryReadLabel = document.getElementById("btnHistoryReadLabel");
+                                    var btnHistoryWriteLabel = document.getElementById("btnHistoryWriteLabel");
+                                    function swapShowRead() {
+                                        readListHistory.classList.remove("d-none");
+                                        writeListHistory.classList.add("d-none");
+                                    }
+                                    function swapShowWrite() {
+                                        writeListHistory.classList.remove("d-none");
+                                        readListHistory.classList.add("d-none");
+                                    }
+
+                                    btnHistoryReadLabel.addEventListener("click", swapShowRead);
+                                    btnHistoryWriteLabel.addEventListener("click", swapShowWrite);
+
+                                </script>
+
                             </div>
                             <div class="card-bottom text-center mb-2">
                                 <button type="button" class="btn btn-outline-secondary">voir plus</button>
@@ -317,86 +368,6 @@ class vue_profil extends vueGenerique
                                 </div>
                             </div>
 
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="card mb-4 mb-md-0">
-                                <div class="card-body">
-                                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span>
-                                        Project Status
-                                    </p>
-                                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%"
-                                             aria-valuenow="80"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 72%"
-                                             aria-valuenow="72"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 89%"
-                                             aria-valuenow="89"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 55%"
-                                             aria-valuenow="55"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                    <div class="progress rounded mb-2" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 66%"
-                                             aria-valuenow="66"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="card mb-4 mb-md-0">
-                                <div class="card-body">
-                                    <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span>
-                                        Project Status
-                                    </p>
-                                    <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 80%"
-                                             aria-valuenow="80"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 72%"
-                                             aria-valuenow="72"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 89%"
-                                             aria-valuenow="89"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                                    <div class="progress rounded" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 55%"
-                                             aria-valuenow="55"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                                    <div class="progress rounded mb-2" style="height: 5px;">
-                                        <div class="progress-bar" role="progressbar" style="width: 66%"
-                                             aria-valuenow="66"
-                                             aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
