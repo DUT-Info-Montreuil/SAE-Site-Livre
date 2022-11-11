@@ -176,8 +176,8 @@ class vue_profil extends vueGenerique
                         <div class="card mb-4">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-sm-5">
-                                        <p class="mb-0 p-1">Nom</p>
+                                    <div class="col-sm-3">
+                                        <p class="mb-1 ms-4">Nom</p>
                                     </div>
                                     <?php
                                     if (isset($_GET["changeNameClicked"]) && $_GET["changeNameClicked"] == "true") {
@@ -216,7 +216,7 @@ class vue_profil extends vueGenerique
                                         <?php
                                     } else {
                                         ?>
-                                        <div class="col-sm-2">
+                                        <div class="col-sm-4">
                                             <p id="name" class="text-muted mb-0">
                                                 <?php echo $_SESSION["identifiant"] ?>
                                             </p>
@@ -235,7 +235,6 @@ class vue_profil extends vueGenerique
                                     }
                                     ?>
                                 </div>
-                            </div>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
@@ -367,7 +366,6 @@ class vue_profil extends vueGenerique
                                     <p class="text-muted mb-0">example content</p>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
