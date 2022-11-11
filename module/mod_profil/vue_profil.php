@@ -93,7 +93,7 @@ class vue_profil extends vueGenerique
                                     <?php
                                     if (isset($_GET["changeNameClicked"]) && $_GET["changeNameClicked"] == "true") {
                                         ?>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-5">
                                             <form class="row g-2" action="index.php?module=profil&action=modifierNom"
                                                   method="post">
 
@@ -102,12 +102,21 @@ class vue_profil extends vueGenerique
                                                            name="newName" required>
                                                 </div>
                                                 <div class="col-auto">
-                                                    <button id="swapToChangeNameButton" type="submit"
-                                                            class="btn btn-outline-secondary mb-2">
+                                                    <button id="ConfirmChangeNameButton" type="submit"
+                                                            name="subAction" value="confirm" class="btn btn-outline-success mb-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                              fill="currentColor" class="bi bi-check-lg"
                                                              viewBox="0 0 16 16">
                                                             <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                                        </svg>
+                                                    </button>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <button id="cancelChangeNameButton" type="submit" class="btn btn-outline-danger mb-2" formnovalidate>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                             fill="currentColor" class="bi bi-x"
+                                                             viewBox="0 0 16 16">
+                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                                         </svg>
                                                     </button>
                                                 </div>
@@ -144,7 +153,7 @@ class vue_profil extends vueGenerique
                                 <?php
                                 if (isset($_GET["changeEmailClicked"]) && $_GET["changeEmailClicked"] == "true") {
                                     ?>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-5">
                                         <form class="row g-2" action="index.php?module=profil&action=modifierEmail"
                                               method="post">
 
@@ -153,12 +162,21 @@ class vue_profil extends vueGenerique
                                                        name="newEmail" required>
                                             </div>
                                             <div class="col-auto">
-                                                <button id="swapToChangeEmailButton" type="submit"
-                                                        class="btn btn-outline-secondary mb-2">
+                                                <button id="confirmChangeEmailButton" type="submit"
+                                                        name="subAction" value="confirm" class="btn btn-outline-success mb-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-check-lg"
                                                          viewBox="0 0 16 16">
                                                         <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button id="cancelChangeEmailButton" type="submit" class="btn btn-outline-danger mb-2" formnovalidate>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                         fill="currentColor" class="bi bi-x"
+                                                         viewBox="0 0 16 16">
+                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                                     </svg>
                                                 </button>
                                             </div>
@@ -195,7 +213,7 @@ class vue_profil extends vueGenerique
                                 if (isset($_GET["changeMDPClicked"]) && $_GET["changeMDPClicked"] == "true") {
 
                                     ?>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-5">
                                         <form class="row g-2" action="index.php?module=profil&action=modifierMDP"
                                               method="post">
 
@@ -204,12 +222,21 @@ class vue_profil extends vueGenerique
                                                        name="newMDP" required>
                                             </div>
                                             <div class="col-auto">
-                                                <button id="swapToChangeMDPButton" type="submit"
-                                                        class="btn btn-outline-secondary mb-2">
+                                                <button id="confirmChangeMDPButton" type="submit"
+                                                        name="subAction" value="confirm" class="btn btn-outline-success mb-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-check-lg"
                                                          viewBox="0 0 16 16">
                                                         <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button id="cancelChangeMDPButton" type="submit" class="btn btn-outline-danger mb-2" formnovalidate>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                         fill="currentColor" class="bi bi-x"
+                                                         viewBox="0 0 16 16">
+                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                                     </svg>
                                                 </button>
                                             </div>

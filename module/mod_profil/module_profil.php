@@ -14,13 +14,28 @@ class Module_profil
                     $this->controleur->afficherProfil();
                     break;
                 case "modifierNom":
-                    $this->controleur->modifierNom();
+                    if(isset($_POST['subAction'])){
+                        $this->controleur->modifierNom();
+                    }
+                    else{
+                        $this->controleur->afficherProfil();
+                    }
                     break;
                 case "modifierEmail":
-                    $this->controleur->modifierEmail();
+                    if(isset($_POST['subAction'])){
+                        $this->controleur->modifierEmail();
+                    }
+                    else{
+                        $this->controleur->afficherProfil();
+                    }
                     break;
                 case "modifierMDP":
-                    $this->controleur->modifierMDP();
+                    if(isset($_POST['subAction'])){
+                        $this->controleur->modifierMDP();
+                    }
+                    else{
+                        $this->controleur->afficherProfil();
+                    }
                     break;
             }
         } else {
