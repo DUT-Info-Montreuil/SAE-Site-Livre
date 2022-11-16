@@ -26,6 +26,7 @@
 
 }
 
+
 #ppDropDown{
     background-color: red;
     width: 40px;
@@ -37,4 +38,8 @@
 }
 #regarderLivre{
     margin: auto;
+}
+#ChapterContainer{
+    margin: auto;
+    width: 75%;
 }

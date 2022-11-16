@@ -4,6 +4,7 @@ require_once("composant/comp_Footer/Comp_Footer.php");
 require_once("vue_generique.php");
 require_once("module/mod_accueil/module_accueil.php");
 require_once("module/mod_bibliothèque/module_bibliotheque.php");
+require_once("module/mod_Livre/module_Livre.php");
 $vue_gen = new VueGenerique();
 ?>
 
@@ -51,6 +52,9 @@ switch ($module) {
         break;
     case"bibliotheque":
         $mod_biblio = new Module_Biblio();
+        break;
+    case"livre":
+        $mod_livre = new Module_Livre();
         break;
 }
 

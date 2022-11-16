@@ -20,7 +20,7 @@ class Vue_Biblio extends vueGenerique
 
                 <div class="col">
                     <?php
-                    $this->afficherLivre($key['id'], $key['titre'], $key['resumeLivre'], $key['nbrLike'], $key['nbrVue'], $key['userName']);
+                    $this->afficherLivreDansBiblio($key['id'], $key['titre'], $key['resumeLivre'], $key['nbrLike'], $key['nbrVue'], $key['userName']);
                     ?>
                 </div>
 
@@ -31,13 +31,13 @@ class Vue_Biblio extends vueGenerique
         </div>
     <?php
     }
-    public function afficherLivre($id, $titre, $resumeLivre, $nbrLike, $nbrVue, $userName)
+    public function afficherLivreDansBiblio($id, $titre, $resumeLivre, $nbrLike, $nbrVue, $userName)
     {
     ?>
 
 
 
-        <a href="https://www.youtube.com/watch?v=KQgOqyYoHAs" id="LinkLivre">
+        <a href="index.php?module=livre&idLivre=<?=$id?>" id="LinkLivre">
             <div class="card h-100">
                 <?php
                 echo "<img src=\"ressource/bookCover/" . $id . "\" class=\"card-img-top\" alt=\"...\">";
