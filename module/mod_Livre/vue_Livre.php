@@ -61,7 +61,7 @@ class Vue_Livre extends vueGenerique
         ?>
 
         <div class="my-3 p-3 bg-body rounded shadow-sm " id="ChapterContainer justy">
-            <h4 class="border-bottom pb-2 mb-0"><?= $chapitre['titre'] ?></h6>
+            <h6 class="border-bottom pb-2 mb-0"><?= $chapitre['titre'] ?></h6>
                 <?php
                 $this->afficherPages($pages);
                 ?>

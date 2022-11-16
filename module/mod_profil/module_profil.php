@@ -8,6 +8,7 @@ class Module_profil
     public function __construct()
     {
         $this->controleur = new Controleur_profil();
+        $navBar = new ComposantNavBar();
         if (isset($_GET['action'])) {
             switch ($_GET['action']) {
                 case "afficherProfil":
@@ -41,5 +42,6 @@ class Module_profil
         } else {
             $this->controleur->afficherProfil();
         }
+        $footer = new Comp_Footer();
     }
 }

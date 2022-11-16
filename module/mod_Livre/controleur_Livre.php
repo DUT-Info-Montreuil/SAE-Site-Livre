@@ -29,6 +29,7 @@ class Controleur_Livre
             $pages = $this->modele->getPages($chapitre['id']);
             $allChap=$this->modele->getAllChap($_GET['idLivre']);
             $nbrchap=$this->modele->getNbrChapLivre($_GET['idLivre']);
+            $this->modele->enregistreLivreLu($_GET['idLivre']);
             $this->vue->afficherChapitre($chapitre,$pages,$allChap,$nbrchap);
         
     }

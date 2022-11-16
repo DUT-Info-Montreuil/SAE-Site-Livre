@@ -43,6 +43,13 @@ class Modele_Livre extends Connexion
         $result = $prepare->fetch();
         return $result;
     }
+
+    public function enregistreLivreLu($idLivreLu){
+        $sql = "INSERT INTO historique_livre_lu (id_utilisateur,id_livre_lu) VALUES (?,?)";
+        $prepare = parent::$bdd->prepare($sql);
+        $tab = array($_SESSION["id"],$idLivreLu);
+        $exec = $prepare->execute($tab);
+    }
     
 }
 

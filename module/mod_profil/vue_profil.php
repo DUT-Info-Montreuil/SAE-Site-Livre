@@ -8,7 +8,7 @@ class vue_profil extends vueGenerique
         parent::__construct();
     }
 
-    public function print_profil()
+    public function print_profil($livresLus)
     {
         ?>
         <!--<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -61,27 +61,39 @@ class vue_profil extends vueGenerique
                                     </label>
                                 </div>
                                 <div class="list-group" id="read-list-history">
-                                    <div class="list-group-item card mb-3" style="max-width: 540px;">
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="ressource/livreTest.png" class="img-fluid rounded-start"
-                                                     alt="...">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-head">
-                                                    <h5 class="card-title">Titre du livre lu 1</h5>
+                                    <?php
+                                        if(count($livresLus) > 0){
+                                            foreach ($livresLus as $key){
+                                                ?>
+                                                <div class="list-group-item card mb-3" style="max-width: 540px;">
+                                                    <div class="row g-0">
+                                                        <div class="col-md-4">
+                                                            <img src="ressource/livreTest.png" class="img-fluid rounded-start"
+                                                                 alt="...">
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <div class="card-head">
+                                                                <h5 class="card-title"><?= $key["titre"] ?></h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <p class="card-text"><?= $key["resumeLivre"] ?></p>
+                                                                <button type="button" class="btn btn-outline-primary">reprendre la lecture</button>
+                                                            </div>
+                                                            <div class="card-bottom">
+                                                                <p class="card-text"><small class="text-muted">lu il y a 5 minutes</small></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div class="card-body">
-                                                    <p class="card-text">résumé rapide du livre</p>
-                                                    <button type="button" class="btn btn-outline-primary">reprendre la lecture</button>
-                                                </div>
-                                                <div class="card-bottom">
-                                                    <p class="card-text"><small class="text-muted">lu il y a 5 minutes</small></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-group-item card mb-3" style="max-width: 540px;">
+                                                <?php
+                                            }
+                                        }
+                                        else {
+                                            echo "vous n'avez pas encore lu de livres";
+                                        }
+
+                                    ?>
+                                    <!--<div class="list-group-item card mb-3" style="max-width: 540px;">
                                         <div class="row g-0">
                                             <div class="col-md-4">
                                                 <img src="ressource/drawinglibraryTest.png" class="img-fluid rounded-start"
@@ -100,7 +112,7 @@ class vue_profil extends vueGenerique
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                 </div>
 
                                 <div class="list-group d-none" id="write-list-history">
