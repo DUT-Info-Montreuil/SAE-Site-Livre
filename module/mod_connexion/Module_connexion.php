@@ -7,7 +7,12 @@ class Module_connexion
     private $action;
     public function __construct(){
         $this->controleur = new Controleur_connexion();
-        $this->action = $_GET['action'] != null ? $_GET['action'] : "print_login";
+        if (isset($_GET['action']) != false) {
+            $this->action = $_GET['action'];
+        } else {
+            $_GET['action'] = "default";
+            $this->action = $_GET['action'];
+        }
         if(isset($_GET['action'])) {
             
             switch ($this->action) {
@@ -32,8 +37,6 @@ class Module_connexion
                 case "disconnect":
                     $this->controleur->Deco();
                     break;
-                
-            
 
             }
         }
