@@ -8,6 +8,8 @@ require_once("module/mod_Creation_Livre/Module_CLivre.php");
 
 require_once("module/mod_bibliothèque/module_bibliotheque.php");
 
+require_once("module/mod_Livre/module_Livre.php");
+
 $vue_gen = new VueGenerique();
 ?>
 
@@ -69,6 +71,9 @@ switch ($module) {
         break;
     case "parametre":
         $mod_parametre = new Module_parametre();
+        break;
+    case"livre":
+        $mod_livre = new Module_Livre();
         break;
 }
 
