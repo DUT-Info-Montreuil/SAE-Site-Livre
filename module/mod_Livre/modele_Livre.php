@@ -37,11 +37,14 @@ class Modele_Livre extends Connexion
         return $result;
     }
     public function getNbrChapLivre($idLivre){
-        $sql="SELECT NbrDeChapitre FROM Livre where id=$idLivre";
+        $sql="SELECT count(*) as nbr FROM Chapitre where id_livre=$idLivre";
         $prepare = parent::$bdd->prepare($sql);
         $exec = $prepare->execute();
         $result = $prepare->fetch();
+       
         return $result;
+
+        
     }
     
 }

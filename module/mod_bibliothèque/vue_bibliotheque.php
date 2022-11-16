@@ -15,17 +15,13 @@ class Vue_Biblio extends vueGenerique
         <div class="row row-cols-1 row-cols-md-5 g-4">
             <?php
             foreach ($livre as $key) {
-
             ?>
-
                 <div class="col">
                     <?php
                     $this->afficherLivreDansBiblio($key['id'], $key['titre'], $key['resumeLivre'], $key['nbrLike'], $key['nbrVue'], $key['userName']);
                     ?>
                 </div>
-
             <?php
-
             }
             ?>
         </div>
@@ -34,10 +30,7 @@ class Vue_Biblio extends vueGenerique
     public function afficherLivreDansBiblio($id, $titre, $resumeLivre, $nbrLike, $nbrVue, $userName)
     {
     ?>
-
-
-
-        <a href="index.php?module=livre&idLivre=<?=$id?>" id="LinkLivre">
+        <a href="index.php?module=livre&idLivre=<?= $id ?>" id="LinkLivre">
             <div class="card h-100">
                 <?php
                 echo "<img src=\"ressource/bookCover/" . $id . "\" class=\"card-img-top\" alt=\"...\">";
@@ -73,11 +66,6 @@ class Vue_Biblio extends vueGenerique
                 </div>
             </div>
         </a>
-
-
-
-
-
 <?php
 
 

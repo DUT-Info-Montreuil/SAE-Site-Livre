@@ -50,8 +50,9 @@ class Vue_Livre extends vueGenerique
         } else {
             $PreviousButtonStat = "enabled";
         }
+        
 
-        if ($currentChap == $nbrChap['NbrDeChapitre']) {
+        if ($currentChap == $nbrChap['nbr']) {
 
             $NextButtonStat = "disabled";
         } else {
