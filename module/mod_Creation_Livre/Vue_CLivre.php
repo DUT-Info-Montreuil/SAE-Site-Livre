@@ -34,21 +34,22 @@ class Vue_CLivre extends vueGenerique
                             <?= $key["genre"] ?>
                         </label>
                     </div>
+                    
 
 
 
                 <?php
                 }
                 ?>
-
-
-
                 <div class="d-grid">
                     <button type="submit" class="btn btn-primary">
                         cree le livre !
                     </button>
                 </div>
+
+               
         </form>
+       
 
 
 

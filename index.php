@@ -61,10 +61,9 @@ switch ($module) {
         break;
     case "CLivre": 
         $mod_livre = new Module_CLivre();
-
+        break;
     case"bibliotheque":
         $mod_biblio = new Module_Biblio();
-
         break;
     case "profil":
         $mod_profil = new Module_profil();
