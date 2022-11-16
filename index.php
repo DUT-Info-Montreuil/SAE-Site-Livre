@@ -3,7 +3,11 @@ require_once("composant/comp_navBar/composant_navBar.php");
 require_once("composant/comp_Footer/Comp_Footer.php");
 require_once("vue_generique.php");
 require_once("module/mod_accueil/module_accueil.php");
+
 require_once("module/mod_Creation_Livre/Module_CLivre.php");
+
+require_once("module/mod_bibliothèque/module_bibliotheque.php");
+
 $vue_gen = new VueGenerique();
 ?>
 
@@ -51,6 +55,10 @@ switch ($module) {
         break;
     case "CLivre":
         $mod_livre = new Module_CLivre();
+
+    case"bibliotheque":
+        $mod_biblio = new Module_Biblio();
+
         break;
 }
 
@@ -74,6 +82,5 @@ echo $result;
 
 
 ?>
-
 
 </html>
