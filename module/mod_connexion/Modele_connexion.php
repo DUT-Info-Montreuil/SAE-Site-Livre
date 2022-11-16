@@ -37,6 +37,7 @@ class Modele_connexion extends Connexion {
         unset($_SESSION["connected"]);
         unset($_SESSION["identifiant"]);
         unset($_SESSION["id"]);
+        unset($_SESSION["email"]);
     }
     
 }
