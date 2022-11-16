@@ -38,7 +38,7 @@ session_start();
 require_once("Connexion.php");
 require_once('module/mod_connexion/Module_connexion.php');
 require_once("module/mod_profil/module_profil.php");
-require_once("module/mod_parametre/module_parametre.php");
+
 require_once("vue_generique.php");
 Connexion::initConnexion();
 
@@ -57,7 +57,7 @@ switch ($module) {
     case "accueil":
         $mod_accueil = new Module_Accueil();
         break;
-    case "CLivre":
+    case "CLivre": 
         $mod_livre = new Module_CLivre();
 
     case"bibliotheque":

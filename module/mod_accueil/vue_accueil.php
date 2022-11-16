@@ -15,7 +15,7 @@ class Vue_Accueil extends vueGenerique
       <div>
         
 
-          <!--<button type="button" class="btn btn-primary btn-lg" id="EcrireLivre">Ecrire livre</button>--
+          <!--<button type="button" class="btn btn-primary btn-lg" id="EcrireLivre">Ecrire livre</button>-->
           <a href="index.php?action=print_create_book&module=CLivre" class="btn btn-primary btn-lg" role="button" id="EcrireLivre">Ecrire livre</a>
           <a href="index.php?module=bibliotheque" class="btn btn-primary btn-lg" role="button" id="VoireLIVRE">Voir plus de livre</a>
         
