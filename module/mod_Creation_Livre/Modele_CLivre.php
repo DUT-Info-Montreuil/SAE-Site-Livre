@@ -56,6 +56,9 @@ class Modele_CLivre extends Connexion {
     }
 
     public function saveIMG($id){
+        if (!isset($_GET["img"])){
+            return ; 
+        }
         
         //Stores the filename as it was on the client computer.
         $imagename = $_FILES['img']['name'];
@@ -86,7 +89,21 @@ class Modele_CLivre extends Connexion {
 
     }
    
-    
+    public function verifOwnerShip($idLivre){
+        $arr = array($idLivre , $_SESSION["id"]);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Livre where id = ? and IDAuteur = ?");
+        $exec = $prepare->execute($arr);
+        $result = $prepare->fetchAll();
+        if (count($result) > 0){
+            echo   "test was true";
+            return true ;
+        }else {
+            echo   "test was false";
+            return false ;
+        }
+
+
+    }
     
 }   
 

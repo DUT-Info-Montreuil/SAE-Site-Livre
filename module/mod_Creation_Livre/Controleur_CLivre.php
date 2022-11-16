@@ -29,14 +29,33 @@ class Controleur_CLivre{
             $result = $this->modele->create_book();
             if ($result != false){
                 $this->modele->saveIMG($result);
+
                 //header('Location: index.php');
             }
+            header('Location: index.php?module=CLivre&action=print_write_book&idLivre='.$result);
+           
         } else {
             header('Location: index.php?module=connexion&action=print_login');
         }
         
     }
     
+    public function print_write_book()
+    {   
+        
+        if (isset($_SESSION['connected'])&& isset($_GET['idLivre'])) {
+            if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
+                $this->vue->write_book();
+                echo" yes" ;
+            }else{
+                header('Location: index.php');
+            }
+            
+        } else {
+            header('Location: index.php?module=connexion&action=print_login');
+        }
+        
+    }
 
   
    

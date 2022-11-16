@@ -17,7 +17,10 @@ class Module_CLivre
 
                 case "create_book":
                     $this->controleur->create_book();
-                    break;                
+                    break;     
+                case "print_write_book":
+                    $this->controleur->print_write_book();
+                    break ; 
             }
         }
 

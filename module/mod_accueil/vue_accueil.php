@@ -63,6 +63,7 @@ class Vue_Accueil extends vueGenerique
 
     </html>
 <?php
+  $this->Error("c bien");
   }
 }
 ?>

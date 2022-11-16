@@ -34,7 +34,7 @@ class Vue_CLivre extends vueGenerique
                             <?= $key["genre"] ?>
                         </label>
                     </div>
-                    
+
 
 
 
@@ -47,14 +47,56 @@ class Vue_CLivre extends vueGenerique
                     </button>
                 </div>
 
-               
+
         </form>
-       
 
 
 
+
+
+    <?php
+    }
+    public function write_book()
+    {
+        
+    ?>
+        <div class="form-group">
+            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <textarea class="form-control" id="story" rows="40"></textarea>
+        </div>
+        <script>
+            $(window).on('load', function() {
+                var timer = null;
+                $('#story').on('input', function() {
+                    if (timer != null) {
+                        clearTimeout(timer); //cancel the previous timer.
+                        timer = null;
+                    }
+                    timer = setTimeout(function() {
+                        //put your ajax call here
+                        $.ajax({
+                            url: 'save.php',
+                            type: 'POST',
+                            data: {
+                                story: $('#story').val(),
+                                idLivre: <?= $_GET['idLivre'] ?>,
+                                idAuteur: <?= $_SESSION['id'] ?>
+
+                            },
+                            success: function(data) {
+                                alert(data);
+                            }
+                        });
+                    }, 5000);
+
+                });
+            });
+        </script>
 
 <?php
+
+
+
     }
 }
 
