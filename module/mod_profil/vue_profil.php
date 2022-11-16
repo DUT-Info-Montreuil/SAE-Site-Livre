@@ -63,13 +63,16 @@ class vue_profil extends vueGenerique
                                 <div class="list-group" id="read-list-history">
                                     <?php
                                         if(count($livresLus) > 0){
+                                            if(count($livresLus) > 1){
+                                                $dateColumn = array_column($livresLus, 'date_heure_lecture');
+                                                array_multisort($dateColumn, SORT_DESC, $livresLus);
+                                            }
                                             foreach ($livresLus as $key){
                                                 ?>
                                                 <div class="list-group-item card mb-3" style="max-width: 540px;">
                                                     <div class="row g-0">
                                                         <div class="col-md-4">
-                                                            <img src="ressource/livreTest.png" class="img-fluid rounded-start"
-                                                                 alt="...">
+                                                            <?php echo "<img src=\"ressource/bookCover/".$key["id_livre_lu"].".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>"?>
                                                         </div>
                                                         <div class="col-md-8">
                                                             <div class="card-head">
@@ -80,7 +83,7 @@ class vue_profil extends vueGenerique
                                                                 <button type="button" class="btn btn-outline-primary">reprendre la lecture</button>
                                                             </div>
                                                             <div class="card-bottom">
-                                                                <p class="card-text"><small class="text-muted">lu il y a 5 minutes</small></p>
+                                                                <p class="card-text"><small class="text-muted">lu il y a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key["date_heure_lecture"]))),new DateTime(date("Y-m-d H:i:s"))); echo $dateDiff->format('%d')."j ".$dateDiff->format('%H')."h ".$dateDiff->format('%i')."m ".$dateDiff->format('%s')."s"?></small></p>
                                                             </div>
                                                         </div>
                                                     </div>
