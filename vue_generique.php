@@ -16,7 +16,7 @@ class vueGenerique{
        
 ?>
 
-      
+
         <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <svg class="bd-placeholder-img rounded me-2" width="20" height="20" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
@@ -33,6 +33,7 @@ class vueGenerique{
 
 
 
+
     <?php
     }
 
@@ -41,7 +42,7 @@ class vueGenerique{
     {
     ?>
 
-  
+
         <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <svg class="bd-placeholder-img rounded me-2" width="20" height="20" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
