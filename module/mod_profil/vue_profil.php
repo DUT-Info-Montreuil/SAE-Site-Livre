@@ -80,7 +80,7 @@ class vue_profil extends vueGenerique
                                                             </div>
                                                             <div class="card-body">
                                                                 <p class="card-text"><?= $key["resumeLivre"] ?></p>
-                                                                <button type="button" class="btn btn-outline-primary">reprendre la lecture</button>
+                                                                <a type="button" href="index.php?module=livre&idLivre=<?=$key["id_livre_lu"]?>&Chapitre=<?=$key["dernier_chapitre_lu"]?>" class="btn btn-outline-primary">reprendre la lecture</a>
                                                             </div>
                                                             <div class="card-bottom">
                                                                 <p class="card-text"><small class="text-muted">lu il y a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key["date_heure_lecture"]))),new DateTime(date("Y-m-d H:i:s"))); echo $dateDiff->format('%d')."j ".$dateDiff->format('%H')."h ".$dateDiff->format('%i')."m ".$dateDiff->format('%s')."s"?></small></p>
