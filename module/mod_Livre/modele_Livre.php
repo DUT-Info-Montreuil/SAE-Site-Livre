@@ -63,7 +63,6 @@ class Modele_Livre extends Connexion
             $tabLivreLu = array($dateTime,$_SESSION["id"],$idLivreLu);
             $execLivreLu = $updateLivreLu->execute($tabLivreLu);
         }
-
     }
     
 }
