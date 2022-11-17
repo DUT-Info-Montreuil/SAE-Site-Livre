@@ -72,7 +72,9 @@ class vue_profil extends vueGenerique
                                                 <div class="list-group-item card mb-3" style="max-width: 540px;">
                                                     <div class="row g-0">
                                                         <div class="col-md-4">
-                                                            <?php echo "<img src=\"ressource/bookCover/".$key["id_livre_lu"].".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>"?>
+                                                            <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre".$key["id_livre_lu"]."\">" ?>
+                                                                <?php echo "<img src=\"ressource/bookCover/".$key["id_livre_lu"].".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
+                                                            </a>
                                                         </div>
                                                         <div class="col-md-8">
                                                             <div class="card-head">
@@ -97,8 +99,13 @@ class vue_profil extends vueGenerique
 
                                     ?>
                                 </div>
+                                <script>
+                                    $("#imgLivre<?=$key["id_livre_lu"]?>").click(function(){
 
-                                <div class="list-group d-none" id="write-list-history">
+                                    });
+                                </script>
+
+                                <div class="list-group" id="write-list-history">
                                     <div class="list-group-item card mb-3" style="max-width: 540px;">
                                         <div class="row g-0">
                                             <div class="col-md-4">
@@ -141,13 +148,17 @@ class vue_profil extends vueGenerique
                                     </div>
                                 </div>
                                 <script>
+                                    $("#write-list-history").hide();
                                     $("#btnHistoryRead").click(function () {
-                                        $("#read-list-history").removeClass("d-none");
-                                        $("#write-list-history").addClass("d-none");
+                                        $("#write-list-history").first().hide("slow", function showNext() {
+                                            $("#read-list-history").show("slow");
+                                        });
+                                        //$("#write-list-history").addClass("d-none");
                                     });
                                     $("#btnHistoryWrite").click(function () {
-                                        $("#write-list-history").removeClass("d-none");
-                                        $("#read-list-history").addClass("d-none");
+                                        $("#read-list-history").first().hide("slow", function showNext() {
+                                            $("#write-list-history").show("slow");
+                                        });
                                     });
                                 </script>
 
