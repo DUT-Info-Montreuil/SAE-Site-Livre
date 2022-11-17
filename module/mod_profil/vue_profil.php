@@ -96,26 +96,6 @@ class vue_profil extends vueGenerique
                                         }
 
                                     ?>
-                                    <!--<div class="list-group-item card mb-3" style="max-width: 540px;">
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="ressource/drawinglibraryTest.png" class="img-fluid rounded-start"
-                                                     alt="...">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-head">
-                                                    <h5 class="card-title">Titre du livre lu 2</h5>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p class="card-text">résumé rapide du livre</p>
-                                                    <button type="button" class="btn btn-outline-primary">reprendre la lecture</button>
-                                                </div>
-                                                <div class="card-bottom">
-                                                    <p class="card-text"><small class="text-muted">lu il y a 10 minutes</small></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>-->
                                 </div>
 
                                 <div class="list-group d-none" id="write-list-history">
@@ -163,22 +143,14 @@ class vue_profil extends vueGenerique
 
 
                                 <script>
-                                    var readListHistory = document.getElementById("read-list-history");
-                                    var writeListHistory = document.getElementById("write-list-history");
-                                    var btnHistoryReadLabel = document.getElementById("btnHistoryReadLabel");
-                                    var btnHistoryWriteLabel = document.getElementById("btnHistoryWriteLabel");
-                                    function swapShowRead() {
-                                        readListHistory.classList.remove("d-none");
-                                        writeListHistory.classList.add("d-none");
-                                    }
-                                    function swapShowWrite() {
-                                        writeListHistory.classList.remove("d-none");
-                                        readListHistory.classList.add("d-none");
-                                    }
-
-                                    btnHistoryReadLabel.addEventListener("click", swapShowRead);
-                                    btnHistoryWriteLabel.addEventListener("click", swapShowWrite);
-
+                                    $("#btnHistoryRead").click(function () {
+                                        $("#read-list-history").removeClass("d-none");
+                                        $("#write-list-history").addClass("d-none");
+                                    });
+                                    $("#btnHistoryWrite").click(function () {
+                                        $("#write-list-history").removeClass("d-none");
+                                        $("#read-list-history").addClass("d-none");
+                                    });
                                 </script>
 
                             </div>
