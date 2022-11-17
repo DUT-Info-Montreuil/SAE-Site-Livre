@@ -164,9 +164,6 @@ class vue_profil extends vueGenerique
                                     <div class="col-sm-3">
                                         <p class="mb-1 ms-4">Nom</p>
                                     </div>
-                                   <?php /*
-                                    if (isset($_GET["changeNameClicked"]) && $_GET["changeNameClicked"] == "true") { */
-                                        ?>
                                         <div class="col-sm-5 d-none" id="modifierNom">
                                             <form class="row g-2" action="index.php?module=profil&action=modifierNom"
                                                   method="post">
@@ -197,9 +194,6 @@ class vue_profil extends vueGenerique
                                                 </div>
                                             </form>
                                         </div>
-                                        <?php /*
-                                    } else {*/
-                                        ?>
                                             <div class="col-sm-4 afficherNom">
                                                 <p id="name" class="text-muted mb-0">
                                                     <?php echo $_SESSION["identifiant"] ?>
@@ -214,9 +208,6 @@ class vue_profil extends vueGenerique
                                                     </svg>
                                                 </button>
                                             </div>
-                                        <?php
-                                    //}
-                                    ?>
                                 </div>
                             <hr>
                                 <script>
@@ -237,10 +228,7 @@ class vue_profil extends vueGenerique
                                 <div class="col-sm-3">
                                     <p class="mb-1 ms-4">Email</p>
                                 </div>
-                                <?php
-                                if (isset($_GET["changeEmailClicked"]) && $_GET["changeEmailClicked"] == "true") {
-                                    ?>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-5 d-none" id="modifierEmail">
                                         <form class="row g-2" action="index.php?module=profil&action=modifierEmail"
                                               method="post">
 
@@ -260,7 +248,7 @@ class vue_profil extends vueGenerique
                                                 </button>
                                             </div>
                                             <div class="col-auto">
-                                                <button id="cancelChangeEmailButton" type="submit"
+                                                <button id="cancelChangeEmailButton" type="button"
                                                         class="btn btn-outline-danger mb-2" formnovalidate>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-x"
@@ -271,38 +259,39 @@ class vue_profil extends vueGenerique
                                             </div>
                                         </form>
                                     </div>
-                                    <?php
-
-                                } else {
-
-                                    ?>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 afficherEmail">
                                         <p class="text-muted mb-0"><?php echo $_SESSION["email"] ?></p>
                                     </div>
-                                    <div class="col-sm-1">
-                                        <a role="button" id="swapToChangeEmailButton" type="button"
-                                           class="btn btn-outline-secondary ms-0"
-                                           href="index.php?module=profil&action=afficherProfil&changeEmailClicked=true">
+                                    <div class="col-sm-1 afficherEmail">
+                                        <button id="swapToChangeEmailButton" type="button"
+                                           class="btn btn-outline-secondary ms-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                             </svg>
-                                        </a>
+                                        </button>
                                     </div>
-                                    <?php
-                                }
-                                ?>
                             </div>
                             <hr>
+                                <script>
+                                    $("#swapToChangeEmailButton").click(function () {
+                                        $(".afficherEmail").addClass("d-none");
+                                        $("#modifierEmail").removeClass("d-none");
+                                    });
+                                    $("#cancelChangeEmailButton").click(function () {
+                                        $(".afficherEmail").removeClass("d-none");
+                                        $("#modifierEmail").addClass("d-none");
+                                    });
+                                    $("#ConfirmChangeEmailButton").click(function () {
+                                        $(".afficherEmail").removeClass("d-none");
+                                        $("#modifierEmail").addClass("d-none");
+                                    });
+                                </script>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <p class="mb-1 ms-4">Mot de passe</p>
                                 </div>
-                                <?php
-                                if (isset($_GET["changeMDPClicked"]) && $_GET["changeMDPClicked"] == "true") {
-
-                                    ?>
-                                    <div class="col-sm-5">
+                                    <div class="col-sm-5 d-none" id="modifierMDP">
                                         <form class="row g-2" action="index.php?module=profil&action=modifierMDP"
                                               method="post">
 
@@ -322,7 +311,7 @@ class vue_profil extends vueGenerique
                                                 </button>
                                             </div>
                                             <div class="col-auto">
-                                                <button id="cancelChangeMDPButton" type="submit"
+                                                <button id="cancelChangeMDPButton" type="button"
                                                         class="btn btn-outline-danger mb-2" formnovalidate>
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                          fill="currentColor" class="bi bi-x"
@@ -333,28 +322,34 @@ class vue_profil extends vueGenerique
                                             </div>
                                         </form>
                                     </div>
-                                    <?php
-                                } else {
-
-                                    ?>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-4 afficherMDP">
                                         <p class="text-muted mb-0 ms-4">**********</p>
                                     </div>
-                                    <div class="col-sm-1">
-                                        <a role="button" id="swapToChangeMDPButton" type="button"
-                                           class="btn btn-outline-secondary ms-0"
-                                           href="index.php?module=profil&action=afficherProfil&changeMDPClicked=true">
+                                    <div class="col-sm-1 afficherMDP">
+                                        <button id="swapToChangeMDPButton" type="button"
+                                           class="btn btn-outline-secondary ms-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                             </svg>
-                                        </a>
+                                        </button>
                                     </div>
-                                    <?php
-                                }
-                                ?>
                             </div>
                             <hr>
+                                <script>
+                                    $("#swapToChangeMDPButton").click(function () {
+                                        $(".afficherMDP").addClass("d-none");
+                                        $("#modifierMDP").removeClass("d-none");
+                                    });
+                                    $("#cancelChangeMDPButton").click(function () {
+                                        $(".afficherMDP").removeClass("d-none");
+                                        $("#modifierMDP").addClass("d-none");
+                                    });
+                                    $("#confirmChangeMDPButton").click(function () {
+                                        $(".afficherMDP").removeClass("d-none");
+                                        $("#modifierMDP").addClass("d-none");
+                                    });
+                                </script>
                             <div class="row">
                                 <div class="col-sm-3">
                                     <p class="mb-3 ms-4">Example</p>
