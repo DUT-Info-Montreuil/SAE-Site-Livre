@@ -95,15 +95,62 @@ class Modele_CLivre extends Connexion {
         $exec = $prepare->execute($arr);
         $result = $prepare->fetchAll();
         if (count($result) > 0){
-            echo   "test was true";
             return true ;
         }else {
-            echo   "test was false";
             return false ;
         }
 
 
     }
+
+    public function create_Default_page($idLivre){
+        $arr = array("defaultName" , 1 , $idLivre);
+        
+        $prepare = parent::$bdd->prepare("INSERT into Chapitre ( titre, numeroChap , id_livre) VALUES(?,?,?);");
+        $exec = $prepare->execute($arr);
+        $prepare2 = parent::$bdd->prepare("SELECT id FROM Chapitre where  id_livre = ?;");
+        $exec2 = $prepare2->execute(array($idLivre));
+        $result = $prepare2->fetchAll();
+        $arr2 = array(1 , " " ,$result[0]["id"]);
+        $prepare3 = parent::$bdd->prepare("INSERT into Page ( numeroPage, TexteDeLaPage, id_chapitre) VALUES(?,?,?);");
+        $exec3 = $prepare3->execute($arr2);
+        
+        
+    }   
+
+
+    public function getStory($idChapitre, $idPage){
+        $arr = array($idChapitre , $idPage);
+        $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage FROM Page where id_Chapitre = ? and id = ?");
+        $exec = $prepare->execute($arr);
+        $result = $prepare->fetch();
+        return $result[0];
+    }
+
+
+    public function getChapitre($idLivre){
+        $arr = array($idLivre);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ?");
+        $exec = $prepare->execute($arr);
+        $result = $prepare->fetchAll();
+        return $result;
+    }
+
+    public function getPage($idChapitre){
+        $arr = array($idChapitre);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
+        $exec = $prepare->execute($arr);
+        $result = $prepare->fetchAll();
+        return $result;
+    }
+
+
+    
+    
+
+
+
+
     
 }   
 

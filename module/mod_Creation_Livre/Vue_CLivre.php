@@ -56,16 +56,19 @@ class Vue_CLivre extends vueGenerique
 
     <?php
     }
-    public function write_book()
+    public function write_book($idLivre , $idChapitre , $idPage , $numPage , $defaultStory)
     {
         
     ?>
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Example textarea</label>
-            <textarea class="form-control" id="story" rows="40"></textarea>
+            <textarea class="form-control" id="story" rows="40"><?=$defaultStory?></textarea>
+            <button  class="btn btn-primary btn-lg" role="button" id="SavePage">save and quit </button>
+            <button  class="btn btn-primary btn-lg" role="button" id="DontSavePage">just quit</button>
         </div>
         <script>
             $(window).on('load', function() {
+                
                 var timer = null;
                 $('#story').on('input', function() {
                     if (timer != null) {
@@ -75,21 +78,44 @@ class Vue_CLivre extends vueGenerique
                     timer = setTimeout(function() {
                         //put your ajax call here
                         $.ajax({
-                            url: 'save.php',
+                            url: 'TempSave.php',
                             type: 'POST',
                             data: {
                                 story: $('#story').val(),
-                                idLivre: <?= $_GET['idLivre'] ?>,
-                                idAuteur: <?= $_SESSION['id'] ?>
+                                idLivre: <?= $idLivre ?>,
+                                idAuteur: <?= $_SESSION['id'] ?>,
+                                numPage : <?= $numPage ?> ,
+                                idChapitre : <?= $idChapitre ?> ,
+                                idPage : <?= $idPage ?> 
+                                
 
                             },
-                            success: function(data) {
-                                alert(data);
-                            }
+                            
                         });
-                    }, 5000);
+                    }, 1000);
 
                 });
+
+
+                $('#SavePage').click(function() {
+                    $.ajax({
+                        url: 'SavePage.php',
+                        type: 'POST',
+                        data: {
+                            story: $('#story').val(),
+                                idLivre: <?= $idLivre ?>,
+                                idAuteur: <?= $_SESSION['id'] ?>,
+                                numPage : <?= $numPage ?> ,
+                                idChapitre : <?= $idChapitre ?> ,
+                                idPage : <?= $idPage ?> 
+
+                        },
+                        
+                        
+                    });
+                });
+
+
             });
         </script>
 

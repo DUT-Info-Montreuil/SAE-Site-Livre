@@ -32,12 +32,20 @@ class Controleur_CLivre{
 
                 //header('Location: index.php');
             }
-            header('Location: index.php?module=CLivre&action=print_write_book&idLivre='.$result);
+            $this->modele->create_Default_page($result);
+            //header('Location: index.php?module=CLivre&action=print_write_book&idLivre='.$result);
+            $this->modele->verifOwnerShip($result);
+            $idChapitre = $this->modele->getChapitre($result);
+            $idPage = $this->modele->getPage($idChapitre[0]["id"]);
+            $numPage = $idPage[0]["numeroPage"];
+            echo $idChapitre[0]["id"] ;
+            echo $idPage[0]["ID"] ;
+            $this->vue->write_book($result ,$idChapitre[0]["id"] , $idPage[0]["ID"] ,$numPage,  " ") ;
            
         } else {
             header('Location: index.php?module=connexion&action=print_login');
         }
-        
+            
     }
     
     public function print_write_book()
@@ -45,8 +53,7 @@ class Controleur_CLivre{
         
         if (isset($_SESSION['connected'])&& isset($_GET['idLivre'])) {
             if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
-                $this->vue->write_book();
-                echo" yes" ;
+                $this->vue->write_book($_GET['idLivre'] , $_GET['idChapitre'],$_GET['idPage'] , $_GET['numPage'] , $this->modele->getStory($_GET['idLivre'] , $_GET['idPage'] )); // il faut chercher pour la page temp avant d'afficher la page officielle
             }else{
                 header('Location: index.php');
             }
@@ -57,7 +64,5 @@ class Controleur_CLivre{
         
     }
 
-  
-   
 }
 ?>
