@@ -27,7 +27,7 @@ class vue_profil extends vueGenerique
                                 <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                      alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
-                                <h5 class="my-3"><?php echo $_SESSION["identifiant"] ?></h5>
+                                <h5 class="my-3" id="nomProfil"><?php echo $_SESSION["identifiant"] ?></h5>
                                 <p class="text-muted mb-1">Full Stack Developer</p>
                                 <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                                 <div class="d-flex justify-content-center mb-2">
@@ -50,57 +50,63 @@ class vue_profil extends vueGenerique
                                 <div class="btn-group mb-lg-4" role="group">
                                     <input type="radio" class="btn-check" name="HistoryBtnRadio" id="btnHistoryRead"
                                            autocomplete="off" checked>
-                                    <label class="btn btn-outline-secondary" for="btnHistoryRead" id="btnHistoryReadLabel">
+                                    <label class="btn btn-outline-secondary" for="btnHistoryRead"
+                                           id="btnHistoryReadLabel">
                                         Lecture
                                     </label>
 
                                     <input type="radio" class="btn-check" name="HistoryBtnRadio" id="btnHistoryWrite"
                                            autocomplete="off">
-                                    <label class="btn btn-outline-secondary" for="btnHistoryWrite" id="btnHistoryWriteLabel">
+                                    <label class="btn btn-outline-secondary" for="btnHistoryWrite"
+                                           id="btnHistoryWriteLabel">
                                         Ecriture
                                     </label>
                                 </div>
                                 <div class="list-group" id="read-list-history">
                                     <?php
-                                        if(count($livresLus) > 0){
-                                            if(count($livresLus) > 1){
-                                                $dateColumn = array_column($livresLus, 'date_heure_lecture');
-                                                array_multisort($dateColumn, SORT_DESC, $livresLus);
-                                            }
-                                            foreach ($livresLus as $key){
-                                                ?>
-                                                <div class="list-group-item card mb-3" style="max-width: 540px;">
-                                                    <div class="row g-0">
-                                                        <div class="col-md-4">
-                                                            <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre".$key["id_livre_lu"]."\">" ?>
-                                                                <?php echo "<img src=\"ressource/bookCover/".$key["id_livre_lu"].".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
-                                                            </a>
+                                    if (count($livresLus) > 0) {
+                                        if (count($livresLus) > 1) {
+                                            $dateColumn = array_column($livresLus, 'date_heure_lecture');
+                                            array_multisort($dateColumn, SORT_DESC, $livresLus);
+                                        }
+                                        foreach ($livresLus as $key) {
+                                            ?>
+                                            <div class="list-group-item card mb-3" style="max-width: 540px;">
+                                                <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id_livre_lu"] . "\">" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-head">
+                                                            <h5 class="card-title"><?= $key["titre"] ?></h5>
                                                         </div>
-                                                        <div class="col-md-8">
-                                                            <div class="card-head">
-                                                                <h5 class="card-title"><?= $key["titre"] ?></h5>
-                                                            </div>
-                                                            <div class="card-body">
-                                                                <p class="card-text"><?= $key["resumeLivre"] ?></p>
-                                                                <a type="button" href="index.php?module=livre&idLivre=<?=$key["id_livre_lu"]?>&Chapitre=<?=$key["dernier_chapitre_lu"]?>" class="btn btn-outline-primary">reprendre la lecture</a>
-                                                            </div>
-                                                            <div class="card-bottom">
-                                                                <p class="card-text"><small class="text-muted">lu il y a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key["date_heure_lecture"]))),new DateTime(date("Y-m-d H:i:s"))); echo $dateDiff->format('%d')."j ".$dateDiff->format('%H')."h ".$dateDiff->format('%i')."m ".$dateDiff->format('%s')."s"?></small></p>
-                                                            </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text"><?= $key["resumeLivre"] ?></p>
+                                                            <a type="button"
+                                                               href="index.php?module=livre&idLivre=<?= $key["id_livre_lu"] ?>&Chapitre=<?= $key["dernier_chapitre_lu"] ?>"
+                                                               class="btn btn-outline-primary">reprendre la lecture</a>
+                                                        </div>
+                                                        <div class="card-bottom">
+                                                            <p class="card-text"><small class="text-muted">lu il y
+                                                                    a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key["date_heure_lecture"]))), new DateTime(date("Y-m-d H:i:s")));
+                                                                    echo $dateDiff->format('%d') . "j " . $dateDiff->format('%H') . "h " . $dateDiff->format('%i') . "m " . $dateDiff->format('%s') . "s" ?></small>
+                                                            </p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <?php
-                                            }
+                                            </div>
+                                            <?php
                                         }
-                                        else {
-                                            echo "vous n'avez pas encore lu de livres";
-                                        }
+                                    } else {
+                                        echo "vous n'avez pas encore lu de livres";
+                                    }
 
                                     ?>
                                 </div>
                                 <script>
-                                    $("#imgLivre<?=$key["id_livre_lu"]?>").click(function(){
+                                    $("#imgLivre<?=$key["id_livre_lu"]?>").click(function () {
 
                                     });
                                 </script>
@@ -109,7 +115,8 @@ class vue_profil extends vueGenerique
                                     <div class="list-group-item card mb-3" style="max-width: 540px;">
                                         <div class="row g-0">
                                             <div class="col-md-4">
-                                                <img src="ressource/rainbowpencilTest.png" class="img-fluid rounded-start"
+                                                <img src="ressource/rainbowpencilTest.png"
+                                                     class="img-fluid rounded-start"
                                                      alt="...">
                                             </div>
                                             <div class="col-md-8">
@@ -118,10 +125,13 @@ class vue_profil extends vueGenerique
                                                 </div>
                                                 <div class="card-body">
                                                     <p class="card-text">résumé rapide du livre</p>
-                                                    <button type="button" class="btn btn-outline-primary">reprendre l'écriture</button>
+                                                    <button type="button" class="btn btn-outline-primary">reprendre
+                                                        l'écriture
+                                                    </button>
                                                 </div>
                                                 <div class="card-bottom">
-                                                    <p class="card-text"><small class="text-muted">modifié il y a 5 minutes</small></p>
+                                                    <p class="card-text"><small class="text-muted">modifié il y a 5
+                                                            minutes</small></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -129,7 +139,8 @@ class vue_profil extends vueGenerique
                                     <div class="list-group-item card mb-3" style="max-width: 540px;">
                                         <div class="row g-0">
                                             <div class="col-md-4">
-                                                <img src="ressource/drawinglibraryTest.png" class="img-fluid rounded-start"
+                                                <img src="ressource/drawinglibraryTest.png"
+                                                     class="img-fluid rounded-start"
                                                      alt="...">
                                             </div>
                                             <div class="col-md-8">
@@ -138,10 +149,13 @@ class vue_profil extends vueGenerique
                                                 </div>
                                                 <div class="card-body">
                                                     <p class="card-text">résumé rapide du livre</p>
-                                                    <button type="button" class="btn btn-outline-primary">reprendre l'écriture</button>
+                                                    <button type="button" class="btn btn-outline-primary">reprendre
+                                                        l'écriture
+                                                    </button>
                                                 </div>
                                                 <div class="card-bottom">
-                                                    <p class="card-text"><small class="text-muted">modifié il y a 10 minutes</small></p>
+                                                    <p class="card-text"><small class="text-muted">modifié il y a 10
+                                                            minutes</small></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -175,204 +189,243 @@ class vue_profil extends vueGenerique
                                     <div class="col-sm-3">
                                         <p class="mb-1 ms-4">Nom</p>
                                     </div>
-                                        <div class="col-sm-5 d-none" id="modifierNom">
-                                            <form class="row g-2" action="index.php?module=profil&action=modifierNom"
-                                                  method="post">
-                                                <div class="col-auto">
-                                                    <input type="text" class="form-control" placeholder="new name"
-                                                           name="newName" required>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <button id="ConfirmChangeNameButton" type="submit"
-                                                            name="subAction" value="confirm"
-                                                            class="btn btn-outline-success mb-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                             fill="currentColor" class="bi bi-check-lg"
-                                                             viewBox="0 0 16 16">
-                                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <button id="cancelChangeNameButton" type="submit"
-                                                            class="btn btn-outline-danger mb-2" formnovalidate>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                             fill="currentColor" class="bi bi-x"
-                                                             viewBox="0 0 16 16">
-                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                                        </svg>
-                                                    </button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                            <div class="col-sm-4 afficherNom">
-                                                <p id="name" class="text-muted mb-0">
-                                                    <?php echo $_SESSION["identifiant"] ?>
-                                                </p>
-                                            </div>
-                                            <div class="col-sm-1 afficherNom">
-                                                <button id="swapToChangeNameButton" type="button"
-                                                   class="btn btn-outline-secondary ms-0">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                         fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                                                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                </div>
-                            <hr>
-                                <script>
-                                    $("#swapToChangeNameButton").click(function () {
-                                        $(".afficherNom").addClass("d-none");
-                                        $("#modifierNom").removeClass("d-none");
-                                    });
-                                    $("#cancelChangeNameButton").click(function () {
-                                        $(".afficherNom").removeClass("d-none");
-                                        $("#modifierNom").addClass("d-none");
-                                    });
-                                    $("#ConfirmChangeNameButton").click(function () {
-                                        $(".afficherNom").removeClass("d-none");
-                                        $("#modifierNom").addClass("d-none");
-                                    });
-                                </script>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-1 ms-4">Email</p>
-                                </div>
-                                    <div class="col-sm-5 d-none" id="modifierEmail">
-                                        <form class="row g-2" action="index.php?module=profil&action=modifierEmail"
-                                              method="post">
-
-                                            <div class="col-auto">
-                                                <input type="email" class="form-control" placeholder="new email"
-                                                       name="newEmail" required>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button id="confirmChangeEmailButton" type="submit"
-                                                        name="subAction" value="confirm"
-                                                        class="btn btn-outline-success mb-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                         fill="currentColor" class="bi bi-check-lg"
-                                                         viewBox="0 0 16 16">
-                                                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button id="cancelChangeEmailButton" type="button"
-                                                        class="btn btn-outline-danger mb-2" formnovalidate>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                         fill="currentColor" class="bi bi-x"
-                                                         viewBox="0 0 16 16">
-                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </form>
+                                    <div class="modifierNom d-none col-sm-2">
+                                        <input type="text" class="form-control" placeholder="new name"
+                                               name="newName" id="inputName" required>
                                     </div>
-                                    <div class="col-sm-4 afficherEmail">
-                                        <p class="text-muted mb-0"><?php echo $_SESSION["email"] ?></p>
+                                    <div class="btn-group modifierNom d-none col-sm-2" role="group">
+                                        <button id="ConfirmChangeNameButton" type="button"
+                                                name="subAction" value="confirm"
+                                                class="btn btn-outline-success mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-check-lg"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                            </svg>
+                                        </button>
+                                        <button id="cancelChangeNameButton" type="button"
+                                                class="btn btn-outline-danger mb-2" formnovalidate>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-x"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <div class="col-sm-1 afficherEmail">
-                                        <button id="swapToChangeEmailButton" type="button"
-                                           class="btn btn-outline-secondary ms-0">
+                                    <div class="col-sm-4 afficherNom">
+                                        <p id="name" class="text-muted mb-0">
+                                            <?php echo $_SESSION["identifiant"] ?>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-1 afficherNom">
+                                        <button id="swapToChangeNameButton" type="button"
+                                                class="btn btn-outline-secondary ms-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                             </svg>
                                         </button>
                                     </div>
-                            </div>
-                            <hr>
+                                </div>
+                                <hr>
+                                <script>
+                                    $("#swapToChangeNameButton").click(function () {
+                                        $(".afficherNom").addClass("d-none");
+                                        $(".modifierNom").removeClass("d-none");
+                                    });
+                                    $("#cancelChangeNameButton").click(function () {
+                                        $(".afficherNom").removeClass("d-none");
+                                        $(".modifierNom").addClass("d-none");
+                                    });
+                                    $("#ConfirmChangeNameButton").click(function () {
+                                        if ($("#inputName").val() !== "") {
+                                            $.ajax({
+                                                url: "changerValeurs.php",
+                                                type: "POST",
+                                                data: {
+                                                    action: "changerNom",
+                                                    contenu: $("#inputName").val()
+                                                },
+                                            }).done(function (data) {
+                                                if (data.length === 6) {
+                                                    $("#name").text($("#inputName").val());
+                                                    $("#nomProfil").text($("#inputName").val());
+                                                } else {
+                                                    alert(data);
+                                                }
+                                                $(".afficherNom").removeClass("d-none");
+                                                $(".modifierNom").addClass("d-none");
+                                            }).fail(function (data, status, type) {
+                                                alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
+                                            });
+                                        } else {
+                                            alert("Le nom doit être composé d'au moins une lettre!");
+                                        }
+                                    });
+                                </script>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-1 ms-4">Email</p>
+                                    </div>
+
+                                    <div class="col-sm-2 modifierEmail d-none">
+                                        <input type="email" class="form-control" placeholder="new email"
+                                               name="newEmail" id="inputEmail" required>
+                                    </div>
+                                    <div class="btn-group col-sm-2 modifierEmail d-none" role="group">
+                                        <button id="confirmChangeEmailButton" type="button"
+                                                name="subAction" value="confirm"
+                                                class="btn btn-outline-success mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-check-lg"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                            </svg>
+                                        </button>
+                                        <button id="cancelChangeEmailButton" type="button"
+                                                class="btn btn-outline-danger mb-2" formnovalidate>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-x"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-4 afficherEmail">
+                                        <p class="text-muted mb-0" id="email"><?php echo $_SESSION["email"] ?></p>
+                                    </div>
+                                    <div class="col-sm-1 afficherEmail">
+                                        <button id="swapToChangeEmailButton" type="button"
+                                                class="btn btn-outline-secondary ms-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                                <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                                <hr>
                                 <script>
                                     $("#swapToChangeEmailButton").click(function () {
                                         $(".afficherEmail").addClass("d-none");
-                                        $("#modifierEmail").removeClass("d-none");
+                                        $(".modifierEmail").removeClass("d-none");
                                     });
                                     $("#cancelChangeEmailButton").click(function () {
                                         $(".afficherEmail").removeClass("d-none");
-                                        $("#modifierEmail").addClass("d-none");
+                                        $(".modifierEmail").addClass("d-none");
                                     });
-                                    $("#ConfirmChangeEmailButton").click(function () {
-                                        $(".afficherEmail").removeClass("d-none");
-                                        $("#modifierEmail").addClass("d-none");
+                                    $("#confirmChangeEmailButton").click(function () {
+                                        if ($("#inputEmail").val() !== "") {
+                                            $.ajax({
+                                                url: "changerValeurs.php",
+                                                type: "POST",
+                                                data: {
+                                                    action: "changerEmail",
+                                                    contenu: $("#inputEmail").val()
+                                                },
+                                            }).done(function (data) {
+                                                if (data.length === 6) {
+                                                    $("#email").text($("#inputEmail").val());
+                                                } else {
+                                                    alert(data);
+                                                }
+                                                $(".afficherEmail").removeClass("d-none");
+                                                $(".modifierEmail").addClass("d-none");
+                                            }).fail(function (data, status, type) {
+                                                alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
+                                            });
+                                        } else {
+                                            alert("L'email est invalide!");
+                                        }
                                     });
                                 </script>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-1 ms-4">Mot de passe</p>
-                                </div>
-                                    <div class="col-sm-5 d-none" id="modifierMDP">
-                                        <form class="row g-2" action="index.php?module=profil&action=modifierMDP"
-                                              method="post">
-
-                                            <div class="col-auto">
-                                                <input type="password" class="form-control" placeholder="new password"
-                                                       name="newMDP" required>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button id="confirmChangeMDPButton" type="submit"
-                                                        name="subAction" value="confirm"
-                                                        class="btn btn-outline-success mb-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                         fill="currentColor" class="bi bi-check-lg"
-                                                         viewBox="0 0 16 16">
-                                                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div class="col-auto">
-                                                <button id="cancelChangeMDPButton" type="button"
-                                                        class="btn btn-outline-danger mb-2" formnovalidate>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                         fill="currentColor" class="bi bi-x"
-                                                         viewBox="0 0 16 16">
-                                                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </form>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-1 ms-4">Mot de passe</p>
+                                    </div>
+                                    <div class="col-sm-2 modifierMDP d-none">
+                                        <input type="password" id="inputMDP" class="form-control" placeholder="new password"
+                                               name="newMDP" required>
+                                    </div>
+                                    <div class="col-sm-2 modifierMDP d-none btn-group" role="group">
+                                        <button id="confirmChangeMDPButton" type="button"
+                                                name="subAction" value="confirm"
+                                                class="btn btn-outline-success mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-check-lg"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                            </svg>
+                                        </button>
+                                        <button id="cancelChangeMDPButton" type="button"
+                                                class="btn btn-outline-danger mb-2" formnovalidate>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                 fill="currentColor" class="bi bi-x"
+                                                 viewBox="0 0 16 16">
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                                            </svg>
+                                        </button>
                                     </div>
                                     <div class="col-sm-4 afficherMDP">
                                         <p class="text-muted mb-0 ms-4">**********</p>
                                     </div>
                                     <div class="col-sm-1 afficherMDP">
                                         <button id="swapToChangeMDPButton" type="button"
-                                           class="btn btn-outline-secondary ms-0">
+                                                class="btn btn-outline-secondary ms-0">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                  fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
                                                 <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
                                             </svg>
                                         </button>
                                     </div>
-                            </div>
-                            <hr>
+                                </div>
+                                <hr>
                                 <script>
                                     $("#swapToChangeMDPButton").click(function () {
                                         $(".afficherMDP").addClass("d-none");
-                                        $("#modifierMDP").removeClass("d-none");
+                                        $(".modifierMDP").removeClass("d-none");
                                     });
                                     $("#cancelChangeMDPButton").click(function () {
                                         $(".afficherMDP").removeClass("d-none");
-                                        $("#modifierMDP").addClass("d-none");
+                                        $(".modifierMDP").addClass("d-none");
                                     });
                                     $("#confirmChangeMDPButton").click(function () {
-                                        $(".afficherMDP").removeClass("d-none");
-                                        $("#modifierMDP").addClass("d-none");
+                                        if ($("#inputMDP").val() !== "") {
+                                            $.ajax({
+                                                url: "changerValeurs.php",
+                                                type: "POST",
+                                                data: {
+                                                    action: "changerMDP",
+                                                    contenu: $("#inputMDP").val()
+                                                },
+                                            }).done(function (data) {
+                                                if (data.length === 6) {
+                                                    $("#password").text($("#inputMDP").val());
+                                                } else {
+                                                    alert(data);
+                                                }
+                                                $(".afficherMDP").removeClass("d-none");
+                                                $(".modifierMDP").addClass("d-none");
+                                            }).fail(function (data, status, type) {
+                                                alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
+                                            });
+                                        } else {
+                                            alert("Le mdp est invalide!");
+                                        }
                                     });
                                 </script>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-3 ms-4">Example</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0">example content</p>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-3 ms-4">Example</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">example content</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
         </body>
 

@@ -7,21 +7,22 @@ class modele_profil extends Connexion {
         $result = $prepare->fetch();
         $_SESSION["email"] = $result[0];
     }
-    function changeNom(){
+    function changeNom($nouvNom){
+
         $prepare = parent::$bdd->prepare("Update Utilisateur SET userName= ? where userName = ?");
-        $tab = array($_POST["newName"],$_SESSION["identifiant"]);
+        $tab = array($nouvNom,$_SESSION["identifiant"]);
         $exec = $prepare->execute($tab);
-        $_SESSION["identifiant"] = $_POST["newName"];
+        $_SESSION["identifiant"] = $nouvNom;
     }
-    function changeEmail(){
+    function changeEmail($nouvEmail){
         $prepare = parent::$bdd->prepare("Update Utilisateur SET email= ? where userName = ?");
-        $tab = array($_POST["newEmail"],$_SESSION["identifiant"]);
+        $tab = array($nouvEmail,$_SESSION["identifiant"]);
         $exec = $prepare->execute($tab);
-        $_SESSION["email"] = $_POST["newEmail"];
+        $_SESSION["email"] = $nouvEmail;
     }
-    function changeMDP(){
+    function changeMDP($nouvMDP){
         $prepare = parent::$bdd->prepare("Update Utilisateur SET passWord= ? where userName = ?");
-        $tab = array(password_hash($_POST["newMDP"] , PASSWORD_DEFAULT),$_SESSION["identifiant"]);
+        $tab = array(password_hash($nouvMDP, PASSWORD_DEFAULT),$_SESSION["identifiant"]);
         $exec = $prepare->execute($tab);
     }
     function getLivresLu(){
