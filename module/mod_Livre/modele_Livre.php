@@ -7,10 +7,19 @@ class Modele_Livre extends Connexion
     }
     public function getLivre($idLivre)
     {
-        $sql = "SELECT * FROM Livre where id='$idLivre'";
+        $sql = "SELECT  Livre.id, titre,resumeLivre,nbrLike,nbrVue,userName, GROUP_CONCAT(genre SEPARATOR ',') as genres
+        FROM Livre
+        INNER JOIN Utilisateur
+        ON Livre.IDAuteur = Utilisateur.id
+        inner join LivreGenre
+        ON LivreGenre.idLivre=Livre.id
+        INNER JOIN Genre
+        ON LivreGenre.idGenre=Genre.id
+        WHERE Livre.id='$idLivre'
+        GROUP BY Livre.id";
         $prepare = parent::$bdd->prepare($sql);
         $exec = $prepare->execute();
-        $result = $prepare->fetchAll();
+        $result = $prepare->fetch();
         return $result;
     }
     public function getChapitre($chapitre,$livre){
