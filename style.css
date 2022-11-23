@@ -2,6 +2,7 @@
     text-decoration: none;
     color: black;
 }
+
 .ConnexionForm{
     
     display: inline-block;
@@ -11,7 +12,16 @@
     margin-bottom: 35%;
    
 }
-
+.card-img-top {
+    
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+}
+.text-bg-CustomeGenre{
+    color: white;
+    margin-right: 1ch;
+}
 
 .toast {
     position: fixed;
