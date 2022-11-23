@@ -46,9 +46,9 @@ class Modele_Livre extends Connexion
 
     public function enregistreLivreLu($numChapitre, $idLivreLu){
         $dateTime = date("Y-m-d H:i:s");
-        $verifLivreLu = "SELECT id_livre_lu from historique_livre_lu where id_livre_lu = ?";
+        $verifLivreLu = "SELECT id_livre_lu from historique_livre_lu where id_livre_lu = ? AND id_utilisateur = ?";
         $prepareVerifLu = parent::$bdd->prepare($verifLivreLu);
-        $tabVerifLu = array($idLivreLu);
+        $tabVerifLu = array($idLivreLu,$_SESSION['id']);
         $execVerifLu = $prepareVerifLu->execute($tabVerifLu);
         $resultVerifLu = $prepareVerifLu->fetchAll();
         if(count($resultVerifLu) == 0){

@@ -107,7 +107,7 @@ class vue_profil extends vueGenerique
                                 </div>
                                 <script>
                                     $("#imgLivre<?=$key["id_livre_lu"]?>").click(function () {
-
+                                        alert(<?="<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\""?>);
                                     });
                                 </script>
 
