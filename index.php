@@ -32,10 +32,6 @@ $vue_gen = new VueGenerique();
 
     </head>
 
-
-
-
-
 <?php
 session_start();
 require_once("Connexion.php");
