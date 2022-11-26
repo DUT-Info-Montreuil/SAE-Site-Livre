@@ -108,7 +108,7 @@ class Vue_CLivre extends vueGenerique
                                 numPage : <?= $numPage ?> ,
                                 idChapitre : <?= $idChapitre ?> ,
                                 idPage : <?= $idPage ?> ,
-                                save : true
+                                save : "true"
 
                         },
                         
@@ -129,10 +129,12 @@ class Vue_CLivre extends vueGenerique
                                 numPage : <?= $numPage ?> ,
                                 idChapitre : <?= $idChapitre ?> ,
                                 idPage : <?= $idPage ?> ,
-                                save : false 
+                                save : "false"
 
                         },
-                        
+                        success : function(){
+                            alert("vous allez etre rediriger vers la page d'accueil");
+                        }
                         
                     });
                 });
@@ -144,11 +146,42 @@ class Vue_CLivre extends vueGenerique
             });
         </script>
 
-<?php
+    <?php
 
 
 
     }
+
+
+    public function menu_write_book($allInfo){
+        ?>
+        <h1><?=$allInfo[0][0]["titre"]?></h1>
+        <h2><?=$allInfo[0][0]["resumeLivre"]?></h2>
+        <?=var_dump($allInfo[1])?>
+        <?=count($allInfo[1])?>
+        <?php
+        for ($i=0; $i < count($allInfo[1]); $i++) { 
+            ?>
+            <h2><?=$allInfo[1][$i]["titre"]?></h2>
+            <?php
+            for ($j=0; $j < count($allInfo[2][$i]); $j++) { 
+                ?>
+                <h3><?=$allInfo[2][$i][$j] ?></h3>
+                <?php
+            }
+        }
+
+
+
+
+
+
+
+    }
+
+
+
+
 }
 
 

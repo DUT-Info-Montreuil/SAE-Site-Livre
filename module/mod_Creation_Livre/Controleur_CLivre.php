@@ -63,6 +63,24 @@ class Controleur_CLivre{
         }
         
     }
+    public function menu_write_book(){
+        if (isset($_SESSION['connected'])&& isset($_GET['idLivre'])) {
+            if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
+               $result = $this->modele->getAllBookInfo($_GET['idLivre']);
+               $this->vue->menu_write_book($result);
+            }else{
+                header('Location: index.php');
+            }
+            
+        } else {
+            header('Location: index.php?module=connexion&action=print_login');
+        }
+
+
+
+
+
+    }
 
 }
 ?>

@@ -21,6 +21,9 @@ class Module_CLivre
                 case "print_write_book":
                     $this->controleur->print_write_book();
                     break ; 
+                case "menu_write_book":
+                    $this->controleur->menu_write_book();
+                    break ;
                 
                             }
         }

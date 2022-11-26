@@ -6,44 +6,53 @@ class Modele_CLivre extends Connexion {
 
     }
     public function create_book(){
-    
-       $arr = array($_POST["title"] , $_POST["resume"] , $_SESSION["id"]);
-        $prepare = parent::$bdd->prepare("INSERT into Livre ( titre, resumeLivre, IDAuteur) VALUES(?,?,?)");
-        $exec = $prepare->execute($arr);
-        if ($exec){
+
+        $prepareVerif = parent::$bdd->prepare("SELECT * FROM Livre WHERE Titre = ? AND IDAuteur = ?;");
+        $execVerif = $prepareVerif->execute(array($_REQUEST["title"] , $_SESSION["id"]));
+        $resultVerif = $prepareVerif->fetchAll();
+        if ($resultVerif == null || $execVerif == false){
             
-        foreach ($_SESSION["genre"] as $genre) {
-           
-            $allNull = true ; 
-            if (isset($_POST["Genre".$genre["id"]])){
-                $allNull = false ;
-                $lastBook = FonctionUtile::getLastBook();
+
+
+        $arr = array($_POST["title"] , $_POST["resume"] , $_SESSION["id"]);
+            $prepare = parent::$bdd->prepare("INSERT into Livre ( titre, resumeLivre, IDAuteur) VALUES(?,?,?)");
+            $exec = $prepare->execute($arr);
+            if ($exec){
                 
+            foreach ($_SESSION["genre"] as $genre) {
+            
+                $allNull = true ; 
+                if (isset($_POST["Genre".$genre["id"]])){
+                    $allNull = false ;
+                    $lastBook = FonctionUtile::getLastBook();
                     
-                    $arr2 = array($lastBook["id"], $genre["id"] );
-                    $prepare2 = parent::$bdd->prepare("INSERT into LivreGenre ( idLivre, idGenre) VALUES(?,?)");
-                    $exec2 = $prepare2->execute($arr2);
+                        
+                        $arr2 = array($lastBook["id"], $genre["id"] );
+                        $prepare2 = parent::$bdd->prepare("INSERT into LivreGenre ( idLivre, idGenre) VALUES(?,?)");
+                        $exec2 = $prepare2->execute($arr2);
+
+                        
 
                     
+                }
 
-                
             }
+            if ($allNull){
+                $lastBook = FonctionUtile::getLastBook();
+                $arr2 = array($lastBook["id"], 1 );
+                $prepare2 = parent::$bdd->prepare("INSERT into LivreGenre ( idLivre, idGenre) VALUES(?,?)");
+                $exec2 = $prepare2->execute($arr2);
 
-        }
-        if ($allNull){
-            $lastBook = FonctionUtile::getLastBook();
-            $arr2 = array($lastBook["id"], 1 );
-            $prepare2 = parent::$bdd->prepare("INSERT into LivreGenre ( idLivre, idGenre) VALUES(?,?)");
-            $exec2 = $prepare2->execute($arr2);
-
-        }
-
+            }
+                                           
             //unset($_SESSION["genre"]);
             return $lastBook["id"] ;
         }else {
             //unset($_SESSION["genre"]);
             return false ;
         }
+       }
+       return $resultVerif[0]["id"] ;
     }
     
 
@@ -121,6 +130,13 @@ class Modele_CLivre extends Connexion {
 
     public function getStory($idChapitre, $idPage){
         $arr = array($idChapitre , $idPage);
+        $prepareTemp = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ? and idPage = ?;");
+        $execTemp = $prepareTemp->execute($arr);
+        $resultTemp = $prepareTemp->fetch();
+        if ($execTemp == true){
+            return $resultTemp[0];
+        }
+
         $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage FROM Page where id_Chapitre = ? and id = ?");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetch();
@@ -142,6 +158,27 @@ class Modele_CLivre extends Connexion {
         $exec = $prepare->execute($arr);
         $result = $prepare->fetchAll();
         return $result;
+    }
+
+    public function getAllBookInfo($idLivre){
+        $arr = array($idLivre);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Livre where id = ?");
+        $exec = $prepare->execute($arr);
+        $result = $prepare->fetchall();
+        $trueResult[0] = $result;
+        $prepare2 = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ?");
+        $exec2 = $prepare2->execute($arr);
+        $result2 = $prepare2->fetchAll();
+        $trueResult[1] = $result2;
+        for ($i = 0 ; $i < count($result2) ; $i++){
+            $arr2 = array($result2[$i]["id"]);
+            $prepare3 = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
+            $exec3 = $prepare3->execute($arr2);
+            $result3 = $prepare3->fetchAll();
+            $trueResult[2][$i] = $result3;
+        }
+
+        return $trueResult;
     }
 
 
