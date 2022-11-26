@@ -107,13 +107,38 @@ class Vue_CLivre extends vueGenerique
                                 idAuteur: <?= $_SESSION['id'] ?>,
                                 numPage : <?= $numPage ?> ,
                                 idChapitre : <?= $idChapitre ?> ,
-                                idPage : <?= $idPage ?> 
+                                idPage : <?= $idPage ?> ,
+                                save : true
 
                         },
                         
                         
                     });
                 });
+
+
+
+                $('#DontSavePage').click(function() {
+                    $.ajax({
+                        url: 'SavePage.php',
+                        type: 'POST',
+                        data: {
+                            story: $('#story').val(),
+                                idLivre: <?= $idLivre ?>,
+                                idAuteur: <?= $_SESSION['id'] ?>,
+                                numPage : <?= $numPage ?> ,
+                                idChapitre : <?= $idChapitre ?> ,
+                                idPage : <?= $idPage ?> ,
+                                save : false 
+
+                        },
+                        
+                        
+                    });
+                });
+
+
+
 
 
             });
