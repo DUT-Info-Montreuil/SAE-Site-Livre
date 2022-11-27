@@ -157,8 +157,6 @@ class Vue_CLivre extends vueGenerique
         ?>
         <h1><?=$allInfo[0][0]["titre"]?></h1>
         <h2><?=$allInfo[0][0]["resumeLivre"]?></h2>
-        <?=var_dump($allInfo[1])?>
-        <?=count($allInfo[1])?>
         <?php
         for ($i=0; $i < count($allInfo[1]); $i++) { 
             ?>
@@ -166,7 +164,8 @@ class Vue_CLivre extends vueGenerique
             <?php
             for ($j=0; $j < count($allInfo[2][$i]); $j++) { 
                 ?>
-                <h3><?=$allInfo[2][$i][$j] ?></h3>
+                
+                <p1><?=$allInfo[2][$i][$j]["TexteDeLaPage"] ?></p1>
                 <?php
             }
         }

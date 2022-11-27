@@ -14,10 +14,18 @@ class Controleur_connexion{
 
     public  function print_login()
     {
+        if (isset($_SESSION["connected"])){
+            header("Location: index.php?module=accueil");
+            return ;
+        }
         $this->vue->login();
     }
     public  function print_singup()
     {
+        if (isset($_SESSION["connected"])){
+            header("Location: index.php?module=accueil");
+            return ;
+        }
         $this->vue->signup();
     }
 
