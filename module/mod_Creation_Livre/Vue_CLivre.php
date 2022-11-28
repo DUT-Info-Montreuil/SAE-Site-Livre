@@ -155,23 +155,54 @@ class Vue_CLivre extends vueGenerique
 
     public function menu_write_book($allInfo){
         ?>
-        <h1><?=$allInfo[0][0]["titre"]?></h1>
-        <h2><?=$allInfo[0][0]["resumeLivre"]?></h2>
-        <?=var_dump($allInfo[1])?>
-        <?=count($allInfo[1])?>
+        <textarea class="form-control border" id="Title" rows="2" cols="20" maxlength="50" ><?=$allInfo[0][0]["titre"]?></textarea>
+        <textarea class="form-control border" id="ResumeLivre" rows="5" cols="30" maxlength="1000" ><?=$allInfo[0][0]["resumeLivre"]?></textarea>
+
         <?php
         for ($i=0; $i < count($allInfo[1]); $i++) { 
             ?>
-            <h2><?=$allInfo[1][$i]["titre"]?></h2>
+            <textarea class="form-control border Chapitre" id="Chapitre".$i rows="1" cols="25" maxlength="25" ><?=$allInfo[1][$i]["titre"]?></textarea>
             <?php
             for ($j=0; $j < count($allInfo[2][$i]); $j++) { 
                 ?>
-                <h3><?=$allInfo[2][$i][$j] ?></h3>
+                <p1><?=$allInfo[2][$i][$j]["TexteDeLaPage"] ?> </p1>
+                <p2><?=$allInfo[2][$i][$j]["numeroPage"]?></p2>
                 <?php
             }
         }
 
+        ?>
+        <script>
+            (window).on('load', function() {
+                
+                var timer = null;
+                $('.Chapitre').on('input', function() {
+                    if (timer != null) {
+                        clearTimeout(timer); //cancel the previous timer.
+                        timer = null;
+                    }
+                    timer = setTimeout(function() {
+                        //put your ajax call here
+                        $.ajax({
+                            url: 'TempSave.php',
+                            type: 'POST',
+                            data: {
+                                
+                                
 
+                            },
+                            
+                        });
+                    }, 1000);
+
+                });
+
+
+
+        </script>
+
+
+        <?php 
 
 
 

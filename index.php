@@ -15,6 +15,8 @@ $vue_gen = new VueGenerique();
 
     <!DOCTYPE html>
 
+    <html>
+
     <head>
 
         <meta charset="UTF-8">
@@ -89,3 +91,5 @@ echo $result;
 
 
 ?>
+
+    </html>
