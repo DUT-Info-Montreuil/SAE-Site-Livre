@@ -98,7 +98,7 @@ class VueNavBar extends VueGenerique
             </div>
         </header>
 
-        </html>
+        
         <?php
     }
 }

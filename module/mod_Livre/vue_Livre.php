@@ -3,7 +3,6 @@ require_once('vue_generique.php');
 
 class Vue_Livre extends vueGenerique
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -29,18 +28,21 @@ class Vue_Livre extends vueGenerique
                             </div>
                             <div class="card-footer">
                                 <?= "<h5 class=\"card-title text-warning \"><strong>$auteur</strong></h5>" ?>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
-                                    <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
-                                </svg>
+                                <button type="button" class="btn btn-dark" id="Like">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up-fill" viewBox="0 0 16 16">
+                                        <path d="M6.956 1.745C7.021.81 7.908.087 8.864.325l.261.066c.463.116.874.456 1.012.965.22.816.533 2.511.062 4.51a9.84 9.84 0 0 1 .443-.051c.713-.065 1.669-.072 2.516.21.518.173.994.681 1.2 1.273.184.532.16 1.162-.234 1.733.058.119.103.242.138.363.077.27.113.567.113.856 0 .289-.036.586-.113.856-.039.135-.09.273-.16.404.169.387.107.819-.003 1.148a3.163 3.163 0 0 1-.488.901c.054.152.076.312.076.465 0 .305-.089.625-.253.912C13.1 15.522 12.437 16 11.5 16H8c-.605 0-1.07-.081-1.466-.218a4.82 4.82 0 0 1-.97-.484l-.048-.03c-.504-.307-.999-.609-2.068-.722C2.682 14.464 2 13.846 2 13V9c0-.85.685-1.432 1.357-1.615.849-.232 1.574-.787 2.132-1.41.56-.627.914-1.28 1.039-1.639.199-.575.356-1.539.428-2.59z" />
+                                    </svg>
+                                </button>
                                 <?php
 
                                 echo "<small class=\"bi bi-hand-thumbs-up\">" . $nbrLike . "</small>";
                                 ?>
+
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill ms-3" viewBox="0 0 16 16">
                                     <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z" />
                                     <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
                                 </svg>
-                                <?php echo "<small class=\"\">    " . $nbrVue . "</small>"; ?>
+                                <?php echo "<small id=\"smallLike\" class=\"\">    " . $nbrVue . "</small>"; ?>
 
                             </div>
                         </div>
@@ -57,22 +59,63 @@ class Vue_Livre extends vueGenerique
                             echo "<p class=\"text-muted\">$resumeLivre</p>";
                             ?>
                         </div>
-                        <?= "<a href=\"index.php?module=livre&idLivre=$idLivre&Chapitre=1\" class=\"btn btn- text-bg-warning\" role=\"button\" id=\"VoireLIVRE\">Débuter la lecture</a>" ?>
-
+                        <?= "<button class=\"btn btn- text-bg-warning\" id=\"VoireLIVRE\">Débuter la lecture</button>" ?>
                     </div>
                 </div>
             </div>
         </section>
         <?php
-        /*         echo "c'est la vue livre";
-        foreach ($livre as $key) {
-            $id = $key['id'];
-            echo "<h1>" . $key['titre'] . "</h1>";
-            echo "<p>" . $key['resumeLivre'] . "</p>";
-            echo "<p>" . $key['nbrVue'] . "</p>";
-            echo "<p>" . $key['nbrLike'] . "</p>";
-            echo "<a href=\"index.php?module=livre&idLivre=$id&Chapitre=1\" class=\"btn btn-primary btn-lg\" role=\"button\" id=\"VoireLIVRE\">Débuter la lecture</a>";
-        } */
+                $idUser=0;
+                if (isset($_SESSION['connected'])) {
+                    $idUser = $_SESSION['id'];
+                }//index.php?module=livre&idLivre=$idLivre&Chapitre=1
+                ?>
+        <script>
+            $(window).on('load', function() {
+            
+                    $('#Like').click(function() {
+                        $.ajax({
+                            url: 'Like.php',
+                            type: 'POST',
+                            data: {
+                                idLivre: <?= $idLivre ?>,
+                                idUser: <?= $idUser ?>
+                                
+                            },
+                            
+                            
+                        }).done(function(data) {
+                            
+                           // alert(data['isLiked']);
+                        });
+                    
+                    });
+                
+
+            
+            });
+            $(window).on('load', function() {
+                $('#VoireLIVRE').click(function() {
+                    $.ajax({
+                        url: 'vue.php',
+                        type: 'POST',
+                        data: {
+                            idLivre: <?= $idLivre ?>,
+                            idUser: <?= $idUser ?>
+                        },
+                        success: function(data) {
+                            //alert(data);
+                           if(data){
+                            var url = "index.php?module=livre&idLivre="+<?= $idLivre ?>+"&Chapitre=1";
+                            window.location.href = url;
+                           }
+                        }
+                    });
+                });
+            });
+        </script>
+        <?php
+
     }
     public function afficherPages($pages)
     {
@@ -112,7 +155,7 @@ class Vue_Livre extends vueGenerique
         } else {
             $NextButtonStat = "enabled";
         }
-
+        
         ?>
 
         <div class="my-3 p-3 bg-body rounded shadow-sm " id="ChapterContainer justy">
@@ -123,12 +166,12 @@ class Vue_Livre extends vueGenerique
 
                 <nav aria-label="ChapterSelectionPage">
                     <ul class="pagination justify-content-center">
-                        <li class="page-item <?= $PreviousButtonStat ?>">
-                            <a class="page-link" href="index.php?module=livre&idLivre=<?= $_GET['idLivre'] ?>&Chapitre=<?= $currentChap - 1 ?>">Précédent</a>
+                        <li class="page-item  <?= $PreviousButtonStat ?>">
+                            <a class="page-link text-light bg-dark" href="index.php?module=livre&idLivre=<?= $_GET['idLivre'] ?>&Chapitre=<?= $currentChap - 1 ?>">Précédent</a>
 
                         </li>
                         <div class="btn-group dropup justify-content-center">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Séléctionne un chapitre
                             </button>
                             <ul class="dropdown-menu">
@@ -143,7 +186,7 @@ class Vue_Livre extends vueGenerique
                             </ul>
                         </div>
                         <li class="page-item <?= $NextButtonStat ?>">
-                            <a class="page-link" href="index.php?module=livre&idLivre=<?= $_GET['idLivre'] ?>&Chapitre=<?= $currentChap + 1 ?>">Suivant </a>
+                            <a class="page-link text-light bg-dark" href="index.php?module=livre&idLivre=<?= $_GET['idLivre'] ?>&Chapitre=<?= $currentChap + 1 ?>">Suivant </a>
                         </li>
                         </li>
                     </ul>
