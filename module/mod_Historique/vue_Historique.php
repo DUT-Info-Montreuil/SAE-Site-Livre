@@ -70,7 +70,7 @@ class Vue_Historique extends VueGenerique
                     <h1 class="fw-light">Mon Historique de lecture</h1>
                     <p class="lead text-muted">Ici se trouvent tous les livres que vous avez commencé à lire ou fini de
                         lire. Ils sont classé par ordre de date, du plus recemment lu au plus ancien lu. Vous pouvez
-                        reprendre votre lecture en cliquant sur le bouton "reprendre lecture" de l'un de vos livres.</p>
+                        reprendre votre lecture en cliquant sur le bouton "reprendre la lecture" de l'un de vos livres.</p>
                 </div>
             </div>
         </section>
