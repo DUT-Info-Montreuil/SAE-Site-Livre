@@ -66,8 +66,6 @@ class vue_profil extends vueGenerique
                                     <?php
                                     if (count($livresLus) > 0) {
                                         if (count($livresLus) > 1) {
-                                            $dateColumn = array_column($livresLus, 'date_heure_lecture');
-                                            array_multisort($dateColumn, SORT_DESC, $livresLus);
                                         }
                                         foreach ($livresLus as $key) {
                                             ?>
@@ -75,7 +73,7 @@ class vue_profil extends vueGenerique
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
                                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id_livre_lu"] . "\">" ?>
-                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" width=100% height=100%/>" ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -178,7 +176,7 @@ class vue_profil extends vueGenerique
 
                             </div>
                             <div class="card-bottom text-center mb-2">
-                                <button type="button" class="btn btn-outline-secondary">voir plus</button>
+                                <a href="index.php?module=historique&action=historiqueLecture" type="button" class="btn btn-outline-secondary">voir plus</a>
                             </div>
                         </div>
                     </div>
