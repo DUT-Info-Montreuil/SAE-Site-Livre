@@ -12,7 +12,7 @@ class Vue_Historique extends VueGenerique
                     <p class="lead text-muted">Ici se trouve tous les livres que <?= $nom ?> écrit ou a fini
                         d'écrire. Ils sont classé par ordre de date, du plus recemment modifié au plus ancien modifié.
                         Vous pouvez les lires en cliquant sur le bouton "lire" de l'un de
-                        ces livres.</p>
+                        ses livres.</p>
                 </div>
             </div>
         </section>
@@ -70,7 +70,7 @@ class Vue_Historique extends VueGenerique
                     <h1 class="fw-light">Mon Historique de lecture</h1>
                     <p class="lead text-muted">Ici se trouve tous les livres que vous avez commencé à lire ou fini de
                         lire. Ils sont classé par ordre de date, du plus recemment lu au plus ancien lu. Vous pouvez
-                        reprendre votre lecture en cliquant sur le bouton "reprendre lecture" de l'un de ces livres.</p>
+                        reprendre votre lecture en cliquant sur le bouton "reprendre lecture" de l'un de vos livres.</p>
                 </div>
             </div>
         </section>
@@ -136,7 +136,7 @@ class Vue_Historique extends VueGenerique
                     <p class="lead text-muted">Ici se trouve tous les livres que vous avez commencé à écrire ou fini
                         d'écrire. Ils sont classé par ordre de date, du plus recemment modifié au plus ancien modifié.
                         Vous pouvez reprendre votre écriture en cliquant sur le bouton "reprendre l'écriture" de l'un de
-                        ces livres.</p>
+                        vos livres.</p>
                 </div>
             </div>
         </section>
