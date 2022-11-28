@@ -22,6 +22,7 @@ $vue_gen = new VueGenerique();
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
                 crossorigin="anonymous"></script>
+                 
     </head>
 <?php
 session_start();
@@ -48,10 +49,9 @@ switch ($module) {
         break;
     case "CLivre": 
         $mod_livre = new Module_CLivre();
-
+        break;
     case"bibliotheque":
         $mod_biblio = new Module_Biblio();
-
         break;
     case "profil":
         $mod_profil = new Module_profil();

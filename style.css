@@ -30,10 +30,22 @@
 
 }
 
-#carouselExampleCaptions{
+#carouselAccueil{
     margin: auto;
-    width: 25%;
+    width: 60%;
 
+      
+      
+     
+
+}
+.ControlebuttonCarousel{
+    width: 8%!important;
+   
+}
+.carousel-Accueil{
+    height: 65ch;
+    object-fit:cover!important;
 }
 
 
@@ -54,4 +66,3 @@
     margin: auto;
     width: 75%;
 }
-
