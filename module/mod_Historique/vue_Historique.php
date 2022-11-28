@@ -8,8 +8,8 @@ class Vue_Historique extends VueGenerique
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light">Historique d'écriture</h1>
-                    <p class="lead text-muted">Ici se trouve tous les livres que <?= $nom ?>  a écrire ou fini
+                    <h1 class="fw-light">Historique d'écriture de <?= $nom ?> </h1>
+                    <p class="lead text-muted">Ici se trouve tous les livres que <?= $nom ?> écrit ou a fini
                         d'écrire. Ils sont classé par ordre de date, du plus recemment modifié au plus ancien modifié.
                         Vous pouvez les lires en cliquant sur le bouton "lire" de l'un de
                         ces livres.</p>
@@ -67,7 +67,7 @@ class Vue_Historique extends VueGenerique
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light">Historique de lecture</h1>
+                    <h1 class="fw-light">Mon Historique de lecture</h1>
                     <p class="lead text-muted">Ici se trouve tous les livres que vous avez commencé à lire ou fini de
                         lire. Ils sont classé par ordre de date, du plus recemment lu au plus ancien lu. Vous pouvez
                         reprendre votre lecture en cliquant sur le bouton "reprendre lecture" de l'un de ces livres.</p>
@@ -132,7 +132,7 @@ class Vue_Historique extends VueGenerique
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light">Historique d'écriture</h1>
+                    <h1 class="fw-light">Mon Historique d'écriture</h1>
                     <p class="lead text-muted">Ici se trouve tous les livres que vous avez commencé à écrire ou fini
                         d'écrire. Ils sont classé par ordre de date, du plus recemment modifié au plus ancien modifié.
                         Vous pouvez reprendre votre écriture en cliquant sur le bouton "reprendre l'écriture" de l'un de
