@@ -24,7 +24,7 @@ class Controleur_Historique
     public function affichageAutreHistoriqueEcriture()
     {
         if($this->modele->verifExiste()){
-            $historiqueEcriture = $this->modele->getAutreHistoriqueEcriture();
+            $historiqueEcriture = $this->modele->getHistoriqueEcriture();
             $nom = $this->modele->getNomAutre();
             $this->vue->afficherAutreHistoriqueEcriture($historiqueEcriture, $nom);
         }
