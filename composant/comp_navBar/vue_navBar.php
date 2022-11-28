@@ -37,7 +37,7 @@ class VueNavBar extends VueGenerique
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="index.php?module=accueil" class="nav-link px-2 text-secondary">Home</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                        <li><a href="index.php?action=print_create_book&module=CLivre" class="nav-link px-2 text-white">Rédaction</a></li>
                         <li><a href="index.php?module=bibliotheque" class="nav-link px-2 text-white">Bibliothèque</a></li>
                         <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                         <li><a href="#" class="nav-link px-2 text-white">About</a></li>
