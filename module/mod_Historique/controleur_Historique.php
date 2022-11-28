@@ -15,8 +15,17 @@ class Controleur_Historique
         $historiqueLecture = $this->modele->getHistoriqueLecture();
         $this->vue->afficherHistoriqueLecture($historiqueLecture);
     }
-    public function affichageHistoriqueEcriture()
+    public function affichageMonHistoriqueEcriture()
     {
-
+        $historiqueEcriture = $this->modele->getMonHistoriqueEcriture();
+        $this->vue->afficherMonHistoriqueEcriture($historiqueEcriture);
     }
+
+    public function affichageAutreHistoriqueEcriture()
+    {
+        $historiqueEcriture = $this->modele->getHistoriqueEcriture();
+        $nom = $this->modele->getNomAutre();
+        $this->vue->afficherAutreHistoriqueEcriture($historiqueEcriture, $nom);
+    }
+
 }

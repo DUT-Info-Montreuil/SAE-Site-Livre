@@ -10,15 +10,17 @@ require_once("vue_profil.php");
          $this->vue = new Vue_profil();
      }
      public function afficherMonProfil(){
-         $MeslivresLus = $this->modele->getLivresLu();
-         $this->vue->print_monprofil($MeslivresLus);
+         $meslivresEcrits = $this->modele->getMesLivresEcrits();
+         $meslivresLus = $this->modele->getLivresLu();
+         $this->vue->print_monprofil($meslivresLus, $meslivresEcrits);
      }
 
      public function afficherAutreProfil(){
          if($this->modele->verifExiste()){
+             $livresEcrits = $this->modele->getLivresEcrits();
              $autreEmail = $this->modele->getAutreEmail();
              $autreNom = $this->modele->getAutreNom();
-             $this->vue->print_autreProfil($autreEmail, $autreNom);
+             $this->vue->print_autreProfil($autreEmail, $autreNom, $livresEcrits);
          }
          else {
              $this->afficherMonProfil();

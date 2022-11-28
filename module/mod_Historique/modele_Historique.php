@@ -11,12 +11,30 @@ class Modele_Historique extends Connexion {
         $result = $prepare->fetchAll();
         return $result;
     }
-    /*public function getHistoriqueEcriture($idUtilisateur) {
-        $sql = "SELECT * FROM historique_livre_ecrit WHERE id_utilisateur = ?";
+    public function getMonHistoriqueEcriture() {
+        $sql = "SELECT * FROM livre WHERE IDAuteur = ?";
         $prepare = parent::$bdd->prepare($sql);
-        $tab = array($idUtilisateur);
+        $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
         return $result;
-    }*/
+    }
+
+    public function getHistoriqueEcriture() {
+        $sql = "SELECT * FROM livre WHERE IDAuteur = ?";
+        $prepare = parent::$bdd->prepare($sql);
+        $tab = array($_GET["id"]);
+        $exec = $prepare->execute($tab);
+        $result = $prepare->fetchAll();
+        return $result;
+    }
+
+    public function getNomAutre(){
+        $sql = "SELECT userName FROM utilisateur WHERE id = ?";
+        $prepare = parent::$bdd->prepare($sql);
+        $tab = array($_GET["id"]);
+        $exec = $prepare->execute($tab);
+        $result = $prepare->fetch();
+        return $result[0];
+    }
 }

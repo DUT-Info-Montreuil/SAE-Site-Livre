@@ -40,9 +40,24 @@ class modele_profil extends Connexion {
         $tab = array(password_hash($nouvMDP, PASSWORD_DEFAULT),$_SESSION["identifiant"]);
         $exec = $prepare->execute($tab);
     }
+
     function getLivresLu(){
         $prepare = parent::$bdd->prepare("select * from livre inner join historique_livre_lu hll on livre.id = hll.id_livre_lu where hll.id_utilisateur = ? ORDER BY hll.date_heure_lecture DESC LIMIT 2");
         $tab = array($_SESSION["id"]);
+        $exec = $prepare->execute($tab);
+        $result = $prepare->fetchAll();
+        return $result;
+    }
+    function getMesLivresEcrits(){
+        $prepare = parent::$bdd->prepare("select * from livre where IDAuteur = ? LIMIT 2");
+        $tab = array($_SESSION["id"]);
+        $exec = $prepare->execute($tab);
+        $result = $prepare->fetchAll();
+        return $result;
+    }
+    function getLivresEcrits(){
+        $prepare = parent::$bdd->prepare("select * from livre where IDAuteur = ? LIMIT 2");
+        $tab = array($_GET["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
         return $result;

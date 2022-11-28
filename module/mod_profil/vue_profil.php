@@ -8,7 +8,7 @@ class vue_profil extends vueGenerique
         parent::__construct();
     }
 
-    public function print_autreprofil($autreEmail, $autreNom)
+    public function print_autreprofil($autreEmail, $autreNom, $livresEcrits)
     {
         ?>
         <body>
@@ -29,49 +29,93 @@ class vue_profil extends vueGenerique
                                 </div>
                             </div>
                         </div>
+                        <div class="card mb-4 mb-lg-4">
+                            <div class="card-body text-center">
+                                <h5 class="card-title text-center">Livres écrits</h5>
+                                <div class="list-group" id="write-list-history">
+                                    <?php
+                                    if (count($livresEcrits) > 0) {
+                                        if (count($livresEcrits) > 1) {
+                                        }
+                                        foreach ($livresEcrits as $key) {
+                                            ?>
+                                            <div class="list-group-item card mb-3" style="max-width: 540px;">
+                                                <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\">" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-head">
+                                                            <h5 class="card-title"><?= $key["titre"] ?></h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text"><?= $key["resumeLivre"] ?></p>
+                                                            <a type="button"
+                                                               href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
+                                                               class="btn btn-outline-primary">lire</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "Cet utilisateur n'a pas encore écrit de livres";
+                                    }
+
+                                    ?>
+                                    <div class="card-bottom text-center mb-2">
+                                        <a href="index.php?module=historique&action=historiqueEcriture&id=<?=$_GET['id']?>" type="button"
+                                           class="btn btn-outline-secondary">voir plus</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-8">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-1 ms-4">Nom</p>
+                        <div class="col-lg-8">
+                            <div class="card mb-4">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-1 ms-4">Nom</p>
+                                        </div>
+                                        <div class="col-sm-4 afficherNom">
+                                            <p id="name" class="text-muted mb-0">
+                                                <?php echo $autreNom ?>
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="col-sm-4 afficherNom">
-                                        <p id="name" class="text-muted mb-0">
-                                            <?php echo $autreNom ?>
-                                        </p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-1 ms-4">Email</p>
+                                        </div>
+                                        <div class="col-sm-4 afficherEmail">
+                                            <p class="text-muted mb-0" id="email"><?php echo $autreEmail ?></p>
+                                        </div>
                                     </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-1 ms-4">Email</p>
-                                    </div>
-                                    <div class="col-sm-4 afficherEmail">
-                                        <p class="text-muted mb-0" id="email"><?php echo $autreEmail ?></p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-3 ms-4">Example</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">example content</p>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <p class="mb-3 ms-4">Example</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            <p class="text-muted mb-0">example content</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
         </body>
         <?php
     }
 
-    public function print_monprofil($livresLus)
+    public function print_monprofil($livresLus, $livresEcrits)
     {
         ?>
         <!--<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -164,6 +208,10 @@ class vue_profil extends vueGenerique
                                     }
 
                                     ?>
+                                    <div class="card-bottom text-center mb-2">
+                                        <a href="index.php?module=historique&action=historiqueLecture" type="button"
+                                           class="btn btn-outline-secondary">voir plus</a>
+                                    </div>
                                 </div>
                                 <script>
                                     $("#imgLivre<?=$key["id_livre_lu"]?>").click(function () {
@@ -172,53 +220,42 @@ class vue_profil extends vueGenerique
                                 </script>
 
                                 <div class="list-group" id="write-list-history">
-                                    <div class="list-group-item card mb-3" style="max-width: 540px;">
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="ressource/rainbowpencilTest.png"
-                                                     class="img-fluid rounded-start"
-                                                     alt="...">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-head">
-                                                    <h5 class="card-title">Titre du livre écrit 1</h5>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p class="card-text">résumé rapide du livre</p>
-                                                    <button type="button" class="btn btn-outline-primary">reprendre
-                                                        l'écriture
-                                                    </button>
-                                                </div>
-                                                <div class="card-bottom">
-                                                    <p class="card-text"><small class="text-muted">modifié il y a 5
-                                                            minutes</small></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="list-group-item card mb-3" style="max-width: 540px;">
-                                        <div class="row g-0">
-                                            <div class="col-md-4">
-                                                <img src="ressource/drawinglibraryTest.png"
-                                                     class="img-fluid rounded-start"
-                                                     alt="...">
-                                            </div>
-                                            <div class="col-md-8">
-                                                <div class="card-head">
-                                                    <h5 class="card-title">Titre du livre écrit 2</h5>
-                                                </div>
-                                                <div class="card-body">
-                                                    <p class="card-text">résumé rapide du livre</p>
-                                                    <button type="button" class="btn btn-outline-primary">reprendre
-                                                        l'écriture
-                                                    </button>
-                                                </div>
-                                                <div class="card-bottom">
-                                                    <p class="card-text"><small class="text-muted">modifié il y a 10
-                                                            minutes</small></p>
+                                    <?php
+                                    if (count($livresEcrits) > 0) {
+                                        if (count($livresEcrits) > 1) {
+                                        }
+                                        foreach ($livresEcrits as $key) {
+                                            ?>
+                                            <div class="list-group-item card mb-3" style="max-width: 540px;">
+                                                <div class="row g-0">
+                                                    <div class="col-md-4">
+                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\">" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="card-head">
+                                                            <h5 class="card-title"><?= $key["titre"] ?></h5>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <p class="card-text"><?= $key["resumeLivre"] ?></p>
+                                                            <a type="button"
+                                                               href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
+                                                               class="btn btn-outline-primary">reprendre l'écriture</a>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <?php
+                                        }
+                                    } else {
+                                        echo "vous n'avez pas encore écrit de livres";
+                                    }
+
+                                    ?>
+                                    <div class="card-bottom text-center mb-2">
+                                        <a href="index.php?module=historique&action=historiqueEcriture&id=<?=$_SESSION['id']?>" type="button"
+                                           class="btn btn-outline-secondary">voir plus</a>
                                     </div>
                                 </div>
                                 <script>
@@ -236,10 +273,6 @@ class vue_profil extends vueGenerique
                                     });
                                 </script>
 
-                            </div>
-                            <div class="card-bottom text-center mb-2">
-                                <a href="index.php?module=historique&action=historiqueLecture" type="button"
-                                   class="btn btn-outline-secondary">voir plus</a>
                             </div>
                         </div>
                     </div>
