@@ -174,9 +174,10 @@ class Vue_CLivre extends vueGenerique
         ?>
         <script>
             (window).on('load', function() {
-                
-                var timer = null;
-                $('.Chapitre').on('input', function() {
+                //tout dans un div + boucle sur les child pour cree on input event pout tout les child
+                //boucle sur all info et quand $i == i alors on recup l'id et on la post 
+                let timer = null;
+                $('textarea[id="Chapitre"'+ $i +']').on('input', function() {
                     if (timer != null) {
                         clearTimeout(timer); //cancel the previous timer.
                         timer = null;
