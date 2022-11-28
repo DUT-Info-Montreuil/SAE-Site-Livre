@@ -5,7 +5,7 @@ class Modele_connexion extends Connexion {
 
     }
     public function login(){
-        $prepare = parent::$bdd->prepare("SELECT passWord , id FROM Utilisateur where userName = ?");
+        $prepare = parent::$bdd->prepare("SELECT passWord , id, email FROM Utilisateur where userName = ?");
         $tab = array($_POST["identifiant"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetch();
@@ -15,6 +15,7 @@ class Modele_connexion extends Connexion {
             $_SESSION["connected"] = true ; 
             $_SESSION["identifiant"] = $_POST["identifiant"];
             $_SESSION["id"] = $result[1];
+            $_SESSION["email"] = $result[2];
             return true ;
         }else {
             return false ;

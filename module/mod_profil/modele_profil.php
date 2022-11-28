@@ -1,11 +1,26 @@
 <?php
+
 class modele_profil extends Connexion {
-    function recupInfoAffichage(){
-        $prepare = parent::$bdd->prepare("SELECT email FROM Utilisateur where userName = ?");
-        $tab = array($_SESSION["identifiant"]);
+    function verifExiste()
+    {
+        $req = parent::$bdd->prepare("SELECT * FROM utilisateur WHERE id = ?");
+        $req->execute(array($_GET["id"]));
+        $resultat = $req->fetch();
+        return $resultat;
+    }
+    function getAutreEmail(){
+        $prepare = parent::$bdd->prepare("SELECT email FROM Utilisateur where id = ?");
+        $tab = array($_GET["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetch();
-        $_SESSION["email"] = $result[0];
+        return $result[0];
+    }
+    function getAutreNom(){
+        $prepare = parent::$bdd->prepare("SELECT userName FROM Utilisateur where id = ?");
+        $tab = array($_GET["id"]);
+        $exec = $prepare->execute($tab);
+        $result = $prepare->fetch();
+        return $result[0];
     }
     function changeNom($nouvNom){
 

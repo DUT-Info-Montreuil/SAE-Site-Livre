@@ -8,7 +8,70 @@ class vue_profil extends vueGenerique
         parent::__construct();
     }
 
-    public function print_profil($livresLus)
+    public function print_autreprofil($autreEmail, $autreNom)
+    {
+        ?>
+        <body>
+        <section style="background-color: #eee;">
+            <div class="container py-4">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card mb-4">
+                            <div class="card-body text-center">
+                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                     alt="avatar"
+                                     class="rounded-circle img-fluid" style="width: 150px;">
+                                <h5 class="my-3" id="nomProfil"><?php echo $autreNom ?></h5>
+                                <p class="text-muted mb-1">Full Stack Developer</p>
+                                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
+                                <div class="d-flex justify-content-center mb-2">
+                                    <button type="button" class="btn btn-primary">Suivre</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-1 ms-4">Nom</p>
+                                    </div>
+                                    <div class="col-sm-4 afficherNom">
+                                        <p id="name" class="text-muted mb-0">
+                                            <?php echo $autreNom ?>
+                                        </p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-1 ms-4">Email</p>
+                                    </div>
+                                    <div class="col-sm-4 afficherEmail">
+                                        <p class="text-muted mb-0" id="email"><?php echo $autreEmail ?></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-3 ms-4">Example</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">example content</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </body>
+        <?php
+    }
+
+    public function print_monprofil($livresLus)
     {
         ?>
         <!--<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -31,7 +94,6 @@ class vue_profil extends vueGenerique
                                 <p class="text-muted mb-1">Full Stack Developer</p>
                                 <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                                 <div class="d-flex justify-content-center mb-2">
-                                    <button type="button" class="btn btn-primary">Suivre</button>
                                     <button type="button" class="btn btn-outline-primary ms-1"
                                             href="index.php?module=parametre&action=afficherParametre">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -73,7 +135,7 @@ class vue_profil extends vueGenerique
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
                                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id_livre_lu"] . "\">" ?>
-                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" width=100% height=100%/>" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -176,7 +238,8 @@ class vue_profil extends vueGenerique
 
                             </div>
                             <div class="card-bottom text-center mb-2">
-                                <a href="index.php?module=historique&action=historiqueLecture" type="button" class="btn btn-outline-secondary">voir plus</a>
+                                <a href="index.php?module=historique&action=historiqueLecture" type="button"
+                                   class="btn btn-outline-secondary">voir plus</a>
                             </div>
                         </div>
                     </div>
@@ -248,6 +311,7 @@ class vue_profil extends vueGenerique
                                                 if (data.length === 6) {
                                                     $("#name").text($("#inputName").val());
                                                     $("#nomProfil").text($("#inputName").val());
+                                                    $("#inputName").val("");
                                                 } else {
                                                     alert(data);
                                                 }
@@ -324,6 +388,7 @@ class vue_profil extends vueGenerique
                                             }).done(function (data) {
                                                 if (data.length === 6) {
                                                     $("#email").text($("#inputEmail").val());
+                                                    $("#inputEmail").val("");
                                                 } else {
                                                     alert(data);
                                                 }
@@ -342,7 +407,8 @@ class vue_profil extends vueGenerique
                                         <p class="mb-1 ms-4">Mot de passe</p>
                                     </div>
                                     <div class="col-sm-2 modifierMDP d-none">
-                                        <input type="password" id="inputMDP" class="form-control" placeholder="new password"
+                                        <input type="password" id="inputMDP" class="form-control"
+                                               placeholder="new password"
                                                name="newMDP" required>
                                     </div>
                                     <div class="col-sm-2 modifierMDP d-none btn-group" role="group">
@@ -399,6 +465,7 @@ class vue_profil extends vueGenerique
                                             }).done(function (data) {
                                                 if (data.length === 6) {
                                                     $("#password").text($("#inputMDP").val());
+                                                    $("#inputMDP").val("");
                                                 } else {
                                                     alert(data);
                                                 }

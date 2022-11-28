@@ -30,7 +30,7 @@ class Vue_Historique extends VueGenerique
                         <div class="card text-center" style="width: 18rem; min-height: 20rem;">
                             <div class="card-img-top">
                                 <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id_livre_lu"] . "\">" ?>
-                                <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid\" alt=\"...\" width=100% height=100%/>" ?>
+                                <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid\" alt=\"...\"/>" ?>
                                 </a>
                             </div>
                             <div class="card-body">

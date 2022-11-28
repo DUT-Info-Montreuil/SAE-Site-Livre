@@ -55,14 +55,14 @@ class VueNavBar extends VueGenerique
                                     aria-expanded="false">
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="index.php?module=profil&action=afficherProfil">
+                                <li><a class="dropdown-item" href="index.php?module=profil&action=afficherProfil&id=<?=$_SESSION['id']?>">
                                         <svg class="bi bi-person-circle" width="16" height="16">
                                             <use xlink:href="#profileIcon"/>
                                         </svg>
                                         Profile
                                     </a></li>
                                 <li>
-                                    <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+                                    <a class="dropdown-item d-flex gap-2 align-items-center" href="index.php?module=profil&action=afficherProfil&id=12">
                                         <svg class="bi bi-book" width="16" height="16">
                                             <use xlink:href="#bookIcon"/>
                                         </svg>
