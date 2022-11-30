@@ -34,7 +34,7 @@ class Vue_Accueil extends vueGenerique
   {
 
 ?>
-    <html>
+   
 
 
     <body>
@@ -86,7 +86,7 @@ class Vue_Accueil extends vueGenerique
     </body>
 
 
-    </html>
+    
 <?php
   }
 }

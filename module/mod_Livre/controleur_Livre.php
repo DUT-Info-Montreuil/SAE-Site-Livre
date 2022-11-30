@@ -15,9 +15,12 @@ class Controleur_Livre
     {
         if (isset($_GET['idLivre'])) {
             $livre = $this->modele->getLivre($_GET['idLivre']);
-            $this->vue->afficherLivre($livre);
-        }else{
-            echo "erreur\n";
+            $userLikedTheBook=0;
+            if(isset($_SESSION['connected'])){
+                $userLikedTheBook=$this->modele->isUserLikedThisBook($_SESSION['id'],$_GET['idLivre'])[0];
+            }
+            
+            $this->vue->afficherLivre($livre,$userLikedTheBook);
         }
         
         
