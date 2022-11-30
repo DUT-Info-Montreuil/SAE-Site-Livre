@@ -8,7 +8,7 @@ class vue_profil extends vueGenerique
         parent::__construct();
     }
 
-    public function print_autreprofil($autreEmail, $autreNom, $livresEcrits, $estAbonne)
+    public function print_autreprofil($autreEmail, $autreNom, $livresEcrits, $estAbonne, $mesLivresLus)
     {
         ?>
         <body>
@@ -113,9 +113,29 @@ class vue_profil extends vueGenerique
                                                         </div>
                                                         <div class="card-body">
                                                             <p class="card-text"><?= $key["resumeLivre"] ?></p>
-                                                            <a type="button"
-                                                               href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
-                                                               class="btn btn-outline-primary">lire</a>
+                                                            <?php
+                                                            $livreLu = false;
+                                                            foreach ($mesLivresLus as $key2){
+                                                                if($key2["id_livre_lu"] === $key["id"]){
+                                                                    $livreLu = true;
+                                                                    ?>
+                                                                    <a type="button" href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=<?=$key2["dernier_chapitre_lu"]?>" class="btn btn-outline-primary">reprendre la lecture</a>
+                                                                    <div class="card-bottom">
+                                                                        <p class="card-text"><small class="text-muted">lu il y
+                                                                                a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key2["date_heure_lecture"]))), new DateTime(date("Y-m-d H:i:s")));
+                                                                                echo $dateDiff->format('%d') . "j " . $dateDiff->format('%H') . "h " . $dateDiff->format('%i') . "m " . $dateDiff->format('%s') . "s" ?></small>
+                                                                        </p>
+                                                                    </div>
+                                                                    <?php
+                                                                    break;
+                                                                }
+                                                            }
+                                                            if(!$livreLu){
+                                                                ?>
+                                                                <a type="button" href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1" class="btn btn-outline-primary">commencer la lecture</a>
+                                                                <?php
+                                                            }
+                                                                ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -199,17 +219,6 @@ class vue_profil extends vueGenerique
                                 <h5 class="my-3" id="nomProfil"><?php echo $_SESSION["identifiant"] ?></h5>
                                 <p class="text-muted mb-1">Full Stack Developer</p>
                                 <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                                <div class="d-flex justify-content-center mb-2">
-                                    <button type="button" class="btn btn-outline-primary ms-1"
-                                            href="index.php?module=parametre&action=afficherParametre">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                             fill="currentColor" class="bi bi-sliders" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                  d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z"/>
-                                        </svg>
-                                        paramètres
-                                    </button>
-                                </div>
                             </div>
                         </div>
                         <div class="card mb-4 mb-lg-4">

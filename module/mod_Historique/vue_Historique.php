@@ -3,7 +3,7 @@ require_once("vue_generique.php");
 
 class Vue_Historique extends VueGenerique
 {
-    public function afficherAutreHistoriqueEcriture($livresEcrit, $nom){
+    public function afficherAutreHistoriqueEcriture($livresEcrit, $nom, $monHistoriqueLecture){
         ?>
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
@@ -38,9 +38,29 @@ class Vue_Historique extends VueGenerique
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $key["titre"] ?></h5>
                                         <p class="card-text"><?= $key["resumeLivre"] ?></p>
-                                        <a type="button"
-                                           href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
-                                           class="btn btn-outline-primary">lire</a>
+                                        <?php
+                                        $livreLu = false;
+                                        foreach ($monHistoriqueLecture as $key2){
+                                            if($key2["id_livre_lu"] === $key["id"]){
+                                                $livreLu = true;
+                                                ?>
+                                                <a type="button" href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=<?=$key2["dernier_chapitre_lu"]?>" class="btn btn-outline-primary">reprendre la lecture</a>
+                                                <div class="card-bottom">
+                                                    <p class="card-text"><small class="text-muted">lu il y
+                                                            a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key2["date_heure_lecture"]))), new DateTime(date("Y-m-d H:i:s")));
+                                                            echo $dateDiff->format('%d') . "j " . $dateDiff->format('%H') . "h " . $dateDiff->format('%i') . "m " . $dateDiff->format('%s') . "s" ?></small>
+                                                    </p>
+                                                </div>
+                                                <?php
+                                                break;
+                                            }
+                                        }
+                                        if(!$livreLu){
+                                            ?>
+                                            <a type="button" href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1" class="btn btn-outline-primary">commencer la lecture</a>
+                                            <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
