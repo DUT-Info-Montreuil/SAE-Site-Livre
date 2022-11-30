@@ -324,15 +324,13 @@ class vue_profil extends vueGenerique
                                 <script>
                                     $("#write-list-history").hide();
                                     $("#btnHistoryRead").click(function () {
-                                        $("#write-list-history").first().hide("slow", function showNext() {
-                                            $("#read-list-history").show("slow");
-                                        });
-                                        //$("#write-list-history").addClass("d-none");
+                                        $("#write-list-history").hide();
+                                        $("#read-list-history").show();
                                     });
+                                        //$("#write-list-history").addClass("d-none");
                                     $("#btnHistoryWrite").click(function () {
-                                        $("#read-list-history").first().hide("slow", function showNext() {
-                                            $("#write-list-history").show("slow");
-                                        });
+                                        $("#read-list-history").hide();
+                                        $("#write-list-history").show();
                                     });
                                 </script>
 
