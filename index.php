@@ -71,6 +71,9 @@ switch ($module) {
     case"livre":
         $mod_livre = new Module_Livre();
         break;
+    default:
+        die("Erreur 404");
+        break;
 }
 
 
