@@ -17,10 +17,11 @@ require_once("vue_profil.php");
 
      public function afficherAutreProfil(){
          if($this->modele->verifExiste()){
+             $estAbonne = $this->modele->verifAbonne();
              $livresEcrits = $this->modele->getLivresEcrits();
              $autreEmail = $this->modele->getAutreEmail();
              $autreNom = $this->modele->getAutreNom();
-             $this->vue->print_autreProfil($autreEmail, $autreNom, $livresEcrits);
+             $this->vue->print_autreProfil($autreEmail, $autreNom, $livresEcrits, $estAbonne);
          }
          else {
              $this->afficherMonProfil();

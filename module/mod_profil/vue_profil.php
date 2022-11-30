@@ -8,7 +8,7 @@ class vue_profil extends vueGenerique
         parent::__construct();
     }
 
-    public function print_autreprofil($autreEmail, $autreNom, $livresEcrits)
+    public function print_autreprofil($autreEmail, $autreNom, $livresEcrits, $estAbonne)
     {
         ?>
         <body>
@@ -40,20 +40,53 @@ class vue_profil extends vueGenerique
                             </div>
                         </div>
                         <script>
-                            $("#suivi").hide();
+                        <?php
+                            if($estAbonne){
+                                ?>
+                                $("#suivre").hide();
+                                <?php
+                            }
+                            else{
+                                ?>
+                                $("#suivi").hide();
+                                <?php
+                            }
+                            ?>
                             $("#suivre").click(function () {
-                                $("#suivre").first().fadeOut("speed", function fadeNext() {
-                                    $("#img-check-suivi").hide();
-                                    $("#suivi").fadeIn();
-                                    $("#img-check-suivi").slideDown("slow");
+                                $.ajax({
+                                    url: "abonnement.php",
+                                    type: "POST",
+                                    data: {
+                                        action: "abonne",
+                                        contenu: "<?= $autreNom ?>"
+                                    },
+                                }).done(function (data) {
+                                    $("#suivre").first().fadeOut("speed", function fadeNext() {
+                                        $("#img-check-suivi").hide();
+                                        $("#suivi").fadeIn();
+                                        $("#img-check-suivi").slideDown("slow");
 
+                                    });
+                                }).fail(function (data, status, type) {
+                                    alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
                                 });
                             });
 
                             $("#suivi").click(function () {
-                                $("#img-check-suivi").slideUp();
-                                $("#suivi").fadeOut("speed", function fadeNext() {
-                                    $("#suivre").fadeIn();
+                                $.ajax({
+                                    url: "abonnement.php",
+                                    type: "POST",
+                                    data: {
+                                        action: "desabonne",
+                                        contenu: "<?= $autreNom ?>"
+                                    },
+                                }).done(function (data) {
+                                    $("#img-check-suivi").slideUp();
+                                    $("#suivi").fadeOut("speed", function fadeNext() {
+                                        $("#suivre").fadeIn();
+                                    });
+                                }).fail(function (data, status, type) {
+                                    alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
                                 });
                             });
                         </script>
@@ -524,7 +557,7 @@ class vue_profil extends vueGenerique
                                     $("#confirmChangeMDPButton").click(function () {
                                         if ($("#inputMDP").val() !== "") {
                                             $.ajax({
-                                                url: "changerValeurs.php",
+                                                url: "modiferProfil.php",
                                                 type: "POST",
                                                 data: {
                                                     action: "changerMDP",

@@ -3,7 +3,7 @@
     session_start();
     require_once("Connexion.php");
     require_once("module/mod_profil/modele_profil.php");
-    class changerValeurs extends Connexion {
+    class ModifierProfil extends Connexion {
         private $modele;
         function action(){
             $this->modele = new modele_profil();
@@ -32,7 +32,7 @@
     }
 
     Connexion::initConnexion();
-    $change = new changerValeurs();
+    $change = new ModifierProfil();
     $change->action();
 ?>
 

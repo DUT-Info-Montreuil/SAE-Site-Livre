@@ -23,7 +23,6 @@ class modele_profil extends Connexion {
         return $result[0];
     }
     function changeNom($nouvNom){
-
         $prepare = parent::$bdd->prepare("Update Utilisateur SET userName= ? where userName = ?");
         $tab = array($nouvNom,$_SESSION["identifiant"]);
         $exec = $prepare->execute($tab);
@@ -61,5 +60,17 @@ class modele_profil extends Connexion {
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
         return $result;
+    }
+    function verifAbonne(){
+        $prepare = parent::$bdd->prepare("select * from abonnement where id_utilisateur_suivi = ? and id_abonné = ?");
+        $tab = array($_GET["id"], $_SESSION["id"]);
+        $exec = $prepare->execute($tab);
+        $result = $prepare->fetchAll();
+        if(count($result) === 0){
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
