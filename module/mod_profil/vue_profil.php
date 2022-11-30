@@ -25,10 +25,38 @@ class vue_profil extends vueGenerique
                                 <p class="text-muted mb-1">Full Stack Developer</p>
                                 <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                                 <div class="d-flex justify-content-center mb-2">
-                                    <button type="button" class="btn btn-primary">Suivre</button>
+                                    <button type="button" class="btn btn-outline-primary" id="suivre">Suivre</button>
                                 </div>
+                                <div class="d-flex justify-content-center mb-2">
+                                    <button type="button" class="btn btn-primary" id="suivi">
+                                        Suivi
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="img-check-suivi" width="16"
+                                             height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                                            <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                                        </svg>
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
+                        <script>
+                            $("#suivi").hide();
+                            $("#suivre").click(function () {
+                                $("#suivre").first().fadeOut("speed", function fadeNext() {
+                                    $("#img-check-suivi").hide();
+                                    $("#suivi").fadeIn();
+                                    $("#img-check-suivi").slideDown("slow");
+
+                                });
+                            });
+
+                            $("#suivi").click(function () {
+                                $("#img-check-suivi").slideUp();
+                                $("#suivi").fadeOut("speed", function fadeNext() {
+                                    $("#suivre").fadeIn();
+                                });
+                            });
+                        </script>
                         <div class="card mb-4 mb-lg-4">
                             <div class="card-body text-center">
                                 <h5 class="card-title text-center">Livres écrits</h5>
@@ -67,49 +95,50 @@ class vue_profil extends vueGenerique
 
                                     ?>
                                     <div class="card-bottom text-center mb-2">
-                                        <a href="index.php?module=historique&action=historiqueEcriture&id=<?=$_GET['id']?>" type="button"
+                                        <a href="index.php?module=historique&action=historiqueEcriture&id=<?= $_GET['id'] ?>"
+                                           type="button"
                                            class="btn btn-outline-secondary">voir plus</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                        <div class="col-lg-8">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-1 ms-4">Nom</p>
-                                        </div>
-                                        <div class="col-sm-4 afficherNom">
-                                            <p id="name" class="text-muted mb-0">
-                                                <?php echo $autreNom ?>
-                                            </p>
-                                        </div>
+                    <div class="col-lg-8">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-1 ms-4">Nom</p>
                                     </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-1 ms-4">Email</p>
-                                        </div>
-                                        <div class="col-sm-4 afficherEmail">
-                                            <p class="text-muted mb-0" id="email"><?php echo $autreEmail ?></p>
-                                        </div>
+                                    <div class="col-sm-4 afficherNom">
+                                        <p id="name" class="text-muted mb-0">
+                                            <?php echo $autreNom ?>
+                                        </p>
                                     </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-3 ms-4">Example</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">example content</p>
-                                        </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-1 ms-4">Email</p>
+                                    </div>
+                                    <div class="col-sm-4 afficherEmail">
+                                        <p class="text-muted mb-0" id="email"><?php echo $autreEmail ?></p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-3 ms-4">Example</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">example content</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         </section>
         </body>
         <?php
@@ -254,7 +283,8 @@ class vue_profil extends vueGenerique
 
                                     ?>
                                     <div class="card-bottom text-center mb-2">
-                                        <a href="index.php?module=historique&action=historiqueEcriture&id=<?=$_SESSION['id']?>" type="button"
+                                        <a href="index.php?module=historique&action=historiqueEcriture&id=<?= $_SESSION['id'] ?>"
+                                           type="button"
                                            class="btn btn-outline-secondary">voir plus</a>
                                     </div>
                                 </div>
@@ -326,6 +356,7 @@ class vue_profil extends vueGenerique
                                     $("#swapToChangeNameButton").click(function () {
                                         $(".afficherNom").addClass("d-none");
                                         $(".modifierNom").removeClass("d-none");
+                                        $("#inputName").val("");
                                     });
                                     $("#cancelChangeNameButton").click(function () {
                                         $(".afficherNom").removeClass("d-none");
@@ -344,9 +375,10 @@ class vue_profil extends vueGenerique
                                                 if (data.length === 6) {
                                                     $("#name").text($("#inputName").val());
                                                     $("#nomProfil").text($("#inputName").val());
-                                                    $("#inputName").val("");
+                                                    $("#inputName").text("");
                                                 } else {
                                                     alert(data);
+
                                                 }
                                                 $(".afficherNom").removeClass("d-none");
                                                 $(".modifierNom").addClass("d-none");
@@ -404,13 +436,14 @@ class vue_profil extends vueGenerique
                                     $("#swapToChangeEmailButton").click(function () {
                                         $(".afficherEmail").addClass("d-none");
                                         $(".modifierEmail").removeClass("d-none");
+                                        $("#inputEmail").val("");
                                     });
                                     $("#cancelChangeEmailButton").click(function () {
                                         $(".afficherEmail").removeClass("d-none");
                                         $(".modifierEmail").addClass("d-none");
                                     });
                                     $("#confirmChangeEmailButton").click(function () {
-                                        if ($("#inputEmail").val() !== "") {
+                                        if ($("#inputEmail").val() !== "" && $("#inputEmail").val().includes("@")) {
                                             $.ajax({
                                                 url: "changerValeurs.php",
                                                 type: "POST",
@@ -424,6 +457,7 @@ class vue_profil extends vueGenerique
                                                     $("#inputEmail").val("");
                                                 } else {
                                                     alert(data);
+                                                    $("#inputEmail").val("");
                                                 }
                                                 $(".afficherEmail").removeClass("d-none");
                                                 $(".modifierEmail").addClass("d-none");
@@ -481,6 +515,7 @@ class vue_profil extends vueGenerique
                                     $("#swapToChangeMDPButton").click(function () {
                                         $(".afficherMDP").addClass("d-none");
                                         $(".modifierMDP").removeClass("d-none");
+                                        $("#inputMDP").val("");
                                     });
                                     $("#cancelChangeMDPButton").click(function () {
                                         $(".afficherMDP").removeClass("d-none");
