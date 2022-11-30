@@ -82,7 +82,7 @@ class modele_profil extends Connexion {
         }
     }
     function getMesAbonnements(){
-        $prepare = parent::$bdd->prepare("select * from abonnement where id_abonné = ?");
+        $prepare = parent::$bdd->prepare("select * from utilisateur inner join abonnement on utilisateur.id = abonnement.id_utilisateur_suivi where abonnement.id_abonné = ?");
         $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();

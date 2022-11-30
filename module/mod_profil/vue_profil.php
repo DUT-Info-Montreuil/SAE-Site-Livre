@@ -615,8 +615,7 @@ class vue_profil extends vueGenerique
                                 }
                                 foreach ($mesAbonnements as $key) {
                                     ?>
-                                    <a href="index.php?module=profil&action=afficherProfil&id=<?= $key['id_utilisateur_suivi'] ?>"> <?= $key['id_utilisateur_suivi'] ?>
-                                    </a>
+                                    <a href="index.php?module=profil&action=afficherProfil&id=<?=$key['id_utilisateur_suivi']?>"><?= $key['userName'] ?></a>
                                     <?php
                                 }
                                 ?>
