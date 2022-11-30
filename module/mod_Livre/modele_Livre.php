@@ -51,7 +51,7 @@ class Modele_Livre extends Connexion
         $tabVerifLu = array($idLivreLu,$_SESSION['id']);
         $execVerifLu = $prepareVerifLu->execute($tabVerifLu);
         $resultVerifLu = $prepareVerifLu->fetchAll();
-        if(count($resultVerifLu) == 0){
+        if(count($resultVerifLu) === 0){
             $getLivreLu= "INSERT INTO historique_livre_lu (id_utilisateur,id_livre_lu,date_heure_lecture,dernier_chapitre_lu) VALUES (?,?,?,?)";
             $prepareLivreLu = parent::$bdd->prepare($getLivreLu);
             $tabLivreLu = array($_SESSION["id"],$idLivreLu, $dateTime, $numChapitre);

@@ -40,16 +40,16 @@ class vue_profil extends vueGenerique
                             </div>
                         </div>
                         <script>
-                        <?php
+                            <?php
                             if($estAbonne){
-                                ?>
-                                $("#suivre").hide();
-                                <?php
+                            ?>
+                            $("#suivre").hide();
+                            <?php
                             }
                             else{
-                                ?>
-                                $("#suivi").hide();
-                                <?php
+                            ?>
+                            $("#suivi").hide();
+                            <?php
                             }
                             ?>
                             $("#suivre").click(function () {
@@ -115,13 +115,17 @@ class vue_profil extends vueGenerique
                                                             <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                                             <?php
                                                             $livreLu = false;
-                                                            foreach ($mesLivresLus as $key2){
-                                                                if($key2["id_livre_lu"] === $key["id"]){
+                                                            foreach ($mesLivresLus as $key2) {
+                                                                if ($key2["id_livre_lu"] === $key["id"]) {
                                                                     $livreLu = true;
                                                                     ?>
-                                                                    <a type="button" href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=<?=$key2["dernier_chapitre_lu"]?>" class="btn btn-outline-primary">reprendre la lecture</a>
+                                                                    <a type="button"
+                                                                       href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=<?= $key2["dernier_chapitre_lu"] ?>"
+                                                                       class="btn btn-outline-primary">reprendre la
+                                                                        lecture</a>
                                                                     <div class="card-bottom">
-                                                                        <p class="card-text"><small class="text-muted">lu il y
+                                                                        <p class="card-text"><small class="text-muted">lu
+                                                                                il y
                                                                                 a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key2["date_heure_lecture"]))), new DateTime(date("Y-m-d H:i:s")));
                                                                                 echo $dateDiff->format('%d') . "j " . $dateDiff->format('%H') . "h " . $dateDiff->format('%i') . "m " . $dateDiff->format('%s') . "s" ?></small>
                                                                         </p>
@@ -130,12 +134,15 @@ class vue_profil extends vueGenerique
                                                                     break;
                                                                 }
                                                             }
-                                                            if(!$livreLu){
+                                                            if (!$livreLu) {
                                                                 ?>
-                                                                <a type="button" href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1" class="btn btn-outline-primary">commencer la lecture</a>
+                                                                <a type="button"
+                                                                   href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
+                                                                   class="btn btn-outline-primary">commencer la
+                                                                    lecture</a>
                                                                 <?php
                                                             }
-                                                                ?>
+                                                            ?>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -197,7 +204,7 @@ class vue_profil extends vueGenerique
         <?php
     }
 
-    public function print_monprofil($livresLus, $livresEcrits)
+    public function print_monprofil($livresLus, $livresEcrits, $mesAbonnements)
     {
         ?>
         <!--<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -336,13 +343,12 @@ class vue_profil extends vueGenerique
                                         $("#write-list-history").hide();
                                         $("#read-list-history").show();
                                     });
-                                        //$("#write-list-history").addClass("d-none");
+                                    //$("#write-list-history").addClass("d-none");
                                     $("#btnHistoryWrite").click(function () {
                                         $("#read-list-history").hide();
                                         $("#write-list-history").show();
                                     });
                                 </script>
-
                             </div>
                         </div>
                     </div>
@@ -595,6 +601,25 @@ class vue_profil extends vueGenerique
                                         <p class="text-muted mb-0">example content</p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-header text-center">
+                                <h5 class="mb-0">Abonnements</h5>
+                            </div>
+                            <div class="card-body text-center">
+                                <?php
+                                if (count($mesAbonnements) === 0) {
+
+                                    echo "vous n'êtes abonné à personne";
+                                }
+                                foreach ($mesAbonnements as $key) {
+                                    ?>
+                                    <a href="index.php?module=profil&action=afficherProfil&id=<?= $key['id_utilisateur_suivi'] ?>"> <?= $key['id_utilisateur_suivi'] ?>
+                                    </a>
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
                     </div>

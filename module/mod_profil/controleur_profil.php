@@ -11,13 +11,14 @@ require_once("vue_profil.php");
      }
      public function afficherMonProfil(){
          $meslivresEcrits = $this->modele->getMesLivresEcrits();
-         $meslivresLus = $this->modele->getMesLivresLu();
-         $this->vue->print_monprofil($meslivresLus, $meslivresEcrits);
+         $meslivresLus = $this->modele->getMesDeuxDerniersLivresLu();
+         $mesAbonnements = $this->modele->getMesAbonnements();
+         $this->vue->print_monprofil($meslivresLus, $meslivresEcrits, $mesAbonnements);
      }
 
      public function afficherAutreProfil(){
          if($this->modele->verifExiste()){
-             $mesLivresLus = $this->modele->getMesLivresLu();
+             $mesLivresLus = $this->modele->getTousMesLivresLu();
              $estAbonne = $this->modele->verifAbonne();
              $livresEcrits = $this->modele->getAutreLivresEcrits();
              $autreEmail = $this->modele->getAutreEmail();

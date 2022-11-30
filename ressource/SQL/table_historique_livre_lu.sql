@@ -2,7 +2,7 @@ DROP TABLE if exists historique_livre_lu;
 
 CREATE TABLE historique_livre_lu
 (
-    liaison_livre_utilisateur bigint(20) UNSIGNED NOT NULL,
+    liaison_livre_utilisateur bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     id_utilisateur bigint(11) UNSIGNED NOT NULL,
     id_livre_lu bigint(11) UNSIGNED NOT NULL,
     date_heure_lecture datetime NOT NULL,

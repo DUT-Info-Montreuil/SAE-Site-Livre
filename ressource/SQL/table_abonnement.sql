@@ -1,7 +1,7 @@
 DROP table if exists abonnement;
 
 CREATE TABLE abonnement (
-    liaison_abonnement bigint(20) UNSIGNED NOT NULL ,
+    liaison_abonnement bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
     id_utilisateur_suivi bigint(11) UNSIGNED NOT NULL,
     id_abonné bigint(11) UNSIGNED NOT NULL,
     PRIMARY KEY (liaison_abonnement),
