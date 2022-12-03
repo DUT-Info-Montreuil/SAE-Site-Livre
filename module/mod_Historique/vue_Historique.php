@@ -121,6 +121,8 @@ class Vue_Historique extends VueGenerique
                                            class="btn btn-outline-primary">reprendre la lecture</a>
                                     </div>
                                     <div class="card-bottom">
+                                        <p class="card-text"><small
+                                                    class="text-muted"> écrit par <a href="index.php?module=profil&action=afficherProfil&id=<?=$key['id']?>"><?= $key["userName"] ?> </a></small></p>
                                         <p class="card-text"><small class="text-muted">lu il y
                                                 a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key["date_heure_lecture"]))), new DateTime(date("Y-m-d H:i:s")));
                                                 echo $dateDiff->format('%d') . "j " . $dateDiff->format('%H') . "h " . $dateDiff->format('%i') . "m " . $dateDiff->format('%s') . "s" ?></small>

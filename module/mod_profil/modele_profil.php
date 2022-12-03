@@ -41,7 +41,7 @@ class modele_profil extends Connexion {
     }
 
     function getMesDeuxDerniersLivresLu(){
-        $prepare = parent::$bdd->prepare("select * from livre inner join historique_livre_lu hll on livre.id = hll.id_livre_lu where hll.id_utilisateur = ? ORDER BY hll.date_heure_lecture DESC LIMIT 2");
+        $prepare = parent::$bdd->prepare("select *, userName from livre inner join historique_livre_lu hll on livre.id = hll.id_livre_lu inner join utilisateur u on livre.IDAuteur = u.id where hll.id_utilisateur = ? ORDER BY hll.date_heure_lecture DESC LIMIT 2");
         $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
@@ -63,7 +63,7 @@ class modele_profil extends Connexion {
         return $result;
     }
     function getAutreLivresEcrits(){
-        $prepare = parent::$bdd->prepare("select * from livre where IDAuteur = ? LIMIT 2");
+        $prepare = parent::$bdd->prepare("select * from livre  where IDAuteur = ? LIMIT 2");
         $tab = array(htmlspecialchars($_GET["id"]));
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
