@@ -7,7 +7,7 @@ class Modele_Historique extends Connexion {
     function verifExiste()
     {
         $req = parent::$bdd->prepare("SELECT * FROM utilisateur WHERE id = ?");
-        $req->execute(array($_GET["id"]));
+        $req->execute(array(htmlspecialchars($_GET["id"])));
         $resultat = $req->fetch();
         return $resultat;
     }
@@ -30,7 +30,7 @@ class Modele_Historique extends Connexion {
     public function getHistoriqueEcriture() {
         $sql = "SELECT * FROM livre WHERE IDAuteur = ?";
         $prepare = parent::$bdd->prepare($sql);
-        $tab = array($_GET["id"]);
+        $tab = array(htmlspecialchars($_GET["id"]));
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
         return $result;
@@ -39,7 +39,7 @@ class Modele_Historique extends Connexion {
     public function getNomAutre(){
         $sql = "SELECT userName FROM utilisateur WHERE id = ?";
         $prepare = parent::$bdd->prepare($sql);
-        $tab = array($_GET["id"]);
+        $tab = array(htmlspecialchars($_GET["id"]));
         $exec = $prepare->execute($tab);
         $result = $prepare->fetch();
         return $result[0];

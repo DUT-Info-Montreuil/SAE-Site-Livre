@@ -6,6 +6,8 @@ class vue_profil extends vueGenerique
     public function __construct()
     {
         parent::__construct();
+        $_SESSION['jeton'] = bin2hex(openssl_random_pseudo_bytes(32, $cstrong));
+        $_SESSION['expiration_jeton'] = time() + 600; //10 minutes
     }
 
     public function print_autreprofil($autreEmail, $autreNom, $livresEcrits, $estAbonne, $mesLivresLus)
@@ -58,15 +60,20 @@ class vue_profil extends vueGenerique
                                     type: "POST",
                                     data: {
                                         action: "abonne",
-                                        contenu: "<?= $autreNom ?>"
+                                        contenu: "<?= $autreNom ?>",
+                                        jeton: "<?= $_SESSION['jeton'] ?>"
                                     },
                                 }).done(function (data) {
-                                    $("#suivre").first().fadeOut("speed", function fadeNext() {
-                                        $("#img-check-suivi").hide();
-                                        $("#suivi").fadeIn();
-                                        $("#img-check-suivi").slideDown("slow");
+                                    if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
+                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
+                                    } else {
+                                        $("#suivre").first().fadeOut("speed", function fadeNext() {
+                                            $("#img-check-suivi").hide();
+                                            $("#suivi").fadeIn();
+                                            $("#img-check-suivi").slideDown("slow");
 
-                                    });
+                                        });
+                                    }
                                 }).fail(function (data, status, type) {
                                     alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
                                 });
@@ -78,13 +85,18 @@ class vue_profil extends vueGenerique
                                     type: "POST",
                                     data: {
                                         action: "desabonne",
-                                        contenu: "<?= $autreNom ?>"
+                                        contenu: "<?= $autreNom ?>",
+                                        jeton: "<?= $_SESSION['jeton'] ?>"
                                     },
                                 }).done(function (data) {
-                                    $("#img-check-suivi").slideUp();
-                                    $("#suivi").fadeOut("speed", function fadeNext() {
-                                        $("#suivre").fadeIn();
-                                    });
+                                    if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
+                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
+                                    } else {
+                                        $("#img-check-suivi").slideUp();
+                                        $("#suivi").fadeOut("speed", function fadeNext() {
+                                            $("#suivre").fadeIn();
+                                        });
+                                    }
                                 }).fail(function (data, status, type) {
                                     alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
                                 });
@@ -155,7 +167,7 @@ class vue_profil extends vueGenerique
 
                                     ?>
                                     <div class="card-bottom text-center mb-2">
-                                        <a href="index.php?module=historique&action=historiqueEcriture&id=<?= $_GET['id'] ?>"
+                                        <a href="index.php?module=historique&action=historiqueEcriture&id=<?= htmlspecialchars($_GET['id']) ?>"
                                            type="button"
                                            class="btn btn-outline-secondary">voir plus</a>
                                     </div>
@@ -411,23 +423,29 @@ class vue_profil extends vueGenerique
                                     $("#ConfirmChangeNameButton").click(function () {
                                         if ($("#inputName").val() !== "") {
                                             $.ajax({
-                                                url: "changerValeurs.php",
+                                                url: "modifierProfil.php",
                                                 type: "POST",
                                                 data: {
                                                     action: "changerNom",
-                                                    contenu: $("#inputName").val()
+                                                    contenu: $("#inputName").val(),
+                                                    jeton: "<?= $_SESSION['jeton'] ?>"
                                                 },
                                             }).done(function (data) {
-                                                if (data.length === 6) {
-                                                    $("#name").text($("#inputName").val());
-                                                    $("#nomProfil").text($("#inputName").val());
-                                                    $("#inputName").text("");
+                                                if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
+                                                    alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                                 } else {
-                                                    alert(data);
+                                                    if (data.length === 6) {
+                                                        $("#name").text($("#inputName").val());
+                                                        $("#nomProfil").text($("#inputName").val());
+                                                        $("#inputName").text("");
+                                                    } else {
+                                                        alert(data);
 
+                                                    }
+                                                    $(".afficherNom").removeClass("d-none");
+                                                    $(".modifierNom").addClass("d-none");
                                                 }
-                                                $(".afficherNom").removeClass("d-none");
-                                                $(".modifierNom").addClass("d-none");
+
                                             }).fail(function (data, status, type) {
                                                 alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
                                             });
@@ -491,22 +509,26 @@ class vue_profil extends vueGenerique
                                     $("#confirmChangeEmailButton").click(function () {
                                         if ($("#inputEmail").val() !== "" && $("#inputEmail").val().includes("@")) {
                                             $.ajax({
-                                                url: "changerValeurs.php",
+                                                url: "modifierProfil.php",
                                                 type: "POST",
                                                 data: {
                                                     action: "changerEmail",
                                                     contenu: $("#inputEmail").val()
                                                 },
                                             }).done(function (data) {
-                                                if (data.length === 6) {
-                                                    $("#email").text($("#inputEmail").val());
-                                                    $("#inputEmail").val("");
+                                                if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
+                                                    alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                                 } else {
-                                                    alert(data);
-                                                    $("#inputEmail").val("");
+                                                    if (data.length === 6) {
+                                                        $("#email").text($("#inputEmail").val());
+                                                        $("#inputEmail").val("");
+                                                    } else {
+                                                        alert(data);
+                                                        $("#inputEmail").val("");
+                                                    }
+                                                    $(".afficherEmail").removeClass("d-none");
+                                                    $(".modifierEmail").addClass("d-none");
                                                 }
-                                                $(".afficherEmail").removeClass("d-none");
-                                                $(".modifierEmail").addClass("d-none");
                                             }).fail(function (data, status, type) {
                                                 alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
                                             });
@@ -577,14 +599,18 @@ class vue_profil extends vueGenerique
                                                     contenu: $("#inputMDP").val()
                                                 },
                                             }).done(function (data) {
-                                                if (data.length === 6) {
-                                                    $("#password").text($("#inputMDP").val());
-                                                    $("#inputMDP").val("");
+                                                if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
+                                                    alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                                 } else {
-                                                    alert(data);
+                                                    if (data.length === 6) {
+                                                        $("#password").text($("#inputMDP").val());
+                                                        $("#inputMDP").val("");
+                                                    } else {
+                                                        alert(data);
+                                                    }
+                                                    $(".afficherMDP").removeClass("d-none");
+                                                    $(".modifierMDP").addClass("d-none");
                                                 }
-                                                $(".afficherMDP").removeClass("d-none");
-                                                $(".modifierMDP").addClass("d-none");
                                             }).fail(function (data, status, type) {
                                                 alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
                                             });
@@ -615,7 +641,7 @@ class vue_profil extends vueGenerique
                                 }
                                 foreach ($mesAbonnements as $key) {
                                     ?>
-                                    <a href="index.php?module=profil&action=afficherProfil&id=<?=$key['id_utilisateur_suivi']?>"><?= $key['userName'] ?></a>
+                                    <a href="index.php?module=profil&action=afficherProfil&id=<?= $key['id_utilisateur_suivi'] ?>"><?= $key['userName'] ?></a>
                                     <?php
                                 }
                                 ?>

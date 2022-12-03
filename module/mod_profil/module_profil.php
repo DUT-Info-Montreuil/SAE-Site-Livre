@@ -13,7 +13,7 @@ class Module_profil
             header("Location: index.php?module=connexion&action=print_login");
         }
         elseif (isset($_GET['id'])){
-            if($_GET['id'] == $_SESSION['id']){
+            if(htmlspecialchars($_GET['id']) == $_SESSION['id']){
                 $this->controleur->afficherMonProfil();
             }
             else{

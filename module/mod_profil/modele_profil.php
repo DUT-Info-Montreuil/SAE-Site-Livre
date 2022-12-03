@@ -4,20 +4,20 @@ class modele_profil extends Connexion {
     function verifExiste()
     {
         $req = parent::$bdd->prepare("SELECT * FROM utilisateur WHERE id = ?");
-        $req->execute(array($_GET["id"]));
+        $req->execute(array(htmlspecialchars($_GET["id"])));
         $resultat = $req->fetch();
         return $resultat;
     }
     function getAutreEmail(){
         $prepare = parent::$bdd->prepare("SELECT email FROM Utilisateur where id = ?");
-        $tab = array($_GET["id"]);
+        $tab = array(htmlspecialchars($_GET["id"]));
         $exec = $prepare->execute($tab);
         $result = $prepare->fetch();
         return $result[0];
     }
     function getAutreNom(){
         $prepare = parent::$bdd->prepare("SELECT userName FROM Utilisateur where id = ?");
-        $tab = array($_GET["id"]);
+        $tab = array(htmlspecialchars($_GET["id"]));
         $exec = $prepare->execute($tab);
         $result = $prepare->fetch();
         return $result[0];
@@ -64,14 +64,14 @@ class modele_profil extends Connexion {
     }
     function getAutreLivresEcrits(){
         $prepare = parent::$bdd->prepare("select * from livre where IDAuteur = ? LIMIT 2");
-        $tab = array($_GET["id"]);
+        $tab = array(htmlspecialchars($_GET["id"]));
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
         return $result;
     }
     function verifAbonne(){
         $prepare = parent::$bdd->prepare("select * from abonnement where id_utilisateur_suivi = ? and id_abonné = ?");
-        $tab = array($_GET["id"], $_SESSION["id"]);
+        $tab = array(htmlspecialchars($_GET["id"]), $_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
         if(count($result) === 0){

@@ -12,8 +12,8 @@ class Module_Historique {
                     $this->controleur->affichageHistoriqueLecture();
                     break;
                 case "historiqueEcriture":
-                    if (isset($_GET['id'])){
-                        if($_GET['id'] == $_SESSION['id']){
+                    if (isset($_GET['id'])) {
+                        if(htmlspecialchars($_GET['id']) == $_SESSION['id']){
                             $this->controleur->affichageMonHistoriqueEcriture();
                         }
                         else{
