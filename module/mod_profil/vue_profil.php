@@ -422,35 +422,37 @@ class vue_profil extends vueGenerique
                                     });
                                     $("#ConfirmChangeNameButton").click(function () {
                                         if ($("#inputName").val() !== "") {
-                                            $.ajax({
-                                                url: "modifierProfil.php",
-                                                type: "POST",
-                                                data: {
-                                                    action: "changerNom",
-                                                    contenu: $("#inputName").val(),
-                                                    jeton: "<?= $_SESSION['jeton'] ?>"
-                                                },
-                                            }).done(function (data) {
-                                                if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
-                                                    alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
-                                                } else {
-                                                    if (data.length === 6) {
-                                                        $("#name").text($("#inputName").val());
-                                                        $("#nomProfil").text($("#inputName").val());
-                                                        $("#inputName").text("");
+                                            if (confirm("Voulez vous vraiment changer votre nom d'utilisateur par " + $("#inputName").val() + " ?")) {
+                                                $.ajax({
+                                                    url: "modifierProfil.php",
+                                                    type: "POST",
+                                                    data: {
+                                                        action: "changerNom",
+                                                        contenu: $("#inputName").val(),
+                                                        jeton: "<?= $_SESSION['jeton'] ?>"
+                                                    },
+                                                }).done(function (data) {
+                                                    if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
+                                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                                     } else {
-                                                        alert(data);
-
+                                                        if (data.length < 100) {
+                                                            $("#name").text($("#inputName").val());
+                                                            $("#nomProfil").text($("#inputName").val());
+                                                            $("#inputName").text("");
+                                                        } else {
+                                                            alert(data);
+                                                        }
+                                                        $(".afficherNom").removeClass("d-none");
+                                                        $(".modifierNom").addClass("d-none");
                                                     }
-                                                    $(".afficherNom").removeClass("d-none");
-                                                    $(".modifierNom").addClass("d-none");
-                                                }
 
-                                            }).fail(function (data, status, type) {
-                                                alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
-                                            });
-                                        } else {
-                                            alert("Le nom doit être composé d'au moins une lettre!");
+                                                }).fail(function (data, status, type) {
+                                                    alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
+                                                });
+                                            } else {
+                                                alert("Le nom doit être composé d'au moins une lettre!");
+                                            }
+
                                         }
                                     });
                                 </script>
@@ -508,30 +510,33 @@ class vue_profil extends vueGenerique
                                     });
                                     $("#confirmChangeEmailButton").click(function () {
                                         if ($("#inputEmail").val() !== "" && $("#inputEmail").val().includes("@")) {
-                                            $.ajax({
-                                                url: "modifierProfil.php",
-                                                type: "POST",
-                                                data: {
-                                                    action: "changerEmail",
-                                                    contenu: $("#inputEmail").val()
-                                                },
-                                            }).done(function (data) {
-                                                if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
-                                                    alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
-                                                } else {
-                                                    if (data.length === 6) {
-                                                        $("#email").text($("#inputEmail").val());
-                                                        $("#inputEmail").val("");
+                                            if (confirm("Voulez vous vraiment changer votre email par " + $("#inputEmail").val() + " ?")) {
+                                                $.ajax({
+                                                    url: "modifierProfil.php",
+                                                    type: "POST",
+                                                    data: {
+                                                        action: "changerEmail",
+                                                        contenu: $("#inputEmail").val(),
+                                                        jeton: "<?php echo $_SESSION["jeton"] ?>"
+                                                    },
+                                                }).done(function (data) {
+                                                    if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
+                                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                                     } else {
-                                                        alert(data);
-                                                        $("#inputEmail").val("");
+                                                        if (data.length < 100) {
+                                                            $("#email").text($("#inputEmail").val());
+                                                            $("#inputEmail").val("");
+                                                        } else {
+                                                            alert(data);
+                                                            $("#inputEmail").val("");
+                                                        }
+                                                        $(".afficherEmail").removeClass("d-none");
+                                                        $(".modifierEmail").addClass("d-none");
                                                     }
-                                                    $(".afficherEmail").removeClass("d-none");
-                                                    $(".modifierEmail").addClass("d-none");
-                                                }
-                                            }).fail(function (data, status, type) {
-                                                alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
-                                            });
+                                                }).fail(function (data, status, type) {
+                                                    alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
+                                                });
+                                            }
                                         } else {
                                             alert("L'email est invalide!");
                                         }
@@ -591,29 +596,32 @@ class vue_profil extends vueGenerique
                                     });
                                     $("#confirmChangeMDPButton").click(function () {
                                         if ($("#inputMDP").val() !== "") {
-                                            $.ajax({
-                                                url: "modiferProfil.php",
-                                                type: "POST",
-                                                data: {
-                                                    action: "changerMDP",
-                                                    contenu: $("#inputMDP").val()
-                                                },
-                                            }).done(function (data) {
-                                                if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
-                                                    alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
-                                                } else {
-                                                    if (data.length === 6) {
-                                                        $("#password").text($("#inputMDP").val());
-                                                        $("#inputMDP").val("");
+                                            if (confirm("Voulez vous vraiment changer votre mot de passe ?")) {
+                                                $.ajax({
+                                                    url: "modifierProfil.php",
+                                                    type: "POST",
+                                                    data: {
+                                                        action: "changerMDP",
+                                                        contenu: $("#inputMDP").val(),
+                                                        jeton: "<?php echo $_SESSION['jeton']; ?>"
+                                                    },
+                                                }).done(function (data) {
+                                                    if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
+                                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                                     } else {
-                                                        alert(data);
+                                                        if (data.length < 100) {
+                                                            $("#password").text($("#inputMDP").val());
+                                                            $("#inputMDP").val("");
+                                                        } else {
+                                                            alert(data);
+                                                        }
+                                                        $(".afficherMDP").removeClass("d-none");
+                                                        $(".modifierMDP").addClass("d-none");
                                                     }
-                                                    $(".afficherMDP").removeClass("d-none");
-                                                    $(".modifierMDP").addClass("d-none");
-                                                }
-                                            }).fail(function (data, status, type) {
-                                                alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
-                                            });
+                                                }).fail(function (data, status, type) {
+                                                    alert("data : " + data + "\nstatus : " + status + "\ntype : " + type);
+                                                });
+                                            }
                                         } else {
                                             alert("Le mdp est invalide!");
                                         }
