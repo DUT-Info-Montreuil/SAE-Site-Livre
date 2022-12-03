@@ -3,6 +3,7 @@ require_once('vue_generique.php');
 
 class Vue_Livre extends vueGenerique
 {
+
     public function __construct()
     {
         parent::__construct();
@@ -159,11 +160,11 @@ class Vue_Livre extends vueGenerique
         <div class="my-3 p-3 bg-body rounded shadow-sm " id="ChapterContainer justy">
             <h4 class="border-bottom pb-2 mb-0">
                 <?= $chapitre['titre'] ?>
-                </h6>
+                </h4>
                 <?php
                 $this->afficherPages($pages);
                 ?>
-               
+
                 <nav aria-label="ChapterSelectionPage">
                     <ul class="pagination justify-content-center">
                         <li class="page-item  <?= $PreviousButtonStat ?>">

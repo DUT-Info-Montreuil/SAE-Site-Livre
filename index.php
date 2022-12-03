@@ -3,24 +3,34 @@ require_once("composant/comp_navBar/composant_navBar.php");
 require_once("composant/comp_Footer/Comp_Footer.php");
 require_once("vue_generique.php");
 require_once("module/mod_accueil/module_accueil.php");
+
 require_once("module/mod_Creation_Livre/Module_CLivre.php");
+
 require_once("module/mod_bibliothèque/module_bibliotheque.php");
+
 require_once("module/mod_Livre/module_Livre.php");
 
 $vue_gen = new VueGenerique();
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAE</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!DOCTYPE html>
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SAE</title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+              crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+                crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.1.js"
+                integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
 
 </head>
 <?php
@@ -28,6 +38,8 @@ session_start();
 require_once("Connexion.php");
 require_once('module/mod_connexion/Module_connexion.php');
 require_once("module/mod_profil/module_profil.php");
+require_once("module/mod_Historique/module_Historique.php");
+
 require_once("vue_generique.php");
 Connexion::initConnexion();
 
@@ -58,6 +70,9 @@ switch ($module) {
     case "livre":
         $mod_livre = new Module_Livre();
         break;
+    case "historique":
+        $mod_historique = new Module_Historique();
+        break;
 }
 
 
@@ -78,5 +93,3 @@ echo $result;
 
 
 ?>
-
-</html>
