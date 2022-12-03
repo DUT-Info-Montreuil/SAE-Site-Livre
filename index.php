@@ -15,6 +15,8 @@ $vue_gen = new VueGenerique();
 
     <!DOCTYPE html>
 
+    <html>
+
     <head>
 
         <meta charset="UTF-8">
@@ -69,6 +71,9 @@ switch ($module) {
     case"livre":
         $mod_livre = new Module_Livre();
         break;
+    default:
+        die("Erreur 404");
+        break;
 }
 
 
@@ -89,3 +94,5 @@ echo $result;
 
 
 ?>
+
+    </html>

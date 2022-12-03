@@ -50,8 +50,8 @@ class Controleur_CLivre{
     
     public function print_write_book()
     {   
-        
-        if (isset($_SESSION['connected'])&& isset($_GET['idLivre'])) {
+        //localhost/~bpelletier/SAE-Site-Livre/index.php?module=CLivre&action=print_write_book&idLivre=1&idChapitre=1&idPage=&numPage=;
+        if (isset($_SESSION['connected'])&& isset($_GET['idLivre'] ) && isset($_GET['idChapitre']) && isset($_GET['idPage']) && isset($_GET['numPage'])) {
             if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
                 $this->vue->write_book($_GET['idLivre'] , $_GET['idChapitre'],$_GET['idPage'] , $_GET['numPage'] , $this->modele->getStory($_GET['idLivre'] , $_GET['idPage'] )); // il faut chercher pour la page temp avant d'afficher la page officielle
             }else{
@@ -59,6 +59,8 @@ class Controleur_CLivre{
             }
             
         } else {
+            
+
             header('Location: index.php?module=connexion&action=print_login');
         }
         

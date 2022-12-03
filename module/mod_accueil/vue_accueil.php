@@ -9,7 +9,7 @@ class Vue_Accueil extends vueGenerique
   public function Carrousel()
   {
 ?>
-    <html>
+   
 
     <body>
       <div>
@@ -61,7 +61,7 @@ class Vue_Accueil extends vueGenerique
       </div>
     </body>
 
-    </html>
+    
 <?php
   $this->Error("c bien");
   }
