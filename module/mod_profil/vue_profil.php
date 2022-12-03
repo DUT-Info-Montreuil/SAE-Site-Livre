@@ -585,7 +585,6 @@ class vue_profil extends vueGenerique
                                         </button>
                                     </div>
                                 </div>
-                                <hr>
                                 <script>
                                     $("#swapToChangeMDPButton").click(function () {
                                         $(".afficherMDP").addClass("d-none");
@@ -629,14 +628,6 @@ class vue_profil extends vueGenerique
                                         }
                                     });
                                 </script>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-3 ms-4">Example</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">example content</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="card mb-4">
