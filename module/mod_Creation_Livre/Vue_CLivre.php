@@ -58,10 +58,10 @@ class Vue_CLivre extends vueGenerique
     }
     public function write_book($idLivre, $idChapitre, $idPage, $numPage, $defaultStory)
     {
-
+        echo "idLivre : " . $idLivre . " idChapitre : " . $idChapitre . " idPage : " . $idPage . " numPage : " . $numPage . " defaultStory : " . $defaultStory;
     ?>
         <div class="form-group">
-
+            
             <textarea class="form-control" id="story" rows="40"><?= $defaultStory ?></textarea>
             <button class="btn btn-primary btn-lg" role="button" id="SavePage">save and quit </button>
             <button class="btn btn-primary btn-lg" role="button" id="DontSavePage">just quit</button>
@@ -174,6 +174,9 @@ class Vue_CLivre extends vueGenerique
         <?php
 
             }
+            ?>
+            <a href="index.php?module=CLivre&action=newPage&idChapitre=<?=$allInfo[1][$i]['id']?>&idLivre=<?=$allInfo[0][0]['id']?>" class="btn btn-primary btn-lg" role="button">cree une nouvel page pour le chapitre</a>
+        <?php
         }
 
 

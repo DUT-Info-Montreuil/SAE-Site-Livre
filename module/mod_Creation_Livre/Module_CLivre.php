@@ -24,6 +24,9 @@ class Module_CLivre
                 case "menu_write_book":
                     $this->controleur->menu_write_book();
                     break ;
+                case "newPage":
+                    $this->controleur->newPage();
+                    break ;
                 
                             }
         }

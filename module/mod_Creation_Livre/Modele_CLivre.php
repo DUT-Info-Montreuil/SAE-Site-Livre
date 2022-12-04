@@ -130,17 +130,17 @@ class Modele_CLivre extends Connexion {
 
     public function getStory($idChapitre, $idPage){
         $arr = array($idChapitre , $idPage);
-        $prepareTemp = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ? and idPage = ?;");
+        $prepareTemp = parent::$bdd->prepare("SELECT TexteDeLaPage FROM TempSave where id_chapitre = ? and idPage = ?;");
         $execTemp = $prepareTemp->execute($arr);
         $resultTemp = $prepareTemp->fetch();
         if ($execTemp == true){
-            return $resultTemp[0];
+            return $resultTemp;
         }
 
-        $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage FROM Page where id_Chapitre = ? and id = ?");
+        $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage FROM Page where id_Chapitre = ? and ID = ?");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetch();
-        return $result[0];
+        return $result;
     }
 
 
@@ -179,6 +179,53 @@ class Modele_CLivre extends Connexion {
         }
 
         return $trueResult;
+    }
+
+
+
+
+    public function changePageNumber($idLivre , $lim , $action){
+        $allBookInfo = $this->getAllBookInfo($idLivre);
+        for ($i = 0 ; $i < count($allBookInfo[1]) ; $i++){
+                for ($j = 0 ; $j < count($allBookInfo[2][$i]) ; $j++){
+                    if ($allBookInfo[2][$i][$j]["numeroPage"] > $lim){
+                        if ($action == "up"){
+                            $arr = array($allBookInfo[2][$i][$j]["numeroPage"] + 1 , $allBookInfo[2][$i][$j]["ID"]);
+                            $prepare = parent::$bdd->prepare("UPDATE Page SET numeroPage = ? where id = ?");
+                            $exec = $prepare->execute($arr);
+                        }else if ($action == "down"){
+                            $arr = array($allBookInfo[2][$i][$j]["numeroPage"] - 1 , $allBookInfo[2][$i][$j]["ID"]);
+                            $prepare = parent::$bdd->prepare("UPDATE Page SET numeroPage = ? where id = ?");
+                            $exec = $prepare->execute($arr);
+                        }
+                    }
+                }
+            }
+        }
+    
+
+
+    public function newPage($idLivre , $idChapitre){
+        
+        $arr = array($idChapitre);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
+        $exec = $prepare->execute($arr);
+        $result = $prepare->fetchAll();
+        $lim = $result[count($result) - 1]["numeroPage"];
+        $this->changePageNumber($idLivre , $lim , "up");
+        $arr2 = array($idChapitre , $lim+1 , "");
+        $prepare2 = parent::$bdd->prepare("INSERT into Page (id_chapitre , numeroPage , TexteDeLaPage) VALUES(?,?,?);");
+        $exec2 = $prepare2->execute($arr2);
+        if ($exec2 == true){
+            return true;
+        }else {
+            return false;
+        }
+
+
+
+
+
     }
 
 
