@@ -58,7 +58,7 @@ class Vue_CLivre extends vueGenerique
     }
     public function write_book($idLivre, $idChapitre, $idPage, $numPage, $defaultStory)
     {
-        echo "idLivre : " . $idLivre . " idChapitre : " . $idChapitre . " idPage : " . $idPage . " numPage : " . $numPage . " defaultStory : " . $defaultStory;
+        
     ?>
         <div class="form-group">
             

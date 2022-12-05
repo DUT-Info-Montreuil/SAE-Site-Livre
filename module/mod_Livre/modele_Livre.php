@@ -7,9 +7,9 @@ class Modele_Livre extends Connexion
     }
     public function getLivre($idLivre)
     {
-        $sql = "SELECT * FROM Livre where id='$idLivre'";
-        $prepare = parent::$bdd->prepare($sql);
-        $exec = $prepare->execute();
+        $sql = array($idLivre);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Livre (id) where id=?");
+        $exec = $prepare->execute($sql);
         $result = $prepare->fetchAll();
         return $result;
     }
