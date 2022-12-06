@@ -43,11 +43,6 @@ class Vue_Biblio extends vueGenerique
                            id="labelTrieParGenre">
                         filtres des genres
                     </label>
-                    <input type="radio" class="btn-check" name="btnTrie" id="trieParAuteur" autocomplete="off">
-                    <label class="btn btn-outline-secondary mb-2" for="trieParAuteur"
-                           id="labelTrieParAuteur">
-                        filtres des auteurs
-                    </label>
                 </div>
                 <div class="btn-toolbar" role="toolbar" id="boutonsFiltreGenres">
                     <?php
@@ -55,7 +50,7 @@ class Vue_Biblio extends vueGenerique
                         ?>
                         <div class="group me-2">
                             <input type="checkbox" class="btn-check genreCheck" id="boutonGenre<?= $key ?>"
-                                   value="<?= $key ?>" autocomplete="off">
+                                   value="<?= $key ?>">
                             <label class="btn btn-outline-secondary" for="boutonGenre<?= $key ?>"
                                    id="labelGenre<?= $key ?>">
                                 <?= $key ?>
@@ -88,10 +83,10 @@ class Vue_Biblio extends vueGenerique
             $('#reduire').hide();
             $('#filtres').hide();
             $(':checkbox').prop('checked', false);
-            $('#trieParGenre').prop('checked', false);
+            $('#trieParGenre').prop('checked', true);
             $('#boutonsFiltreGenres').children().children().hide();
+
             $('#developper').click(function () {
-                $('#trieParGenre').prop('checked', true);
                 $('#boutonsFiltreGenres').children().children().show();
                 $('#filtres').show();
                 $('#developper').hide();
@@ -99,16 +94,12 @@ class Vue_Biblio extends vueGenerique
             });
             $('#reduire').click(function () {
                 $('#boutonsFiltreGenres').children().children().hide();
-                $('#trieParGenre').prop('checked', false);
                 $('#filtres').hide();
                 $('#developper').show();
                 $('#reduire').hide();
             });
             $('#labelTrieParGenre').on('click', function () {
-                $('#boutonsFiltreGenres').children().children().show();
-            });
-            $('#labelTrieParAuteur').on('click', function () {
-                $('#boutonsFiltreGenres').children().children().hide();
+                    $('#boutonsFiltreGenres').children().children().show();
             });
 
             //filtre par genre
