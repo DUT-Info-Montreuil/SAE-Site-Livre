@@ -304,6 +304,6 @@ class Vue_CLivre extends vueGenerique
     }
 }
 
-
+    
 
 ?>
