@@ -163,8 +163,8 @@ class Vue_Biblio extends vueGenerique
         <a href="index.php?module=livre&idLivre=<?= $id ?>" class="LinkLivre" id="livre<?= $id ?>">
             <div class="card h-100 text-bg-dark">
                 <?php
-                echo "<img src=\"ressource/bookCover/" . $id . "\" class=\"card-img-top\" alt=\"...\">";
-                ?>
+                echo "<img src=\"ressource/bookCover/" . $id . "\" class=\"card-img-top\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">";
+                ?> 
                 <div class="card-body">
                     <?php
 
