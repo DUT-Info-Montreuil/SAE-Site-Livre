@@ -32,7 +32,7 @@ class Vue_Historique extends VueGenerique
                                 <div class="card text-center" style="width: 18rem; min-height: 20rem;">
                                     <div class="card-img-top">
                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\">" ?>
-                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid\" alt=\"...\"/>" ?>
+                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                         </a>
                                     </div>
                                     <div class="card-body">
@@ -110,7 +110,7 @@ class Vue_Historique extends VueGenerique
                                 <div class="card text-center" style="width: 18rem; min-height: 20rem;">
                                     <div class="card-img-top">
                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id_livre_lu"] . "\">" ?>
-                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid\" alt=\"...\"/>" ?>
+                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid\" alt=\"...\"onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                         </a>
                                     </div>
                                     <div class="card-body">
@@ -178,7 +178,7 @@ class Vue_Historique extends VueGenerique
                                 <div class="card text-center" style="width: 18rem; min-height: 20rem;">
                                     <div class="card-img-top">
                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\">" ?>
-                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid\" alt=\"...\"/>" ?>
+                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid\" alt=\"...\"onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                         </a>
                                     </div>
                                     <div class="card-body">

@@ -116,7 +116,7 @@ class vue_profil extends vueGenerique
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
                                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\">" ?>
-                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -260,7 +260,7 @@ class vue_profil extends vueGenerique
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
                                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id_livre_lu"] . "\">" ?>
-                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -315,7 +315,7 @@ class vue_profil extends vueGenerique
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
                                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\">" ?>
-                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\"/>" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">

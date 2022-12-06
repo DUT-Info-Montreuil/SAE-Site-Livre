@@ -14,9 +14,10 @@ class Vue_Accueil extends vueGenerique
       $resume = $key['resumeLivre'];
 
       echo "  <a href=\"index.php?module=livre&idLivre=$id\">
+      
       <div class=\"col\">
         <div class=\"card text-bg-dark\">
-          <img src=\"ressource/bookCover/$id\" class=\"card-img carousel-Accueil\" alt=\"...\">
+          <img src=\"ressource/bookCover/$id\" class=\"card-img carousel-Accueil\" alt=\"...\"  onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">
           <div class=\"card-img-overlay\">
             <div class=\"w-100 position-absolute start-0 bottom-0 bg-dark bg-opacity-75\">
               <h5 class=\"card-title text-white  fw-bold \">$titre</h5>
