@@ -66,3 +66,14 @@
     margin: auto;
     width: 75%;
 }
+.suggestionModal{
+    height: 40ch;
+    object-fit: cover;
+    resize: none;
+}
+
+.suggestionModalCom{
+    height: 20ch;
+    object-fit: cover;
+    resize: none;
+}

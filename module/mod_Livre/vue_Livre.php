@@ -131,15 +131,81 @@ class Vue_Livre extends vueGenerique
         ?>
             <div class="d-flex pt-2">
                 <?php
-                echo "<p class=\"pb-3 mb-0  lh-base border-bottom\" id=\"pageContent" . $key['numeroPage'] . "\">";
-                echo $key['TexteDeLaPage'] ?>
+                $text = $key['TexteDeLaPage'];
+                echo "<p class=\"pb-3 mb-0  lh-base border-bottom\" id=\"pageContent" . $key['numeroPage'] . "\" data-bs-toggle=\"modal\" data-bs-target=\"#modal" . $key['numeroPage'] . "\">";
+                echo $text; ?>
                 </p>
             </div>
             <small class="d-block text-end mt-3">
                 <?php echo $key['numeroPage'] ?>
             </small>
 
+
+            <?= "<div class=\"modal fade modal-xl\" id=\"modal" . $key['numeroPage'] . "\" tabindex=\"-1\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">" ?>
+            <div class="modal-dialog">
+                
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Rédigez votre suggestion  pour la page <?= $key['numeroPage'] ?>:</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <label for="message-text" class="col-form-label">Remplacer uniquement la partie à modifier</label>
+                    <?= "<textarea class=\"form-control suggestionModal\" placeholder=\"Remplacer la partie à modifier\" id=\"textAreaModif" . $key['numeroPage'] . "\">$text</textarea>" ?>
+                    <label for="message-text" class="col-form-label">Ecrivez un commentaire</label>    
+                    <?= "<textarea class=\"form-control suggestionModalCom\" placeholder=\"Commentaire\" id=\"textAreaCommentaire" . $key['numeroPage'] . "\"></textarea>" ?>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>  
+                        <?php
+                        if(isset($_SESSION['connected'])){
+                            echo "<button type=\"button\" class=\"btn btn-primary\" id=\"buttonSaveSuggestion" . $key['numeroPage'] . "\">Save changes</button>";
+                        }else{
+                            echo "<button type=\"button\" class=\"btn btn-primary\" id=\"buttonSaveSuggestion" . $key['numeroPage'] . "\" disabled>Save changes</button>";
+                        }
+                        $idPage = $key['numeroPage'];
+                        ?>
+                        
+                    </div>
+                </div>
+            </div>
+            </div>
+            <script>
+                var currentPage = "<?= $idPage; ?>";
+                
+                        
+                    $(window).on('load', function() {
+                        console.log('#buttonSaveSuggestion'+currentPage);
+                        $('#buttonSaveSuggestion'+currentPage).click(function() {
+                            var modif = $('#textAreaModif'+currentPage).val();
+                            console.log(modif);
+                            var commentaire = $('#textAreaCommentaire'+currentPage).val();
+                            $.ajax({
+                                url: 'Suggestion.php',
+                                type: 'POST',
+                                data: {
+                                    idUser: <?php
+                                    if (isset($_SESSION['connected'])) {
+                                        echo $_SESSION['id'] ;
+                                    }else{
+                                        echo 0;
+                                    }
+                                    ?>,
+                                    idPage: <?= $key['numeroPage'] ?>,
+                                    modif: modif,
+                                    commentaire: commentaire
+                                },
+                                done: function(data) {
+                                    alert(data);
+                                }
+                            });
+                        });
+                        
+                    });
+
+                </script>
         <?php
+        echo $key['numeroPage'];
         }
     }
     public function afficherChapitre($chapitre, $pages, $AllChap, $nbrChap)
@@ -158,12 +224,12 @@ class Vue_Livre extends vueGenerique
         ?>
         <div class="my-3 p-3 bg-body rounded shadow-sm " id="ChapterContainer justy">
             <h4 class="border-bottom pb-2 mb-0">
+                <h6>
                 <?= $chapitre['titre'] ?>
                 </h6>
                 <?php
                 $this->afficherPages($pages);
                 ?>
-               
                 <nav aria-label="ChapterSelectionPage">
                     <ul class="pagination justify-content-center">
                         <li class="page-item  <?= $PreviousButtonStat ?>">
