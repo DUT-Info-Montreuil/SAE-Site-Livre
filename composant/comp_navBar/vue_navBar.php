@@ -7,7 +7,7 @@ class VueNavBar extends VueGenerique
     {
         parent::__construct();
     }
-    public function printnavBar()
+    public function printnavBar($livres)
     {
 ?>
 
@@ -43,10 +43,27 @@ class VueNavBar extends VueGenerique
                         <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                     </ul>
 
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                               aria-label="Search">
-                    </form>
+                    <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                        <input type="search" class="form-control form-control-dark text-bg-dark" id="searchLivres" placeholder="Search..."
+                               aria-label="Search" list="listeLivres">
+                        <datalist id="listeLivres">
+                            <?php
+                            foreach ($livres as $livre) {
+                                ?>
+                                <option id="<?=$livre['id']?>" value="<?= $livre['titre'] ?>">
+                                <?php
+                            }
+                            ?>
+                        </datalist>
+                    </div>
+                    <script>
+                        $("#searchLivres").on("change", function () {
+                            var valeur = $("#searchLivres").val();
+                            var id = $('#listeLivres').find('option[value="' + valeur + '"]').attr('id');
+                            window.location.href = "index.php?module=livre&idLivre=" + id;
+
+                        });
+                    </script>
                     <?php
                     if (isset($_SESSION["connected"])) {
                         ?>

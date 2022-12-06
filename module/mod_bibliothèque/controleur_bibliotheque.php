@@ -13,8 +13,8 @@ class Controleur_Biblio
     public function affichageBiblio()
     {
         $livre = $this->modele->getLivres();
-        //$genre = $this->modele->getGenres();
-        $this->vue->afficherBiblio($livre);
+        $genre = $this->modele->getGenres();
+        $this->vue->afficherBiblio($livre, $genre);
 
     }
 

@@ -197,15 +197,6 @@ class vue_profil extends vueGenerique
                                         <p class="text-muted mb-0" id="email"><?php echo $autreEmail ?></p>
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <p class="mb-3 ms-4">Example</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p class="text-muted mb-0">example content</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -284,7 +275,9 @@ class vue_profil extends vueGenerique
                                                         </div>
                                                         <div class="card-bottom">
                                                             <p class="card-text"><small
-                                                                        class="text-muted"> écrit par <a href="index.php?module=profil&action=afficherProfil&id=<?=$key['id']?>"><?= $key["userName"] ?> </a></small></p>
+                                                                        class="text-muted"> écrit par <a
+                                                                            href="index.php?module=profil&action=afficherProfil&id=<?= $key['id'] ?>"><?= $key["userName"] ?> </a></small>
+                                                            </p>
                                                             <p class="card-text"><small class="text-muted">lu il y
                                                                     a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key["date_heure_lecture"]))), new DateTime(date("Y-m-d H:i:s")));
                                                                     echo $dateDiff->format('%d') . "j " . $dateDiff->format('%H') . "h " . $dateDiff->format('%i') . "m " . $dateDiff->format('%s') . "s" ?></small>

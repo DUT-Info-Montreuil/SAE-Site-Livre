@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content=
+            "width=device-width, initial-scale=1.0" />
+    <script src=
+                    "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+
+    <script src=
+                    "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.2/bootstrap3-typeahead.min.js">
+    </script>
+
+    <link href=
+                  "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          rel="stylesheet" />
+
+    <style>
+        .typeahead {
+            width: 50%;
+            top: 60px !important;
+            left: 50px !important;
+        }
+    </style>
+</head>
+
+<body style="text-align: center">
+<div>
+    <b><p>Suggest the states of India</p></b>
+
+    <input type="text" class="typeahead"
+           data-provide="typeahead"
+           placeholder="Enter name of states of India " />
+</div>
+
+<script>
+
+    // Initializes  input( name of states)
+    // with a typeahead
+    var $input = $(".typeahead");
+    $input.typeahead({
+        source: [
+            "Andhra Pradesh",
+            "Arunachal Pradesh",
+            "Assam",
+            "Bihar",
+            "Chhattisgarh",
+            "Goa",
+            "Gujarat",
+            "Haryana",
+            "Himachal Pradesh",
+            "Jharkhand",
+            "Karnataka",
+            "Kerala",
+            "Madhya Pradesh",
+            "Maharashtra",
+            "Manipur",
+            "Meghalaya",
+            "Mizoram",
+            "Nagaland",
+            "Odisha",
+            "Punjab",
+            "Rajasthan",
+            "Sikkim",
+            "Tamil Nadu",
+            "Telangana",
+            "Tripura",
+            "Uttar Pradesh",
+            "Uttarakhand",
+            "West Bengal",
+        ],
+        autoSelect: true,
+    });
+
+    $input.change(function () {
+        var current = $input.typeahead("getActive");
+        matches = [];
+
+        if (current) {
+
+            // Some item from your input matches
+            // with entered data
+            if (current.name == $input.val()) {
+                matches.push(current.name);
+            }
+        }
+    });
+</script>
+</body>
+
+</html>
