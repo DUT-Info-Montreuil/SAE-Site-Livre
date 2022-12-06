@@ -12,43 +12,60 @@ class Vue_CLivre extends vueGenerique
     {
 ?>
 
-        <form method="post" action="index.php?action=create_book&module=CLivre" enctype="multipart/form-data">
-            <label for="formGroupExampleInput" class="form-label">Titre du livre</label>
-            <input type="text" class="form-control" name="title" placeholder="le nom de votre histoire incroyable">
-            </div>
-            <div class="mb-3">
-                <label for="formGroupExampleInput2" class="form-label">Resumé </label>
-                <input type="text" class="form-control" name="resume" placeholder="le petit resumé ">
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">premiere de couverture </label>
-                    <input name="img" class="form-control" type="file" id="formFile" accept="image/*">
-                </div>
-                <?php
-                foreach ($genre as $key) {
+        <div class="container">
+            <main>
+                <div class="row g-5" id="creaLivre">
+                    <div>
+                        <h4 class="mb-3">Créé ton propre livre !</h4>
+                        <form class="needs-validation" method="post" action="index.php?action=create_book&module=CLivre" enctype="multipart/form-data" novalidate>
 
-                ?>
+                            <div class="row g-3">
+                                <div class="col-sm-6 col-lg-4 " id="TitreCrea">
+                                    <label for="Titre" class="form-label">Titre du livre</label>
+                                    <input type="text" class="form-control" name="title" placeholder="Titre de votre histoire" required>
+                                </div>
+                                <div class="col-6">
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">premiere de couverture <span class="text-muted">(Optional)</label>
+                                        <input name="img" class="form-control" type="file" id="formFile" accept="image/*">
+                                    </div>
+                                </div>
 
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="Genre<?= $key["id"]; ?>">
-                        <label class="form-check-label" for="flexCheckDefault">
-                            <?= $key["genre"] ?>
-                        </label>
+
+
+                                <div class="col-12">
+                                    <label for="Resume" class="form-label">Resumé </label>
+                                    <input type="text" class="form-control" name="resume" placeholder="le petit resumé ">
+                                </div>
+                            </div>
+                            <hr class="my-4">
+                            <h4 class="mb-3">Genre</h4>
+                            <div class="row row-cols-md-3 g-1">
+                                <?php
+                                foreach ($genre as $key) {
+
+                                ?>
+
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" name="Genre<?= $key["id"]; ?>">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                <?= $key["genre"] ?>
+                                            </label>
+                                        </div>
+                                    </div>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                            <hr class="my-4">
+
+                            <button class="w-100 btn btn-primary btn-lg" type="submit">créé le livre !</button>
+                        </form>
                     </div>
-
-
-
-
-                <?php
-                }
-                ?>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary">
-                        cree le livre !
-                    </button>
                 </div>
-
-
-        </form>
+            </main>
+        </div>
 
 
 
@@ -58,10 +75,10 @@ class Vue_CLivre extends vueGenerique
     }
     public function write_book($idLivre, $idChapitre, $idPage, $numPage, $defaultStory)
     {
-        
+
     ?>
         <div class="form-group">
-            
+
             <textarea class="form-control" id="story" rows="40"><?= $defaultStory ?></textarea>
             <button class="btn btn-primary btn-lg" role="button" id="SavePage">save and quit </button>
             <button class="btn btn-primary btn-lg" role="button" id="DontSavePage">just quit</button>
@@ -171,11 +188,11 @@ class Vue_CLivre extends vueGenerique
             ?>
 
                 <a href="index.php?module=CLivre&action=print_write_book&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-primary btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
-        <?php
+            <?php
 
             }
             ?>
-            <a href="index.php?module=CLivre&action=newPage&idChapitre=<?=$allInfo[1][$i]['id']?>&idLivre=<?=$allInfo[0][0]['id']?>" class="btn btn-primary btn-lg" role="button">cree une nouvel page pour le chapitre</a>
+            <a href="index.php?module=CLivre&action=newPage&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree une nouvel page pour le chapitre</a>
         <?php
         }
 
@@ -186,95 +203,95 @@ class Vue_CLivre extends vueGenerique
         ?>
         <script>
             $(window).on('load', function() {
-                //tout dans un div + boucle sur les child pour cree on input event pout tout les child
-                //boucle sur all info et quand $i == i alors on recup l'id et on la post 
+                        //tout dans un div + boucle sur les child pour cree on input event pout tout les child
+                        //boucle sur all info et quand $i == i alors on recup l'id et on la post 
 
 
 
-                var timer = null;
-                $('#Title').on('input', function() {
+                        var timer = null;
+                        $('#Title').on('input', function() {
 
-                    if (timer != null) {
-                        clearTimeout(timer); //cancel the previous timer.
-                        timer = null;
-                    }
-                    timer = setTimeout(function() {
-                        //put your ajax call here
-                        $.ajax({
-                            url: 'ChangeInfoBook.php',
-                            type: 'POST',
-                            data: {
-                                story: $('#Title').val(),
-                                idLivre: <?= $allInfo[0][0]["id"] ?>,
-                                idAuteur: <?= $_SESSION['id'] ?>,
-                                whatHaveChanged: "titre"
+                            if (timer != null) {
+                                clearTimeout(timer); //cancel the previous timer.
+                                timer = null;
+                            }
+                            timer = setTimeout(function() {
+                                //put your ajax call here
+                                $.ajax({
+                                    url: 'ChangeInfoBook.php',
+                                    type: 'POST',
+                                    data: {
+                                        story: $('#Title').val(),
+                                        idLivre: <?= $allInfo[0][0]["id"] ?>,
+                                        idAuteur: <?= $_SESSION['id'] ?>,
+                                        whatHaveChanged: "titre"
 
 
-                            },
+                                    },
 
+
+                                });
+                            }, 1000);
 
                         });
-                    }, 1000);
-
-                });
 
 
 
-                var timer = null;
-                $('#ResumeLivre').on('input', function() {
+                        var timer = null;
+                        $('#ResumeLivre').on('input', function() {
 
-                    if (timer != null) {
-                        clearTimeout(timer); //cancel the previous timer.
-                        timer = null;
-                    }
-                    timer = setTimeout(function() {
-                        //put your ajax call here
-                        $.ajax({
-                            url: 'ChangeInfoBook.php',
-                            type: 'POST',
-                            data: {
-                                story: $('#ResumeLivre').val(),
-                                idLivre: <?= $allInfo[0][0]["id"] ?>,
-                                idAuteur: <?= $_SESSION['id'] ?>,
-                                whatHaveChanged: "resumeLivre"
+                            if (timer != null) {
+                                clearTimeout(timer); //cancel the previous timer.
+                                timer = null;
+                            }
+                            timer = setTimeout(function() {
+                                //put your ajax call here
+                                $.ajax({
+                                    url: 'ChangeInfoBook.php',
+                                    type: 'POST',
+                                    data: {
+                                        story: $('#ResumeLivre').val(),
+                                        idLivre: <?= $allInfo[0][0]["id"] ?>,
+                                        idAuteur: <?= $_SESSION['id'] ?>,
+                                        whatHaveChanged: "resumeLivre"
 
 
+                                    }
+
+                                });
+                            }, 1000);
+
+                        });
+
+
+
+                        var timer = null;
+                        $('.Chapitre').on('input', function($event) {
+                            if (timer != null) {
+                                clearTimeout(timer); //cancel the previous timer.
+                                timer = null;
                             }
 
+
+
+                            timer = setTimeout(function() {
+                                $.ajax({
+                                    url: 'ChangeInfoBook.php',
+                                    type: 'POST',
+                                    data: {
+                                        story: $event.target.value,
+                                        idChapitre: $event.target.id,
+                                        idLivre: <?= $allInfo[0][0]["id"] ?>,
+                                        idAuteur: <?= $_SESSION['id'] ?>,
+                                        whatHaveChanged: "Chapitre"
+                                    },
+
+                                });
+                            });
+
+
+
                         });
-                    }, 1000);
-
-                });
-
-
-
-                var timer = null;
-                $('.Chapitre').on('input', function($event) {
-                    if (timer != null) {
-                        clearTimeout(timer); //cancel the previous timer.
-                        timer = null;
-                    }
-
-
-
-                    timer = setTimeout(function() {
-                    $.ajax({
-                        url: 'ChangeInfoBook.php',
-                        type: 'POST',
-                        data: {
-                            story: $event.target.value,
-                            idChapitre: $event.target.id,
-                            idLivre: <?= $allInfo[0][0]["id"] ?>,
-                            idAuteur: <?= $_SESSION['id'] ?>,
-                            whatHaveChanged: "Chapitre"
-                        },
-
-                    });
-                });
-
-
-
-            });
         </script>
 
 

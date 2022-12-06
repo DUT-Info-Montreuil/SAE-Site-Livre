@@ -6,6 +6,7 @@ class Module_CLivre
     private $vue;
     private $action;
     public function __construct(){
+        $navBar = new ComposantNavBar();
         $this->controleur = new Controleur_CLivre();
         $this->action = $_GET['action'] != null ? $_GET['action'] : "print_create_book";
         if(isset($_GET['action'])) {
@@ -30,11 +31,8 @@ class Module_CLivre
                 
                             }
         }
-
+        $footer = new Comp_Footer();
     }
 
 
 }
-
-
-?>
