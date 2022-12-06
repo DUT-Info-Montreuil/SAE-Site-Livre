@@ -10,8 +10,8 @@ class SavePage extends Connexion{
         $idPage = $_REQUEST["idPage"];
         $save = $_REQUEST["save"];
         if ($save == "true"){
-            $prepare = parent::$bdd->prepare("SELECT * FROM TempSave WHERE idPage = ? AND id_chapitre = ? AND numeroPage = ? ;");
-        $exec = $prepare->execute(array($idPage , $idChapitre , $numPage));
+            $prepare = parent::$bdd->prepare("SELECT * FROM TempSave WHERE idPage = ? AND id_chapitre = ?  ;");
+        $exec = $prepare->execute(array($idPage , $idChapitre ));
         $result = $prepare->fetchAll();
         
         $prepare2 = parent::$bdd->prepare("UPDATE Page SET TexteDeLaPage = ? WHERE ID = ? ;");
@@ -19,8 +19,8 @@ class SavePage extends Connexion{
         }
         
 
-        $prepare3 = parent::$bdd->prepare("DELETE FROM TempSave WHERE idPage = ? AND id_chapitre = ? AND numeroPage = ? ;");
-        $exec3 = $prepare3->execute(array($idPage , $idChapitre , $numPage));
+        $prepare3 = parent::$bdd->prepare("DELETE FROM TempSave WHERE idPage = ? AND id_chapitre = ?  ;");
+        $exec3 = $prepare3->execute(array($idPage , $idChapitre ));
 
         
         //header("Location: ../index.php");

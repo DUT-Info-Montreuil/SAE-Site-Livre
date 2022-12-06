@@ -222,13 +222,60 @@ class Modele_CLivre extends Connexion {
             return false;
         }
 
+    }
 
-
-
+    public function delPage($idPage , $idChapitre , $idLivre){
+        $arr = array($idChapitre);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
+        $exec = $prepare->execute($arr);
+        $result = $prepare->fetchAll();
+        $lim = $result[count($result) - 1]["numeroPage"];
+        $this->changePageNumber($idLivre , $lim , "down");
+        $arr2 = array($idPage);
+        $prepare2 = parent::$bdd->prepare("DELETE FROM Page where ID = ?");
+        $exec2 = $prepare2->execute($arr2);
+        $prepare3 = parent::$bdd->prepare("DELETE FROM TempSave where idPage = ?");
+        $exec3 = $prepare2->execute($arr2);
+        if ($exec2 == true){
+            return true;
+        }else {
+            return false;
+        }
 
     }
 
+     public function newChapitre($idLivre){
+        $arr = array($idLivre);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ?");
+        $exec = $prepare->execute($arr);
+        $result = $prepare->fetchAll();
+        $lim = $result[count($result) - 1]["numeroChapitre"];
+        $arr2 = array($idLivre , $lim+1 , "");
+        $prepare2 = parent::$bdd->prepare("INSERT into Chapitre (id_livre , numeroChap , TitreDuChapitre) VALUES(?,?,?);");
+        $exec2 = $prepare2->execute($arr2);
+        if ($exec2 == true){
+            return true;
+        }else {
+            return false;
+        }
+    }
 
+
+    public function delChapitre($idChapitre , $idLivre){
+        $arr = array($idLivre);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ?");
+        $exec = $prepare->execute($arr);
+        $result = $prepare->fetchAll();
+        $lim = $result[count($result) - 1]["numeroChap"];
+        $arr2 = array($idChapitre);
+        $prepare2 = parent::$bdd->prepare("DELETE FROM Chapitre where ID = ?");
+        $exec2 = $prepare2->execute($arr2);
+        if ($exec2 == true){
+            return true;
+        }else {
+            return false;
+        }
+    }
     
     
 
