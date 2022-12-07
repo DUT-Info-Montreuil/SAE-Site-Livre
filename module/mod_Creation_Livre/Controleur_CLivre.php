@@ -100,5 +100,26 @@ class Controleur_CLivre{
         }
     }
 
+    public function delPage(){
+        if (isset($_SESSION['connected'])&& isset($_GET["idLivre"]) && isset($_GET['idChapitre']) && isset($_GET['idPage'])) {
+            if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
+                $this->modele->delPage($_GET["idLivre"] ,  $_GET['idChapitre'] , $_GET['idPage']);
+                $idChapitre = $this->modele->getChapitre($_GET['idLivre']);
+                $idPage = $this->modele->getPage($idChapitre[0]["id"]);
+                $numPage = $idPage[0]["numeroPage"];
+                $this->vue->write_book($_GET['idLivre'] , $idChapitre[0]["id"] , $idPage[0]["ID"] , $numPage , "");
+            }else{
+                header('Location: index.php');
+            }
+            
+        } else {
+            header('Location: index.php?module=connexion&action=print_login');
+        }
+
+
+
+
+    }
+
 }
 ?>

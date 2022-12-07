@@ -82,7 +82,28 @@ class Vue_CLivre extends vueGenerique
             <textarea class="form-control" id="story" rows="40"><?= $defaultStory ?></textarea>
             <button class="btn btn-primary btn-lg" role="button" id="SavePage">save and quit </button>
             <button class="btn btn-primary btn-lg" role="button" id="DontSavePage">just quit</button>
+            <button type="button" href="" class="btn btn-danger btn-lg" data-bs-toggle="modal" id="delPege" data-bs-target="#supprConf">supprimer la page </button>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="supprConf" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                       salut :>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
+                        <a type="button" href="index?module=CLivre&action=" class="btn btn-danger">SUPPRIMER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script>
             $(window).on('load', function() {
 
@@ -304,6 +325,6 @@ class Vue_CLivre extends vueGenerique
     }
 }
 
-    
+
 
 ?>

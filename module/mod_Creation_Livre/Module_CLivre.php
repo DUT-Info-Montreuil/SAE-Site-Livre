@@ -28,6 +28,10 @@ class Module_CLivre
                 case "newPage":
                     $this->controleur->newPage();
                     break ;
+                case "delPage":
+                    $this->controleur->delPage();
+                    break ;
+                
                 
                             }
         }

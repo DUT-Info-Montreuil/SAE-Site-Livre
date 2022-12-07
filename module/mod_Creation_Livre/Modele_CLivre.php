@@ -18,10 +18,10 @@ class Modele_CLivre extends Connexion {
             $prepare = parent::$bdd->prepare("INSERT into Livre ( titre, resumeLivre, IDAuteur) VALUES(?,?,?)");
             $exec = $prepare->execute($arr);
             if ($exec){
-                
+            $allNull = true ; 
             foreach ($_SESSION["genre"] as $genre) {
             
-                $allNull = true ; 
+                
                 if (isset($_POST["Genre".$genre["id"]])){
                     $allNull = false ;
                     $lastBook = FonctionUtile::getLastBook();
