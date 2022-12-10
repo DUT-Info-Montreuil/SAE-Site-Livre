@@ -68,7 +68,13 @@
     font-size: 20px!important;
     resize: none!important;
 
+}
 
+.pages {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    width: 120px;
 
 }
 

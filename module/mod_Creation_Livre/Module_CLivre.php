@@ -31,6 +31,12 @@ class Module_CLivre
                 case "delPage":
                     $this->controleur->delPage();
                     break ;
+                case "newChapter":
+                    $this->controleur->newChapitre();
+                    break ;
+                case "delChapter":
+                    $this->controleur->delChapitre();
+                    break ;
                 
                 
                             }

@@ -86,7 +86,10 @@ class Controleur_CLivre{
     public function newPage(){
         if (isset($_SESSION['connected'])&& isset($_GET["idLivre"]) && isset($_GET['idChapitre'])) {
             if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
-                $this->modele->newPage($_GET["idLivre"] ,  $_GET['idChapitre']);
+                if(!$this->modele->newPage($_GET["idLivre"] ,  $_GET['idChapitre'])){
+                    $this->vue->Error("le chapitre precedent na pas de page ");
+                    $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
+                }
                 $idChapitre = $this->modele->getChapitre($_GET['idLivre']);
                 $idPage = $this->modele->getPage($idChapitre[0]["id"]);
                 $numPage = $idPage[0]["numeroPage"];
@@ -104,10 +107,9 @@ class Controleur_CLivre{
         if (isset($_SESSION['connected'])&& isset($_GET["idLivre"]) && isset($_GET['idChapitre']) && isset($_GET['idPage'])) {
             if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
                 $this->modele->delPage($_GET["idLivre"] ,  $_GET['idChapitre'] , $_GET['idPage']);
-                $idChapitre = $this->modele->getChapitre($_GET['idLivre']);
-                $idPage = $this->modele->getPage($idChapitre[0]["id"]);
-                $numPage = $idPage[0]["numeroPage"];
-                $this->vue->write_book($_GET['idLivre'] , $idChapitre[0]["id"] , $idPage[0]["ID"] , $numPage , "");
+               $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
+               
+            
             }else{
                 header('Location: index.php');
             }
@@ -116,6 +118,41 @@ class Controleur_CLivre{
             header('Location: index.php?module=connexion&action=print_login');
         }
 
+
+
+
+    }
+
+
+    public function newChapitre(){
+        if (isset($_SESSION['connected'])&& isset($_GET["idLivre"])) {
+            if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
+                $this->modele->newChapitre($_GET["idLivre"]);
+                $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
+            }else{
+                header('Location: index.php');
+            }
+            
+        } else {
+            header('Location: index.php?module=connexion&action=print_login');
+        }
+
+
+    }
+
+
+    public function delChapitre() {
+        if (isset($_SESSION['connected'])&& isset($_GET["idLivre"]) && isset($_GET['idChapitre'])) {
+            if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
+                $this->modele->delChapitre($_GET["idLivre"] ,  $_GET['idChapitre']);
+                $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
+            }else{
+                header('Location: index.php');
+            }
+            
+        } else {
+            header('Location: index.php?module=connexion&action=print_login');
+        }
 
 
 

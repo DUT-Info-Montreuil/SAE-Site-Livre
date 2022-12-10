@@ -133,11 +133,11 @@ class Modele_CLivre extends Connexion {
         $prepareTemp = parent::$bdd->prepare("SELECT TexteDeLaPage FROM TempSave where id_chapitre = ? and idPage = ?;");
         $execTemp = $prepareTemp->execute($arr);
         $resultTemp = $prepareTemp->fetch();
-
-        if ($resultTemp["TexteDeLaPage"] != ""){
-            return $resultTemp["TexteDeLaPage"];
+        if($resultTemp != false){
+            if ($resultTemp["TexteDeLaPage"] != ""){
+                return $resultTemp["TexteDeLaPage"];
+            }
         }
-       
 
         $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage FROM Page where id_Chapitre = ? and ID = ?");
         $exec = $prepare->execute($arr);
@@ -174,7 +174,7 @@ class Modele_CLivre extends Connexion {
         $trueResult[1] = $result2;
         for ($i = 0 ; $i < count($result2) ; $i++){
             $arr2 = array($result2[$i]["id"]);
-            $prepare3 = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
+            $prepare3 = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ? ORDER BY numeroPage ASC");
             $exec3 = $prepare3->execute($arr2);
             $result3 = $prepare3->fetchAll();
             $trueResult[2][$i] = $result3;
@@ -213,37 +213,74 @@ class Modele_CLivre extends Connexion {
         $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetchAll();
-        $lim = $result[count($result) - 1]["numeroPage"];
-        $this->changePageNumber($idLivre , $lim , "up");
-        $arr2 = array($idChapitre , $lim+1 , "");
-        $prepare2 = parent::$bdd->prepare("INSERT into Page (id_chapitre , numeroPage , TexteDeLaPage) VALUES(?,?,?);");
-        $exec2 = $prepare2->execute($arr2);
-        if ($exec2 == true){
-            return true;
+        if (!empty($result)){
+            $lim = $result[count($result) - 1]["numeroPage"];
+            $this->changePageNumber($idLivre , $lim , "up");
+            $arr2 = array($idChapitre , $lim+1 , "");
+            $prepare2 = parent::$bdd->prepare("INSERT into Page (id_chapitre , numeroPage , TexteDeLaPage) VALUES(?,?,?);");
+            $exec2 = $prepare2->execute($arr2);
+            if ($exec2 == true){
+                return true;
+            }else {
+                return false;
+            }
         }else {
-            return false;
-        }
+            $arr = array($idChapitre);
+                $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id = ?");
+                $exec = $prepare->execute($arr);
+                $result = $prepare->fetch();
+                $arr3 = array($result["numeroChap"]-1, $idLivre);
+                $prepare3 = parent::$bdd->prepare("SELECT * FROM Chapitre where numeroChap = ? and id_livre = ?");
+                $exec3 = $prepare3->execute($arr3);
+                $result3 = $prepare3->fetch();
+                $arr4 = array($result3["id"]);
+                $prepare4 = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
+                $exec4 = $prepare4->execute($arr4);
+                $result4 = $prepare4->fetchAll();
+            if (empty($result4)){
+                return false;
+            $lim = $result4[count($result4) - 1]["numeroPage"];
+            $this->changePageNumber($idLivre , $lim , "up");
+            $arr2 = array($idChapitre , $lim+1 , "");
+            $prepare2 = parent::$bdd->prepare("INSERT into Page (id_chapitre , numeroPage , TexteDeLaPage) VALUES(?,?,?);");
+            $exec2 = $prepare2->execute($arr2);
+            if ($exec2 == true){
+                return true;
+            }else {
+                return false;
+            }
 
+
+        
+            }
+        }
     }
 
-    public function delPage($idPage , $idChapitre , $idLivre){
-        $arr = array($idChapitre);
-        $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
+    public function delPage( $idLivre , $idChapitre ,$idPage){
+        $arr = array($idChapitre , $idPage);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ? AND ID= ?");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetchAll();
-        $lim = $result[count($result) - 1]["numeroPage"];
+        if (!empty($result)){
+            $lim = $result[count($result) - 1]["numeroPage"];
+        
+       
+        
         $this->changePageNumber($idLivre , $lim , "down");
         $arr2 = array($idPage);
         $prepare2 = parent::$bdd->prepare("DELETE FROM Page where ID = ?");
         $exec2 = $prepare2->execute($arr2);
         $prepare3 = parent::$bdd->prepare("DELETE FROM TempSave where idPage = ?");
         $exec3 = $prepare2->execute($arr2);
+        
         if ($exec2 == true){
             return true;
         }else {
-            return false;
+            return false;   
         }
-
+    }else {
+        return false;
+    }
     }
 
      public function newChapitre($idLivre){
@@ -251,9 +288,9 @@ class Modele_CLivre extends Connexion {
         $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ?");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetchAll();
-        $lim = $result[count($result) - 1]["numeroChapitre"];
-        $arr2 = array($idLivre , $lim+1 , "");
-        $prepare2 = parent::$bdd->prepare("INSERT into Chapitre (id_livre , numeroChap , TitreDuChapitre) VALUES(?,?,?);");
+        $lim = $result[count($result) - 1]["numeroChap"];
+        $arr2 = array($idLivre , $lim+1 , "default name");
+        $prepare2 = parent::$bdd->prepare("INSERT into Chapitre (id_livre , numeroChap , titre) VALUES(?,?,?);");
         $exec2 = $prepare2->execute($arr2);
         if ($exec2 == true){
             return true;
@@ -264,11 +301,19 @@ class Modele_CLivre extends Connexion {
 
 
     public function delChapitre($idChapitre , $idLivre){
+        $allBookInfo = $this->getAllBookInfo($idLivre);
         $arr = array($idLivre);
         $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ?");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetchAll();
         $lim = $result[count($result) - 1]["numeroChap"];
+        $prepare = parent::$bdd->prepare("SELECT * FROM page where id_chapitre = ?");
+        $exec = $prepare->execute(array($idChapitre));
+        $result = $prepare->fetchAll();
+        $count = count($result);
+        for ($i = 0 ; $i < count($result) ; $i++){
+            $this->delPage($idLivre , $idChapitre , $result[$i]["ID"]);
+        }
         $arr2 = array($idChapitre);
         $prepare2 = parent::$bdd->prepare("DELETE FROM Chapitre where ID = ?");
         $exec2 = $prepare2->execute($arr2);

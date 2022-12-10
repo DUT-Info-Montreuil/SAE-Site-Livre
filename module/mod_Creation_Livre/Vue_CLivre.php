@@ -94,11 +94,11 @@ class Vue_CLivre extends vueGenerique
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                       salut :>
+                        etes vous sur de vouloir la page <?= $numPage ?> ?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                        <a type="button" href="index?module=CLivre&action=" class="btn btn-danger">SUPPRIMER</a>
+                        <a type="button" href="index.php?module=CLivre&action=delPage&idLivre=<?= $idLivre ?>&idChapitre=<?= $idChapitre ?>&idPage=<?= $idPage ?>" class="btn btn-danger">SUPPRIMER</a>
                     </div>
                 </div>
             </div>
@@ -199,20 +199,27 @@ class Vue_CLivre extends vueGenerique
     ?>
         <textarea class="form-control border" id="Title" rows="2" cols="20" maxlength="50"><?= $allInfo[0][0]["titre"] ?></textarea>
         <textarea class="form-control border" id="ResumeLivre" rows="5" cols="30" maxlength="1000"><?= $allInfo[0][0]["resumeLivre"] ?></textarea>
+        <a href="index.php?module=CLivre&action=newChapter&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree un nouveau chapitre</a>
 
         <?php
         for ($i = 0; $i < count($allInfo[1]); $i++) {
         ?>
             <textarea class="form-control border Chapitre" id=<?= $allInfo[1][$i]["id"] ?> rows="1" cols="25" maxlength="25"><?= $allInfo[1][$i]["titre"] ?></textarea>
+            <a href="index.php?module=CLivre&action=    &idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?=$allInfo[1][$i]['id']?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
+            <div class="row row-cols-md-3 g-1">
             <?php
+            
             for ($j = 0; $j < count($allInfo[2][$i]); $j++) {
             ?>
-
-                <a href="index.php?module=CLivre&action=print_write_book&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-primary btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
+               
+               <div class="col pages">
+                    <a href="index.php?module=CLivre&action=print_write_book&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-primary btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
+                </div>
             <?php
 
             }
             ?>
+            </div>
             <a href="index.php?module=CLivre&action=newPage&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree une nouvel page pour le chapitre</a>
         <?php
         }
