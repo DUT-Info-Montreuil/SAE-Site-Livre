@@ -20,7 +20,12 @@ class Modele_Livre extends Connexion
         $prepare = parent::$bdd->prepare($sql);
         $exec = $prepare->execute();
         $result = $prepare->fetch();
-        return $result;
+        if($result){
+            return $result;
+        }
+        else{
+            return false;
+        }
     }
     public function isUserLikedThisBook($idUser,$idLivre){
         $sql = "SELECT count(*) FROM LikedBook where idLivre = $idLivre and idUser = $idUser;";

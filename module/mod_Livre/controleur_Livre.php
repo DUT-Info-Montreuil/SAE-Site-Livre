@@ -19,6 +19,11 @@ class Controleur_Livre
             if(isset($_SESSION['connected'])){
                 $userLikedTheBook=$this->modele->isUserLikedThisBook($_SESSION['id'],$_GET['idLivre'])[0];
             }
+            if($livre === false){
+                header("Location: index.php?module=accueil");
+                $this->vue->Error("Le livre n'existe pas");
+
+            }
 
             $this->vue->afficherLivre($livre,$userLikedTheBook);
         }
