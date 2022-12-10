@@ -14,6 +14,10 @@ class Controleur_Livre
     public function affichageLivre()
     {
         if (isset($_GET['idLivre'])) {
+            if($_GET['idLivre'] === 'undefined') {
+                header("Location: index.php?module=accueil");
+                $this->vue->Error("Le livre n'existe pas");
+            }
             $livre = $this->modele->getLivre($_GET['idLivre']);
             $userLikedTheBook=0;
             if(isset($_SESSION['connected'])){
