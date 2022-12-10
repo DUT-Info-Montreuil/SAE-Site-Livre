@@ -133,9 +133,11 @@ class Modele_CLivre extends Connexion {
         $prepareTemp = parent::$bdd->prepare("SELECT TexteDeLaPage FROM TempSave where id_chapitre = ? and idPage = ?;");
         $execTemp = $prepareTemp->execute($arr);
         $resultTemp = $prepareTemp->fetch();
+
         if ($resultTemp["TexteDeLaPage"] != ""){
             return $resultTemp["TexteDeLaPage"];
         }
+       
 
         $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage FROM Page where id_Chapitre = ? and ID = ?");
         $exec = $prepare->execute($arr);
