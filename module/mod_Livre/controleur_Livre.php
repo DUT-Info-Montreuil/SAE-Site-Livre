@@ -19,22 +19,24 @@ class Controleur_Livre
             if(isset($_SESSION['connected'])){
                 $userLikedTheBook=$this->modele->isUserLikedThisBook($_SESSION['id'],$_GET['idLivre'])[0];
             }
-            
+
             $this->vue->afficherLivre($livre,$userLikedTheBook);
         }
-        
-        
+
+
     }
     public function affichageChapitre(){
-        
-            $chapitre = $this->modele->getChapitre($_GET['Chapitre'],$_GET['idLivre']);
+
+        $chapitre = $this->modele->getChapitre($_GET['Chapitre'],$_GET['idLivre']);
+        if(isset($_SESSION["connected"]) && $_SESSION["connected"]){
             $this->modele->enregistreLivreLu($_GET['Chapitre'], $_GET['idLivre']);
-            $pages = $this->modele->getPages($chapitre['id']);
-            $allChap=$this->modele->getAllChap($_GET['idLivre']);
-            $nbrchap=$this->modele->getNbrChapLivre($_GET['idLivre']);
-            
-            $this->vue->afficherChapitre($chapitre,$pages,$allChap,$nbrchap);
-        
+        }
+        $pages = $this->modele->getPages($chapitre['id']);
+        $allChap=$this->modele->getAllChap($_GET['idLivre']);
+        $nbrchap=$this->modele->getNbrChapLivre($_GET['idLivre']);
+
+        $this->vue->afficherChapitre($chapitre,$pages,$allChap,$nbrchap);
+
     }
 
 }
