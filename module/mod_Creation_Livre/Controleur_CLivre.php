@@ -86,14 +86,16 @@ class Controleur_CLivre{
     public function newPage(){
         if (isset($_SESSION['connected'])&& isset($_GET["idLivre"]) && isset($_GET['idChapitre'])) {
             if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
-                if(!$this->modele->newPage($_GET["idLivre"] ,  $_GET['idChapitre'])){
+                if($this->modele->newPage($_GET["idLivre"] ,  $_GET['idChapitre'] )== false){
                     $this->vue->Error("le chapitre precedent na pas de page ");
                     $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
-                }
-                $idChapitre = $this->modele->getChapitre($_GET['idLivre']);
+                }else {
+                    $idChapitre = $this->modele->getChapitre($_GET['idLivre']);
                 $idPage = $this->modele->getPage($idChapitre[0]["id"]);
                 $numPage = $idPage[0]["numeroPage"];
                 $this->vue->write_book($_GET['idLivre'] , $idChapitre[0]["id"] , $idPage[0]["ID"] , $numPage , "");
+                }
+                
             }else{
                 header('Location: index.php');
             }

@@ -77,12 +77,13 @@ class Vue_CLivre extends vueGenerique
     {
 
     ?>
-        <div class="form-group">
+        <div class="form-group" id="test23">
+            <h3 class="mb-3 storyElement">Vous êtes sur la page <?=$numPage?> du chapitre <?= $idChapitre?> </h3>
+            <button class="btn btn-primary btn-lg storyElement" role="button" id="SavePage">save and quit </button>
+            <button class="btn btn-primary btn-lg storyElement" role="button" id="DontSavePage">just quit</button>
+            <button type="button" href="" class="btn btn-danger btn-lg storyElement" data-bs-toggle="modal" id="delPege" data-bs-target="#supprConf">supprimer la page </button>
 
             <textarea class="form-control" id="story" rows="40"><?= $defaultStory ?></textarea>
-            <button class="btn btn-primary btn-lg" role="button" id="SavePage">save and quit </button>
-            <button class="btn btn-primary btn-lg" role="button" id="DontSavePage">just quit</button>
-            <button type="button" href="" class="btn btn-danger btn-lg" data-bs-toggle="modal" id="delPege" data-bs-target="#supprConf">supprimer la page </button>
         </div>
 
         <!-- Modal -->
@@ -94,7 +95,7 @@ class Vue_CLivre extends vueGenerique
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        etes vous sur de vouloir la page <?= $numPage ?> ?
+                        etes vous sur de vouloir supprimer la page <?= $numPage ?> ?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
@@ -205,20 +206,20 @@ class Vue_CLivre extends vueGenerique
         for ($i = 0; $i < count($allInfo[1]); $i++) {
         ?>
             <textarea class="form-control border Chapitre" id=<?= $allInfo[1][$i]["id"] ?> rows="1" cols="25" maxlength="25"><?= $allInfo[1][$i]["titre"] ?></textarea>
-            <a href="index.php?module=CLivre&action=    &idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?=$allInfo[1][$i]['id']?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
+            <a href="index.php?module=CLivre&action=    &idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
             <div class="row row-cols-md-3 g-1">
-            <?php
-            
-            for ($j = 0; $j < count($allInfo[2][$i]); $j++) {
-            ?>
-               
-               <div class="col pages">
-                    <a href="index.php?module=CLivre&action=print_write_book&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-primary btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
-                </div>
-            <?php
+                <?php
 
-            }
-            ?>
+                for ($j = 0; $j < count($allInfo[2][$i]); $j++) {
+                ?>
+
+                    <div class="col pages">
+                        <a href="index.php?module=CLivre&action=print_write_book&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-primary btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
+                    </div>
+                <?php
+
+                }
+                ?>
             </div>
             <a href="index.php?module=CLivre&action=newPage&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree une nouvel page pour le chapitre</a>
         <?php
@@ -238,7 +239,7 @@ class Vue_CLivre extends vueGenerique
 
                         var timer = null;
                         $('#Title').on('input', function() {
-
+                            console.log("input");
                             if (timer != null) {
                                 clearTimeout(timer); //cancel the previous timer.
                                 timer = null;

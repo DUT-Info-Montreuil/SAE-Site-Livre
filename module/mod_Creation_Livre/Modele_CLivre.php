@@ -142,6 +142,10 @@ class Modele_CLivre extends Connexion {
         $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage FROM Page where id_Chapitre = ? and ID = ?");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetch();
+        if ($result == false){
+            return "";
+        }
+       
         return $result["TexteDeLaPage"];
     }
 
@@ -208,7 +212,8 @@ class Modele_CLivre extends Connexion {
 
 
     public function newPage($idLivre , $idChapitre){
-        
+        echo $idLivre;
+        echo $idChapitre;
         $arr = array($idChapitre);
         $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
         $exec = $prepare->execute($arr);
@@ -222,10 +227,12 @@ class Modele_CLivre extends Connexion {
             if ($exec2 == true){
                 return true;
             }else {
+                echo "erreur";
                 return false;
             }
         }else {
-            $arr = array($idChapitre);
+                $arr = array($idChapitre);
+                echo $idChapitre;
                 $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id = ?");
                 $exec = $prepare->execute($arr);
                 $result = $prepare->fetch();
@@ -233,12 +240,16 @@ class Modele_CLivre extends Connexion {
                 $prepare3 = parent::$bdd->prepare("SELECT * FROM Chapitre where numeroChap = ? and id_livre = ?");
                 $exec3 = $prepare3->execute($arr3);
                 $result3 = $prepare3->fetch();
+                echo $result3["id"];
                 $arr4 = array($result3["id"]);
                 $prepare4 = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
                 $exec4 = $prepare4->execute($arr4);
                 $result4 = $prepare4->fetchAll();
+                echo count($result4);
             if (empty($result4)){
+                echo "empty";
                 return false;
+            }
             $lim = $result4[count($result4) - 1]["numeroPage"];
             $this->changePageNumber($idLivre , $lim , "up");
             $arr2 = array($idChapitre , $lim+1 , "");
@@ -247,6 +258,7 @@ class Modele_CLivre extends Connexion {
             if ($exec2 == true){
                 return true;
             }else {
+                echo "false";
                 return false;
             }
 
@@ -254,7 +266,8 @@ class Modele_CLivre extends Connexion {
         
             }
         }
-    }
+    
+    
 
     public function delPage( $idLivre , $idChapitre ,$idPage){
         $arr = array($idChapitre , $idPage);

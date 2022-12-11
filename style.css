@@ -78,3 +78,22 @@
 
 }
 
+
+#story {
+    margin: auto!important;
+    width: 50%!important;
+    font-size: 20px!important;
+    resize: none!important;
+}
+
+.storyElement {
+   
+    padding-left:15%!important;
+    margin-left: 30%;
+    
+}
+
+#test23{
+    border: red!important;
+    border-radius: 10cm!important;
+}
