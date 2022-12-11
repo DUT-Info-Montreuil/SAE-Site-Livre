@@ -17,7 +17,7 @@ class Vue_CLivre extends vueGenerique
                 <div class="row g-5" id="creaLivre">
                     <div>
                         <h4 class="mb-3">Créé ton propre livre !</h4>
-                        <form class="needs-validation" method="post" action="index.php?action=create_book&module=CLivre" enctype="multipart/form-data" novalidate>
+                        <form class="needs-validation" method="post" action="index.php?action=create_book&module=CLivre&token=<?=$_SESSION['token']?>" enctype="multipart/form-data" novalidate>
 
                             <div class="row g-3">
                                 <div class="col-sm-6 col-lg-4 " id="TitreCrea">
@@ -73,12 +73,12 @@ class Vue_CLivre extends vueGenerique
 
     <?php
     }
-    public function write_book($idLivre, $idChapitre, $idPage, $numPage, $defaultStory)
+    public function write_Pages($idLivre, $idChapitre,$numChapitre, $idPage, $numPage, $defaultStory)
     {
 
     ?>
         <div class="form-group" id="test23">
-            <h3 class="mb-3 storyElement">Vous êtes sur la page <?=$numPage?> du chapitre <?= $idChapitre?> </h3>
+            <h3 class="mb-3 storyElement">Vous êtes sur la page <?=$numPage?> du chapitre <?= $numChapitre?> </h3>
             <button class="btn btn-primary btn-lg storyElement" role="button" id="SavePage">save and quit </button>
             <button class="btn btn-primary btn-lg storyElement" role="button" id="DontSavePage">just quit</button>
             <button type="button" href="" class="btn btn-danger btn-lg storyElement" data-bs-toggle="modal" id="delPege" data-bs-target="#supprConf">supprimer la page </button>
@@ -99,7 +99,7 @@ class Vue_CLivre extends vueGenerique
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                        <a type="button" href="index.php?module=CLivre&action=delPage&idLivre=<?= $idLivre ?>&idChapitre=<?= $idChapitre ?>&idPage=<?= $idPage ?>" class="btn btn-danger">SUPPRIMER</a>
+                        <a type="button" href="index.php?module=CLivre&action=delPage&token=<?= $_SESSION['token']?>&idLivre=<?= $idLivre ?>&idChapitre=<?= $idChapitre ?>&idPage=<?= $idPage ?>" class="btn btn-danger">SUPPRIMER</a>
                     </div>
                 </div>
             </div>
@@ -214,7 +214,7 @@ class Vue_CLivre extends vueGenerique
                 ?>
 
                     <div class="col pages">
-                        <a href="index.php?module=CLivre&action=print_write_book&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-primary btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
+                        <a href="index.php?module=CLivre&action=print_write_Pages&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&numeroChap=<?= $allInfo[1][$i]["numeroChap"]?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-primary btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
                     </div>
                 <?php
 
