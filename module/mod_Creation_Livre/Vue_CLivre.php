@@ -206,7 +206,7 @@ class Vue_CLivre extends vueGenerique
         for ($i = 0; $i < count($allInfo[1]); $i++) {
         ?>
             <textarea class="form-control border Chapitre" id=<?= $allInfo[1][$i]["id"] ?> rows="1" cols="25" maxlength="25"><?= $allInfo[1][$i]["titre"] ?></textarea>
-            <a href="index.php?module=CLivre&action=    &idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
+            <a href="index.php?module=CLivre&action=delChapter&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
             <div class="row row-cols-md-3 g-1">
                 <?php
 

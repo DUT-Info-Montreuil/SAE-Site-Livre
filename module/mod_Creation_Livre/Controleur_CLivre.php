@@ -108,7 +108,7 @@ class Controleur_CLivre{
     public function delPage(){
         if (isset($_SESSION['connected'])&& isset($_GET["idLivre"]) && isset($_GET['idChapitre']) && isset($_GET['idPage'])) {
             if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
-                $this->modele->delPage($_GET["idLivre"] ,  $_GET['idChapitre'] , $_GET['idPage']);
+                $this->modele->delPage($_GET["idLivre"] ,  $_GET['idChapitre'] , $_GET['idPage'] , 1);
                $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
                
             

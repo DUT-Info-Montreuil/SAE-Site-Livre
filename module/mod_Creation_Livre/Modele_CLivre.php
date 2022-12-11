@@ -195,15 +195,11 @@ class Modele_CLivre extends Connexion {
         for ($i = 0 ; $i < count($allBookInfo[1]) ; $i++){
                 for ($j = 0 ; $j < count($allBookInfo[2][$i]) ; $j++){
                     if ($allBookInfo[2][$i][$j]["numeroPage"] > $lim){
-                        if ($action == "up"){
-                            $arr = array($allBookInfo[2][$i][$j]["numeroPage"] + 1 , $allBookInfo[2][$i][$j]["ID"]);
+                        
+                            $arr = array($allBookInfo[2][$i][$j]["numeroPage"] + $action , $allBookInfo[2][$i][$j]["ID"]);
                             $prepare = parent::$bdd->prepare("UPDATE Page SET numeroPage = ? where id = ?");
                             $exec = $prepare->execute($arr);
-                        }else if ($action == "down"){
-                            $arr = array($allBookInfo[2][$i][$j]["numeroPage"] - 1 , $allBookInfo[2][$i][$j]["ID"]);
-                            $prepare = parent::$bdd->prepare("UPDATE Page SET numeroPage = ? where id = ?");
-                            $exec = $prepare->execute($arr);
-                        }
+                       
                     }
                 }
             }
@@ -220,7 +216,7 @@ class Modele_CLivre extends Connexion {
         $result = $prepare->fetchAll();
         if (!empty($result)){
             $lim = $result[count($result) - 1]["numeroPage"];
-            $this->changePageNumber($idLivre , $lim , "up");
+            $this->changePageNumber($idLivre , $lim , 1);
             $arr2 = array($idChapitre , $lim+1 , "");
             $prepare2 = parent::$bdd->prepare("INSERT into Page (id_chapitre , numeroPage , TexteDeLaPage) VALUES(?,?,?);");
             $exec2 = $prepare2->execute($arr2);
@@ -269,7 +265,7 @@ class Modele_CLivre extends Connexion {
     
     
 
-    public function delPage( $idLivre , $idChapitre ,$idPage){
+    public function delPage( $idLivre , $idChapitre ,$idPage , $numberOfDel){
         $arr = array($idChapitre , $idPage);
         $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ? AND ID= ?");
         $exec = $prepare->execute($arr);
@@ -279,7 +275,7 @@ class Modele_CLivre extends Connexion {
         
        
         
-        $this->changePageNumber($idLivre , $lim , "down");
+        $this->changePageNumber($idLivre , $lim ,  -$numberOfDel);
         $arr2 = array($idPage);
         $prepare2 = parent::$bdd->prepare("DELETE FROM Page where ID = ?");
         $exec2 = $prepare2->execute($arr2);
@@ -313,22 +309,22 @@ class Modele_CLivre extends Connexion {
     }
 
 
-    public function delChapitre($idChapitre , $idLivre){
+    public function delChapitre($idLivre , $idChapitre  ){
         $allBookInfo = $this->getAllBookInfo($idLivre);
-        $arr = array($idLivre);
-        $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ?");
+        $arr = array($idLivre , $idChapitre);
+        $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ? and id = ?");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetchAll();
-        $lim = $result[count($result) - 1]["numeroChap"];
-        $prepare = parent::$bdd->prepare("SELECT * FROM page where id_chapitre = ?");
+        $lim = $result[0]["numeroChap"];
+        $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
         $exec = $prepare->execute(array($idChapitre));
         $result = $prepare->fetchAll();
         $count = count($result);
         for ($i = 0 ; $i < count($result) ; $i++){
-            $this->delPage($idLivre , $idChapitre , $result[$i]["ID"]);
+            $this->delPage($idLivre , $idChapitre , $result[$i]["ID"] , $count);
         }
         $arr2 = array($idChapitre);
-        $prepare2 = parent::$bdd->prepare("DELETE FROM Chapitre where ID = ?");
+        $prepare2 = parent::$bdd->prepare("DELETE FROM Chapitre where id = ?");
         $exec2 = $prepare2->execute($arr2);
         if ($exec2 == true){
             return true;
@@ -337,11 +333,6 @@ class Modele_CLivre extends Connexion {
         }
     }
     
-    
-
-
-
-
     
 }   
 
