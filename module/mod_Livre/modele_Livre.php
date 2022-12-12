@@ -7,6 +7,7 @@ class Modele_Livre extends Connexion
     }
     public function getLivre($idLivre)
     {
+
         $sql = "SELECT  Livre.id, titre,resumeLivre,nbrLike,nbrVue,userName, GROUP_CONCAT(genre SEPARATOR ',') as genres
         FROM Livre
         INNER JOIN Utilisateur
@@ -20,13 +21,19 @@ class Modele_Livre extends Connexion
         $prepare = parent::$bdd->prepare($sql);
         $exec = $prepare->execute();
         $result = $prepare->fetch();
-        return $result;
+        if($result){
+            return $result;
+        }
+        else{
+            return false;
+        }
     }
     public function isUserLikedThisBook($idUser,$idLivre){
         $sql = "SELECT count(*) FROM LikedBook where idLivre = $idLivre and idUser = $idUser;";
         $prepare = parent::$bdd->prepare($sql);
         $exec = $prepare->execute();
         $result = $prepare->fetch();
+
         return $result;
     }
     public function getChapitre($chapitre,$livre){

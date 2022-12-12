@@ -13,20 +13,24 @@ class Module_profil
         ini_set('SMTP','smtp.gmail.com');
         ini_set('sendmail_from','chaplainduretarmand@gmail.com');
         mail('chaplainduretarmand@gmail.com', 'My Subject', 'hello');*/
-        if(!isset($_SESSION["id"])){
+        if(!isset($_SESSION["connected"]) || ! $_SESSION["connected"]){
             header("Location: index.php?module=connexion&action=print_login");
-        }
-        elseif (isset($_GET['id'])){
-            if(htmlspecialchars($_GET['id']) == $_SESSION['id']){
-                $this->controleur->afficherMonProfil();
+        } else{
+            if(!isset($_SESSION["id"])){
+                header("Location: index.php?module=connexion&action=print_login");
+            }
+            elseif (isset($_GET['id'])){
+                if(htmlspecialchars($_GET['id']) == $_SESSION['id']){
+                    $this->controleur->afficherMonProfil();
+                }
+                else{
+                    $this->controleur->afficherAutreProfil();
+                }
             }
             else{
-                $this->controleur->afficherAutreProfil();
+                $this->controleur->afficherMonProfil();
             }
+            $footer = new Comp_Footer();
         }
-        else{
-            $this->controleur->afficherMonProfil();
-        }
-        $footer = new Comp_Footer();
     }
 }

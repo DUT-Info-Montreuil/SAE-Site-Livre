@@ -115,7 +115,7 @@ class vue_profil extends vueGenerique
                                             <div class="list-group-item card mb-3" style="max-width: 540px;">
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
-                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\">" ?>
+                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\" href=\"index.php?module=livre&idLivre=".$key["id"]."\">" ?>
                                                         <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
@@ -259,7 +259,7 @@ class vue_profil extends vueGenerique
                                             <div class="list-group-item card mb-3" style="max-width: 540px;">
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
-                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id_livre_lu"] . "\">" ?>
+                                                        <?php echo "<a style=\"cursor: pointer\" href=\"index.php?module=livre&idLivre=".$key["id_livre_lu"]."\" id=\"imgLivre" . $key["id_livre_lu"] . "\">" ?>
                                                         <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
@@ -298,11 +298,6 @@ class vue_profil extends vueGenerique
                                            class="btn btn-outline-secondary">voir plus</a>
                                     </div>
                                 </div>
-                                <script>
-                                    $("#imgLivre<?=$key["id_livre_lu"]?>").click(function () {
-                                        alert(<?="<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\""?>);
-                                    });
-                                </script>
 
                                 <div class="list-group" id="write-list-history">
                                     <?php
@@ -314,7 +309,7 @@ class vue_profil extends vueGenerique
                                             <div class="list-group-item card mb-3" style="max-width: 540px;">
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
-                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\">" ?>
+                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\" href=\"index.php?module=livre&idLivre=".$key["id"]."\">" ?>
                                                         <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>

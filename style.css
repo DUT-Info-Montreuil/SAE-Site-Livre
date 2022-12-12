@@ -66,3 +66,57 @@
     margin: auto;
     width: 75%;
 }
+
+
+#Title {
+    margin: auto;
+    width: 50%;
+    font-size: 50px;
+    resize: none;
+}
+
+
+#ResumeLivre {
+    margin: auto;
+    width: 50%;
+    font-size: 30px;
+    resize: none;
+}
+
+
+
+.Chapitre {
+    margin: auto!important;
+    width: 50%!important;
+    font-size: 20px!important;
+    resize: none!important;
+
+}
+
+.pages {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    width: 120px;
+
+}
+
+
+#story {
+    margin: auto!important;
+    width: 50%!important;
+    font-size: 20px!important;
+    resize: none!important;
+}
+
+.storyElement {
+   
+    padding-left:15%!important;
+    margin-left: 30%;
+    
+}
+
+#test23{
+    border: red!important;
+    border-radius: 10cm!important;
+
