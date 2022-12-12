@@ -27,7 +27,7 @@ class Vue_CLivre extends vueGenerique
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">premiere de couverture <span class="text-muted">(Optional)</label>
-                                        <input name="img" class="form-control" type="file" id="formFile" accept="image/*">
+                                        <input name="fileToUpload" class="form-control" type="file" id="fileToUpload" accept="image/png">
                                     </div>
                                 </div>
 
@@ -123,8 +123,8 @@ class Vue_CLivre extends vueGenerique
             </div>
         </div>
         <div class="form-group" id="test23">
-            <h2 class="mb-3 storyElement">Vous êtes sur la page N°<?= $numPage ?> du chapitre <?= $numChapitre ?> </h2>
 
+            <h2 class="mb-3 storyElement">Vous êtes sur la page N°<?= $numPage ?> du chapitre <?= $numChapitre ?> </h2>
 
             <textarea class="form-control" id="story" rows="40"><?= $defaultStory ?></textarea>
         </div>
@@ -180,7 +180,8 @@ class Vue_CLivre extends vueGenerique
                 });
 
 
-                $('#SavePage').click(function() {
+                $('#SavePage').on('click',function() {
+                    
                     $.ajax({
                         url: 'SavePage.php',
                         type: 'POST',
@@ -194,7 +195,8 @@ class Vue_CLivre extends vueGenerique
                             save: "true"
 
                         },
-                        success: function(data) {
+                        done: function(data) {
+                            
                             window.location.href = "index.php?action=menu_write_book&module=CLivre&idLivre=<?= $idLivre ?>";
                         }
 
@@ -243,13 +245,13 @@ class Vue_CLivre extends vueGenerique
     ?>
         <textarea class="form-control border" id="Title" rows="2" cols="20" maxlength="50"><?= $allInfo[0][0]["titre"] ?></textarea>
         <textarea class="form-control border" id="ResumeLivre" rows="5" cols="30" maxlength="1000"><?= $allInfo[0][0]["resumeLivre"] ?></textarea>
-        <a href="index.php?module=CLivre&action=newChapter&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree un nouveau chapitre</a>
+        <a href="index.php?module=CLivre&action=newChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree un nouveau chapitre</a>
 
         <?php
         for ($i = 0; $i < count($allInfo[1]); $i++) {
         ?>
             <textarea class="form-control border Chapitre" id=<?= $allInfo[1][$i]["id"] ?> rows="1" cols="25" maxlength="25"><?= $allInfo[1][$i]["titre"] ?></textarea>
-            <a href="index.php?module=CLivre&action=delChapter&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
+            <a href="index.php?module=CLivre&action=delChapter&<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
             <div class="row row-cols-md-3 g-1">
                 <?php
 
@@ -264,7 +266,7 @@ class Vue_CLivre extends vueGenerique
                 }
                 ?>
             </div>
-            <a href="index.php?module=CLivre&action=newPage&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree une nouvel page pour le chapitre</a>
+            <a href="index.php?module=CLivre&action=newPage&token=<?=$_SESSION["token"]?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree une nouvel page pour le chapitre</a>
         <?php
         }
 

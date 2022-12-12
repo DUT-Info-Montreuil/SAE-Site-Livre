@@ -9,8 +9,9 @@ class TempSave extends Connexion {
         $numPage = $_REQUEST["numPage"];
         $idPage = $_REQUEST["idPage"];
         //$prepare = parent::$bdd->prepare("INSERT into TempSave (story, idLivre, idAuthor,idPage) VALUES(story = :story,idlivre = :idlivre,idauteur = :idauteur , 1) on DUPLICATE KEY UPDATE story = :story;");
-        $prepare = parent::$bdd->prepare("INSERT into TempSave (idPage, numeroPage , TexteDeLaPage ,id_chapitre ) VALUES(?, ? ,? ,?) on DUPLICATE KEY UPDATE TexteDeLaPage=?;");
-        $prepare->execute(array($idPage ,$numPage , $story , $idChapitre , $story ) ) ; 
+        //"INSERT into Page (idPage, numeroPage , TexteDeLaPage ,id_chapitre ) VALUES(?, ? ,? ,?) on DUPLICATE KEY UPDATE TexteDeLaPage=?;"
+        $prepare = parent::$bdd->prepare("UPDATE Page ( TexteDeLaPage ) VALUES(?)");
+        $prepare->execute(array( $story ) ) ; 
         /*$prepare->execute(array(
             'story' => $story,
             'idlivre' => $idLivre,
