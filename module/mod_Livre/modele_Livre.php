@@ -57,6 +57,10 @@ class Modele_Livre extends Connexion
         $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage, numeroPage FROM Page where Page.id_chapitre=?");
         $exec = $prepare->execute(array($chapitre));
         $result = $prepare->fetchAll();
+        if ($result == false){
+            $result[0]["TexteDeLaPage"] = "Aucune page n'a été créée pour ce chapitre";
+            $result[0]["numeroPage"] = 0;
+            }
         return $result;
     }
     public function getNbrChapLivre($idLivre){

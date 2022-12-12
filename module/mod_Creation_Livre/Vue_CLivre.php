@@ -81,7 +81,7 @@ class Vue_CLivre extends vueGenerique
             <h3 class="mb-3 storyElement">Vous êtes sur la page <?=$numPage?> du chapitre <?= $numChapitre?> </h3>
             <button class="btn btn-primary btn-lg storyElement" role="button" id="SavePage">save and quit </button>
             <button class="btn btn-primary btn-lg storyElement" role="button" id="DontSavePage">just quit</button>
-            <button type="button" href="" class="btn btn-danger btn-lg storyElement" data-bs-toggle="modal" id="delPege" data-bs-target="#supprConf">supprimer la page </button>
+            <button type="button" href="" class="btn btn-danger btn-lg storyElement" data-bs-toggle="modal" id="delPage" data-bs-target="#supprConf">supprimer la page </button>
 
             <textarea class="form-control" id="story" rows="40"><?= $defaultStory ?></textarea>
         </div>
@@ -137,7 +137,8 @@ class Vue_CLivre extends vueGenerique
                 });
 
 
-                $('#SavePage').click(function() {
+                $('#SavePage').on('click',function() {
+                    
                     $.ajax({
                         url: 'SavePage.php',
                         type: 'POST',
@@ -151,8 +152,9 @@ class Vue_CLivre extends vueGenerique
                             save: "true"
 
                         },
-                        success: function(data) {
-                            window.location.href = "index.php?action=menu_write_book&module=CLivre&idLivre=<?= $idLivre ?>";
+                        done: function(data) {
+                            alert(data);
+                            //window.location.href = "index.php?action=menu_write_book&module=CLivre&idLivre=<?= $idLivre ?>";
                         }
 
                     });
@@ -175,7 +177,7 @@ class Vue_CLivre extends vueGenerique
 
                         },
                         success: function() {
-                            window.location.href = "index.php?action=menu_write_book&module=CLivre&idLivre=<?= $idLivre ?>";
+                            //window.location.href = "index.php?action=menu_write_book&module=CLivre&idLivre=<?= $idLivre ?>";
                         }
 
                     });
