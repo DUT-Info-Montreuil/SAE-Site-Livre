@@ -16,7 +16,7 @@ class Vue_connexion extends vueGenerique
     {
 
 ?>
-        <html>
+        
 
 
         <div class="container d-flex flex-column">
@@ -69,7 +69,7 @@ class Vue_connexion extends vueGenerique
 
             </form>-->
 
-        </html>
+
 
     <?php
 
@@ -80,7 +80,6 @@ class Vue_connexion extends vueGenerique
     {
 
     ?>
-        <html>
 
 
         <div class="container d-flex flex-column">
@@ -138,7 +137,6 @@ class Vue_connexion extends vueGenerique
 
             </form>-->
 
-        </html>
 
 <?php
 

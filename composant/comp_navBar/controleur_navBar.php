@@ -10,6 +10,7 @@ class ControleurNavBar{
         $this->modele = new ModeleNavBar();
     }
     public function afficheNavBar(){
-        $this->vue->printnavBar();
+        $livres = $this->modele->getLivres();
+        $this->vue->printnavBar($livres);
     }
 }
