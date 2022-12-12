@@ -25,7 +25,7 @@ class Controleur_CLivre
 
     public function create_book()
     {
-        if (isset($_SESSION['connected'])) {
+        if (isset($_SESSION['connected'])&& isset($_GET['titre']))  {
             if (FonctionUtile::verifToken($_GET['token'])) {
                 $result = $this->modele->create_book();
                 if ($result != false) {

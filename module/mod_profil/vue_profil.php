@@ -27,10 +27,10 @@ class vue_profil extends vueGenerique
                                 <p class="text-muted mb-1">Full Stack Developer</p>
                                 <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                                 <div class="d-flex justify-content-center mb-2">
-                                    <button type="button" class="btn btn-outline-primary" id="suivre">Suivre</button>
+                                    <button type="button" class="btn btn-outline-dark" id="suivre">Suivre</button>
                                 </div>
                                 <div class="d-flex justify-content-center mb-2">
-                                    <button type="button" class="btn btn-primary" id="suivi">
+                                    <button type="button" class="btn btn-dark" id="suivi">
                                         Suivi
                                         <svg xmlns="http://www.w3.org/2000/svg" id="img-check-suivi" width="16"
                                              height="16" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
@@ -133,7 +133,7 @@ class vue_profil extends vueGenerique
                                                                     ?>
                                                                     <a type="button"
                                                                        href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=<?= $key2["dernier_chapitre_lu"] ?>"
-                                                                       class="btn btn-outline-primary">reprendre la
+                                                                       class="btn btn-outline-dark">reprendre la
                                                                         lecture</a>
                                                                     <div class="card-bottom">
                                                                         <p class="card-text"><small class="text-muted">lu
@@ -150,7 +150,7 @@ class vue_profil extends vueGenerique
                                                                 ?>
                                                                 <a type="button"
                                                                    href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
-                                                                   class="btn btn-outline-primary">commencer la
+                                                                   class="btn btn-outline-dark">commencer la
                                                                     lecture</a>
                                                                 <?php
                                                             }
@@ -271,7 +271,7 @@ class vue_profil extends vueGenerique
                                                             <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                                             <a type="button"
                                                                href="index.php?module=livre&idLivre=<?= $key["idLivre"] ?>&Chapitre=<?= $key["dernier_chapitre_lu"] ?>"
-                                                               class="btn btn-outline-primary">reprendre la lecture</a>
+                                                               class="btn btn-outline-dark">reprendre la lecture</a>
                                                         </div>
                                                         <div class="card-bottom">
                                                             <p class="card-text"><small
@@ -321,7 +321,7 @@ class vue_profil extends vueGenerique
                                                             <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                                             <a type="button"
                                                                href="index.php?module=CLivre&action=menu_write_book&idLivre=<?=$key['id']?>"
-                                                               class="btn btn-outline-primary">reprendre l'écriture</a>
+                                                               class="btn btn-outline-dark">reprendre l'écriture</a>
                                                         </div>
                                                     </div>
                                                 </div>
