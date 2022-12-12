@@ -113,6 +113,11 @@ class Vue_CLivre extends vueGenerique
                     
                     <br>
                     <br>
+                    <br>
+                    <br>
+                    
+                    <br>
+                    <br>
                     <p>Vous pouvez ici modifier la page séléctionné (par défaut la page n°1). <br> Pour modifier une autre page , ajouter une noulle page ou un chapitre, sauvgarder et quitté cette page avec le boutton ci-dessus.</p>
                 </div>
             </div>
