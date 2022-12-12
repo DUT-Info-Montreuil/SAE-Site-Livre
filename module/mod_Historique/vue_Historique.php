@@ -41,7 +41,7 @@ class Vue_Historique extends VueGenerique
                                         <?php
                                         $livreLu = false;
                                         foreach ($monHistoriqueLecture as $key2){
-                                            if($key2["id_livre_lu"] === $key["id"]){
+                                            if($key2["idLivre"] === $key["id"]){
                                                 $livreLu = true;
                                                 ?>
                                                 <a type="button" href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=<?=$key2["dernier_chapitre_lu"]?>" class="btn btn-outline-primary">reprendre la lecture</a>
@@ -109,15 +109,15 @@ class Vue_Historique extends VueGenerique
                             <div class="col-sm-3">
                                 <div class="card text-center" style="width: 18rem; min-height: 20rem;">
                                     <div class="card-img-top">
-                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id_livre_lu"] . "\" href=\"index.php?module=livre&idLivre=".$key["id_livre_lu"]."\">" ?>
-                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" href=\"index.php?module=livre&idLivre=".$key["id_livre_lu"]."\" class=\"img-fluid\" alt=\"...\"onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
+                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["idLivre"] . "\" href=\"index.php?module=livre&idLivre=".$key["idLivre"]."\">" ?>
+                                        <?php echo "<img src=\"ressource/bookCover/" . $key["idLivre"] . ".png\" href=\"index.php?module=livre&idLivre=".$key["idLivre"]."\" class=\"img-fluid\" alt=\"...\"onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                         </a>
                                     </div>
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $key["titre"] ?></h5>
                                         <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                         <a type="button"
-                                           href="index.php?module=livre&idLivre=<?= $key["id_livre_lu"] ?>&Chapitre=<?= $key["dernier_chapitre_lu"] ?>"
+                                           href="index.php?module=livre&idLivre=<?= $key["idLivre"] ?>&Chapitre=<?= $key["dernier_chapitre_lu"] ?>"
                                            class="btn btn-outline-primary">reprendre la lecture</a>
                                     </div>
                                     <div class="card-bottom">
