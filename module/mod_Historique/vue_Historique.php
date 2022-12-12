@@ -156,7 +156,7 @@ class Vue_Historique extends VueGenerique
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light">Mon Historique d'écriture</h1>
                     <p class="lead text-muted">Ici se trouvent tous les livres que vous avez commencé à écrire ou fini
-                        d'écrire. Ils sont classé par ordre de date, du plus recemment modifié au plus ancien modifié.
+                        d'écrire. Ils sont classés par ordre de date, du plus récemment modifié au plus ancien modifié.
                         Vous pouvez reprendre votre écriture en cliquant sur le bouton "reprendre l'écriture" de l'un de
                         vos livres.</p>
                 </div>
@@ -177,7 +177,7 @@ class Vue_Historique extends VueGenerique
                             <div class="col-sm-3">
                                 <div class="card text-center" style="width: 18rem; min-height: 20rem;">
                                     <div class="card-img-top">
-                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\" href=\"index.php?module=livre&idLivre=".$key["id"]."\">" ?>
+                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\" href=\"index.php?module=CLivre&action=menu_write_book&idLivre=".$key["id"]."\">" ?>
                                         <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid\" alt=\"...\"onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                         </a>
                                     </div>
@@ -185,7 +185,7 @@ class Vue_Historique extends VueGenerique
                                         <h5 class="card-title"><?php echo $key["titre"] ?></h5>
                                         <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                         <a type="button"
-                                           href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
+                                           href="index.php?module=CLivre&action=menu_write_book&idLivre=<?= $key["id"] ?>"
                                            class="btn btn-outline-primary">reprendre l'écriture</a>
                                     </div>
                                 </div>

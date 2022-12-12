@@ -41,7 +41,7 @@ class modele_profil extends Connexion {
     }
 
     function getMesDeuxDerniersLivresLu(){
-        $prepare = parent::$bdd->prepare("select *, userName from Livre inner join ViewedBook hll on Livre.id = hll.id inner join Utilisateur  on Livre.IDAuteur = Utilisateur.id where hll.idUser = ? ORDER BY hll.date_heure_lecture DESC LIMIT 2");
+        $prepare = parent::$bdd->prepare("select *, userName from Livre inner join ViewedBook hll on Livre.id = hll.idLivre inner join Utilisateur  on Livre.IDAuteur = Utilisateur.id where hll.idUser = ? ORDER BY hll.date_heure_lecture DESC LIMIT 2");
         $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();

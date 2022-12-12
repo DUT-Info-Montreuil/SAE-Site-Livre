@@ -115,7 +115,7 @@ class vue_profil extends vueGenerique
                                             <div class="list-group-item card mb-3" style="max-width: 540px;">
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
-                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\" href=\"index.php?module=livre&idLivre=".$key["id"]."\">" ?>
+                                                        <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\" href=\"index.php?module=CLivre&action=menu_write_book&idLivre=".$key["id"]."\">" ?>
                                                         <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
@@ -320,7 +320,7 @@ class vue_profil extends vueGenerique
                                                         <div class="card-body">
                                                             <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                                             <a type="button"
-                                                               href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
+                                                               href="index.php?module=CLivre&action=menu_write_book&idLivre=<?=$key['id']?>"
                                                                class="btn btn-outline-primary">reprendre l'écriture</a>
                                                         </div>
                                                     </div>
