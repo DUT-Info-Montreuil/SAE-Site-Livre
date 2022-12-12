@@ -153,8 +153,8 @@ class Vue_CLivre extends vueGenerique
 
                         },
                         done: function(data) {
-                            alert(data);
-                            //window.location.href = "index.php?action=menu_write_book&module=CLivre&idLivre=<?= $idLivre ?>";
+                            
+                            window.location.href = "index.php?action=menu_write_book&module=CLivre&idLivre=<?= $idLivre ?>";
                         }
 
                     });
@@ -177,7 +177,7 @@ class Vue_CLivre extends vueGenerique
 
                         },
                         success: function() {
-                            //window.location.href = "index.php?action=menu_write_book&module=CLivre&idLivre=<?= $idLivre ?>";
+                            window.location.href = "index.php?action=menu_write_book&module=CLivre&idLivre=<?= $idLivre ?>";
                         }
 
                     });
