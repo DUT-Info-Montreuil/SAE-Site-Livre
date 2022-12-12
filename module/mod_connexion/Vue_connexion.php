@@ -69,7 +69,7 @@ class Vue_connexion extends vueGenerique
 
             </form>-->
 
-       
+
 
     <?php
 

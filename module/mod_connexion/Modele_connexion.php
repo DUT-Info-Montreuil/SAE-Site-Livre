@@ -37,7 +37,10 @@ class Modele_connexion extends Connexion {
         }
     }
     public function deco(){
-        unset($_SESSION["connected"], $_SESSION["identifiant"], $_SESSION["id"], $_SESSION["email"], $_SESSION["jeton"]);
+
+        session_destroy();
+        
+
     }
     
 }
