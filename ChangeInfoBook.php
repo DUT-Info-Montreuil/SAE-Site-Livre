@@ -20,7 +20,7 @@ class ChangeInfoBook extends Connexion {
             $prepare->execute($arr);
         }
         
-        echo "yes it works";
+        
 
 
 

@@ -7,7 +7,7 @@ class ModeleNavBar extends Connexion {
     }
     public function getLivres()
     {
-        $sql = "SELECT titre, id FROM livre order by id asc";
+        $sql = "SELECT titre, id FROM Livre order by id asc";
         $prepare = parent::$bdd->prepare($sql);
         $exec = $prepare->execute();
         $result = $prepare->fetchAll();

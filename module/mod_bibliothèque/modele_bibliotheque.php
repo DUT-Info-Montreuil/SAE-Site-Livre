@@ -27,7 +27,7 @@ class Modele_Biblio extends Connexion
 
     public function getGenres()
     {
-        $sql = "SELECT * FROM genre";
+        $sql = "SELECT * FROM Genre";
         $prepare = parent::$bdd->prepare($sql);
         $exec = $prepare->execute();
         $result = $prepare->fetchAll();
