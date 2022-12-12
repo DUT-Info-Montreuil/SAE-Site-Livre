@@ -12,7 +12,7 @@ class Modele_Historique extends Connexion {
         return $resultat;
     }
     public function getHistoriqueLecture() {
-        $prepare = parent::$bdd->prepare("select *, userName from livre inner join historique_livre_lu hll on livre.id = hll.id_livre_lu inner join utilisateur u on livre.IDAuteur = u.id where hll.id_utilisateur = ? ORDER BY hll.date_heure_lecture DESC");
+        $prepare = parent::$bdd->prepare("select *, userName from livre inner join viewedbook hll on livre.id = hll.idLivre inner join utilisateur u on livre.IDAuteur = u.id where hll.idUser = ? ORDER BY hll.date_heure_lecture DESC");
         $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
