@@ -11,8 +11,11 @@ class Controleur_Accueil{
     }
 
     public function AfficherCarrousel()
-    {
-        $this->vue->Carrousel();        
+    {   
+        $topLiked = $this->modele->getTopLikedBook();
+        $topViewed = $this->modele->getTopViewedBook();
+        $randomBook = $this->modele->getRandomBook();
+        $this->vue->Carrousel($topLiked,$topViewed,$randomBook);        
     }
 
 }

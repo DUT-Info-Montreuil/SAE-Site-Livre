@@ -7,7 +7,7 @@ class VueNavBar extends VueGenerique
     {
         parent::__construct();
     }
-    public function printnavBar()
+    public function printnavBar($livres)
     {
 ?>
 
@@ -37,16 +37,33 @@ class VueNavBar extends VueGenerique
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="index.php?module=accueil" class="nav-link px-2 text-secondary">Home</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                        <li><a href="index.php?action=print_create_book&module=CLivre" class="nav-link px-2 text-white">Rédaction</a></li>
                         <li><a href="index.php?module=bibliotheque" class="nav-link px-2 text-white">Bibliothèque</a></li>
                         <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                         <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                     </ul>
 
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                        <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..."
-                               aria-label="Search">
-                    </form>
+                    <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                        <input type="search" class="form-control form-control-dark text-bg-dark" id="searchLivres" placeholder="Search..."
+                               aria-label="Search" list="listeLivres">
+                        <datalist id="listeLivres">
+                            <?php
+                            foreach ($livres as $livre) {
+                                ?>
+                                <option id="<?=$livre['id']?>" value="<?= $livre['titre'] ?>">
+                                <?php
+                            }
+                            ?>
+                        </datalist>
+                    </div>
+                    <script>
+                        $("#searchLivres").on("change", function () {
+                            var valeur = $("#searchLivres").val();
+                            var id = $('#listeLivres').find('option[value="' + valeur + '"]').attr('id');
+                            window.location.href = "index.php?module=livre&idLivre=" + id;
+
+                        });
+                    </script>
                     <?php
                     if (isset($_SESSION["connected"])) {
                         ?>
@@ -55,14 +72,14 @@ class VueNavBar extends VueGenerique
                                     aria-expanded="false">
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="index.php?module=profil&action=afficherProfil">
+                                <li><a class="dropdown-item" href="index.php?module=profil&action=afficherProfil&id=<?=$_SESSION['id']?>">
                                         <svg class="bi bi-person-circle" width="16" height="16">
                                             <use xlink:href="#profileIcon"/>
                                         </svg>
                                         Profile
                                     </a></li>
                                 <li>
-                                    <a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+                                    <a class="dropdown-item d-flex gap-2 align-items-center" href="index.php?module=profil&action=afficherProfil&id=12">
                                         <svg class="bi bi-book" width="16" height="16">
                                             <use xlink:href="#bookIcon"/>
                                         </svg>

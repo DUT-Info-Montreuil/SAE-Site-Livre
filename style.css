@@ -1,7 +1,8 @@
-#LinkLivre{
+.LinkLivre{
     text-decoration: none;
     color: black;
 }
+
 .ConnexionForm{
     
     display: inline-block;
@@ -11,7 +12,16 @@
     margin-bottom: 35%;
    
 }
-
+.card-img-top {
+    
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+}
+.text-bg-CustomeGenre{
+    color: white;
+    margin-right: 1ch;
+}
 
 .toast {
     position: fixed;
@@ -20,10 +30,22 @@
 
 }
 
-#carouselExampleCaptions{
+#carouselAccueil{
     margin: auto;
-    width: 25%;
+    width: 60%;
 
+      
+      
+     
+
+}
+.ControlebuttonCarousel{
+    width: 8%!important;
+   
+}
+.carousel-Accueil{
+    height: 65ch;
+    object-fit:cover!important;
 }
 
 
@@ -44,6 +66,7 @@
     margin: auto;
     width: 75%;
 }
+
 
 #Title {
     margin: auto;
@@ -96,4 +119,4 @@
 #test23{
     border: red!important;
     border-radius: 10cm!important;
-}
+

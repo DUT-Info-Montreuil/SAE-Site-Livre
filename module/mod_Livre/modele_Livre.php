@@ -7,10 +7,33 @@ class Modele_Livre extends Connexion
     }
     public function getLivre($idLivre)
     {
-        $sql = array($idLivre);
-        $prepare = parent::$bdd->prepare("SELECT * FROM Livre (id) where id=?");
-        $exec = $prepare->execute($sql);
-        $result = $prepare->fetchAll();
+
+        $sql = "SELECT  Livre.id, titre,resumeLivre,nbrLike,nbrVue,userName, GROUP_CONCAT(genre SEPARATOR ',') as genres
+        FROM Livre
+        INNER JOIN Utilisateur
+        ON Livre.IDAuteur = Utilisateur.id
+        inner join LivreGenre
+        ON LivreGenre.idLivre=Livre.id
+        INNER JOIN Genre
+        ON LivreGenre.idGenre=Genre.id
+        WHERE Livre.id='$idLivre'
+        GROUP BY Livre.id";
+        $prepare = parent::$bdd->prepare($sql);
+        $exec = $prepare->execute();
+        $result = $prepare->fetch();
+        if($result){
+            return $result;
+        }
+        else{
+            return false;
+        }
+    }
+    public function isUserLikedThisBook($idUser,$idLivre){
+        $sql = "SELECT count(*) FROM LikedBook where idLivre = $idLivre and idUser = $idUser;";
+        $prepare = parent::$bdd->prepare($sql);
+        $exec = $prepare->execute();
+        $result = $prepare->fetch();
+
         return $result;
     }
     public function getChapitre($chapitre,$livre){
@@ -37,11 +60,35 @@ class Modele_Livre extends Connexion
         return $result;
     }
     public function getNbrChapLivre($idLivre){
-        $sql="SELECT NbrDeChapitre FROM Livre where id=$idLivre";
+        $sql="SELECT count(*) as nbr FROM Chapitre where id_livre=$idLivre";
         $prepare = parent::$bdd->prepare($sql);
         $exec = $prepare->execute();
         $result = $prepare->fetch();
+       
         return $result;
+
+        
+    }
+
+    public function enregistreLivreLu($numChapitre, $idLivreLu){
+        $dateTime = date("Y-m-d H:i:s");
+        $verifLivreLu = "SELECT id_livre_lu from historique_livre_lu where id_livre_lu = ? AND id_utilisateur = ?";
+        $prepareVerifLu = parent::$bdd->prepare($verifLivreLu);
+        $tabVerifLu = array($idLivreLu,$_SESSION['id']);
+        $execVerifLu = $prepareVerifLu->execute($tabVerifLu);
+        $resultVerifLu = $prepareVerifLu->fetchAll();
+        if(count($resultVerifLu) === 0){
+            $getLivreLu= "INSERT INTO historique_livre_lu (id_utilisateur,id_livre_lu,date_heure_lecture,dernier_chapitre_lu) VALUES (?,?,?,?)";
+            $prepareLivreLu = parent::$bdd->prepare($getLivreLu);
+            $tabLivreLu = array($_SESSION["id"],$idLivreLu, $dateTime, $numChapitre);
+            $execLivreLu = $prepareLivreLu->execute($tabLivreLu);
+        }
+        else {
+            $updateLivreLu= "UPDATE historique_livre_lu SET date_heure_lecture = ?, dernier_chapitre_lu = ? WHERE id_utilisateur = ? AND id_livre_lu = ?";
+            $updateLivreLu = parent::$bdd->prepare($updateLivreLu);
+            $tabLivreLu = array($dateTime,$numChapitre,$_SESSION["id"],$idLivreLu);
+            $execLivreLu = $updateLivreLu->execute($tabLivreLu);
+        }
     }
     
 }

@@ -5,16 +5,19 @@ class Modele_connexion extends Connexion {
 
     }
     public function login(){
-        $prepare = parent::$bdd->prepare("SELECT passWord , id FROM Utilisateur where userName = ?");
+        $prepare = parent::$bdd->prepare("SELECT passWord , id, email FROM Utilisateur where userName = ?");
         $tab = array($_POST["identifiant"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetch();
         $psw = $result[0] ; 
         if (password_verify($_POST["pwd"] , $psw)){
-            
-            $_SESSION["connected"] = true ; 
-            $_SESSION["identifiant"] = $_POST["identifiant"];
+
+            $_SESSION["jeton"] = bin2hex(openssl_random_pseudo_bytes(32, $cstrong));
+            $_SESSION["expiration_jeton"] = time()+600; //10 minutes
+            $_SESSION["connected"] = true ;
+            $_SESSION["identifiant"] = htmlspecialchars($_POST["identifiant"]);
             $_SESSION["id"] = $result[1];
+            $_SESSION["email"] = $result[2];
             return true ;
         }else {
             return false ;
@@ -34,8 +37,10 @@ class Modele_connexion extends Connexion {
         }
     }
     public function deco(){
+
         session_destroy();
         
+
     }
     
 }
