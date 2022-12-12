@@ -60,7 +60,7 @@ class Vue_CLivre extends vueGenerique
                             </div>
                             <hr class="my-4">
 
-                            <button class="w-100 btn btn-primary btn-lg" type="submit">créé le livre !</button>
+                            <button class="w-100 btn btn-warning btn-lg" type="submit">créé le livre !</button>
                         </form>
                     </div>
                 </div>
