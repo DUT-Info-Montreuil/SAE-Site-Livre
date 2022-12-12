@@ -45,7 +45,6 @@ class modele_profil extends Connexion {
         $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
-        echo($_SESSION["id"]);
         return $result;
     }
 
