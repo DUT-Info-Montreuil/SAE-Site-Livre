@@ -89,7 +89,7 @@ class Vue_Accueil extends vueGenerique
 
     
 <?php
-  $this->Error("c bien");
+  
   }
 }
 ?>
