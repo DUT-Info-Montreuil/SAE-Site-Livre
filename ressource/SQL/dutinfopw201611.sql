@@ -284,7 +284,7 @@ INSERT INTO `TokenCSRF` (`id`, `token`, `idUser`, `expirationDate`, `Usable`) VA
 (14, '74190a2107b730fed94fd56bb683c8b0146ca747a364e1d68a5829b1da18db29', 8, 1670851371, 1),
 (15, 'd9f8508ab2926282cbdbde4025dbffe0d4c2b6361208552f6f0b41bf20aee3c1', 8, 1670851373, 1),
 (16, 'c989b53de8189b7073eef4f48679a589cdd182372bc2fdbd4b7cada953fc2691', 8, 1670851452, 1),
-(17, '32b4e1eca6fcd232d51a63eb680fce692a19ad1f47ed3ef9d740f33d138adb78', 8, 1670851458, 0)
+(17, '32b4e1eca6fcd232d51a63eb680fce692a19ad1f47ed3ef9d740f33d138adb78', 8, 1670851458, 0);
 
 
 -- --------------------------------------------------------
