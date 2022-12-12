@@ -29,40 +29,40 @@ class Modele_Livre extends Connexion
         }
     }
     public function isUserLikedThisBook($idUser,$idLivre){
-        $sql = "SELECT count(*) FROM LikedBook where idLivre = $idLivre and idUser = $idUser;";
-        $prepare = parent::$bdd->prepare($sql);
-        $exec = $prepare->execute();
+       
+        $prepare = parent::$bdd->prepare("SELECT count(*) FROM LikedBook where idLivre =? and idUser =?;");
+        $exec = $prepare->execute(array( $idLivre , $idUser));
         $result = $prepare->fetch();
 
         return $result;
     }
     public function getChapitre($chapitre,$livre){
         
-        $sql = "SELECT titre,id FROM Chapitre where numeroChap=$chapitre and id_livre=$livre";
-        $prepare = parent::$bdd->prepare($sql);
-        $exec = $prepare->execute();
+      
+        $prepare = parent::$bdd->prepare("SELECT titre,id FROM Chapitre where numeroChap=? and id_livre=?;");
+        $exec = $prepare->execute(array($chapitre,$livre));
         $result = $prepare->fetch();
         return $result;
 
     }
     public function getAllChap($livre){
-        $sql = "SELECT * FROM Chapitre where id_livre=$livre";
-        $prepare = parent::$bdd->prepare($sql);
-        $exec = $prepare->execute();
+        
+        $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre=?;");
+        $exec = $prepare->execute(array($livre));
         $result = $prepare->fetchAll();
         return $result;
     }
     public function getPages($chapitre){
-        $sql="SELECT TexteDeLaPage, numeroPage FROM Page where Page.id_chapitre=$chapitre";
-        $prepare = parent::$bdd->prepare($sql);
-        $exec = $prepare->execute();
+        
+        $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage, numeroPage FROM Page where Page.id_chapitre=?");
+        $exec = $prepare->execute(array($chapitre));
         $result = $prepare->fetchAll();
         return $result;
     }
     public function getNbrChapLivre($idLivre){
-        $sql="SELECT count(*) as nbr FROM Chapitre where id_livre=$idLivre";
-        $prepare = parent::$bdd->prepare($sql);
-        $exec = $prepare->execute();
+        
+        $prepare = parent::$bdd->prepare("SELECT count(*) as nbr FROM Chapitre where id_livre=?;");
+        $exec = $prepare->execute(array($idLivre));
         $result = $prepare->fetch();
        
         return $result;

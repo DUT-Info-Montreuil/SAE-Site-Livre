@@ -27,7 +27,7 @@ class Vue_CLivre extends vueGenerique
                                 <div class="col-6">
                                     <div class="mb-3">
                                         <label for="formFile" class="form-label">premiere de couverture <span class="text-muted">(Optional)</label>
-                                        <input name="img" class="form-control" type="file" id="formFile" accept="image/*">
+                                        <input name="fileToUpload" class="form-control" type="file" id="fileToUpload" accept="image/png">
                                     </div>
                                 </div>
 
@@ -221,7 +221,7 @@ class Vue_CLivre extends vueGenerique
                 }
                 ?>
             </div>
-            <a href="index.php?module=CLivre&action=newPage&tok en<?=$_SESSION["token"]?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree une nouvel page pour le chapitre</a>
+            <a href="index.php?module=CLivre&action=newPage&token=<?=$_SESSION["token"]?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-primary btn-lg" role="button">cree une nouvel page pour le chapitre</a>
         <?php
         }
 
