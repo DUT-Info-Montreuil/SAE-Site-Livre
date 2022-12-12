@@ -16,7 +16,7 @@ class FonctionUtile extends Connexion {
     public static function generateToken(){
         $token = bin2hex(random_bytes(32));
         
-        echo time();
+        
         $arr = array($token , time()+600 , $_SESSION['id']);
         $prepare = parent::$bdd->prepare("INSERT INTO TokenCSRF (token, expirationDate , idUser) VALUES (?,?, ?)");
         $exec = $prepare->execute($arr);
