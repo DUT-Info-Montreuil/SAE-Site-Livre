@@ -128,7 +128,7 @@ class vue_profil extends vueGenerique
                                                             <?php
                                                             $livreLu = false;
                                                             foreach ($mesLivresLus as $key2) {
-                                                                if ($key2["id_livre_lu"] === $key["id"]) {
+                                                                if ($key2["idLivre"] === $key["id"]) {
                                                                     $livreLu = true;
                                                                     ?>
                                                                     <a type="button"
@@ -259,8 +259,8 @@ class vue_profil extends vueGenerique
                                             <div class="list-group-item card mb-3" style="max-width: 540px;">
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
-                                                        <?php echo "<a style=\"cursor: pointer\" href=\"index.php?module=livre&idLivre=".$key["id_livre_lu"]."\" id=\"imgLivre" . $key["id_livre_lu"] . "\">" ?>
-                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id_livre_lu"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
+                                                        <?php echo "<a style=\"cursor: pointer\" href=\"index.php?module=livre&idLivre=".$key["idLivre"]."\" id=\"imgLivre" . $key["idLivre"] . "\">" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["idLivre"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -270,7 +270,7 @@ class vue_profil extends vueGenerique
                                                         <div class="card-body">
                                                             <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                                             <a type="button"
-                                                               href="index.php?module=livre&idLivre=<?= $key["id_livre_lu"] ?>&Chapitre=<?= $key["dernier_chapitre_lu"] ?>"
+                                                               href="index.php?module=livre&idLivre=<?= $key["idLivre"] ?>&Chapitre=<?= $key["dernier_chapitre_lu"] ?>"
                                                                class="btn btn-outline-primary">reprendre la lecture</a>
                                                         </div>
                                                         <div class="card-bottom">
