@@ -41,10 +41,11 @@ class modele_profil extends Connexion {
     }
 
     function getMesDeuxDerniersLivresLu(){
-        $prepare = parent::$bdd->prepare("select *, userName from livre inner join viewedbook hll on livre.id = hll.id inner join utilisateur u on livre.IDAuteur = u.id where hll.idUser = ? ORDER BY hll.date_heure_lecture DESC LIMIT 2");
+        $prepare = parent::$bdd->prepare("select *, userName from livre inner join viewedbook hll on livre.id = hll.idLivre inner join utilisateur u on livre.IDAuteur = u.id where hll.idUser = ? ORDER BY hll.date_heure_lecture DESC LIMIT 2");
         $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
+        echo($_SESSION["id"]);
         return $result;
     }
 

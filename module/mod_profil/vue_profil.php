@@ -320,7 +320,7 @@ class vue_profil extends vueGenerique
                                                         <div class="card-body">
                                                             <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                                             <a type="button"
-                                                               href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
+                                                               href="index.php?module=CLivre&action=menu_write_book&idLivre=<?=$key['id']?>"
                                                                class="btn btn-outline-primary">reprendre l'écriture</a>
                                                         </div>
                                                     </div>
