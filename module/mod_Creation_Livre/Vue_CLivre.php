@@ -17,7 +17,7 @@ class Vue_CLivre extends vueGenerique
                 <div class="row g-5" id="creaLivre">
                     <div>
                         <h4 class="mb-3">Créé ton propre livre !</h4>
-                        <form class="needs-validation" method="post" action="index.php?action=create_book&module=CLivre&token=<?=$_SESSION['token']?>" enctype="multipart/form-data" novalidate>
+                        <form class="needs-validation" method="post" action="index.php?action=create_book&module=CLivre&token=<?= $_SESSION['token'] ?>" enctype="multipart/form-data" novalidate>
 
                             <div class="row g-3">
                                 <div class="col-sm-6 col-lg-4 " id="TitreCrea">
@@ -73,15 +73,53 @@ class Vue_CLivre extends vueGenerique
 
     <?php
     }
-    public function write_Pages($idLivre, $idChapitre,$numChapitre, $idPage, $numPage, $defaultStory)
+    public function write_Pages($idLivre, $idChapitre, $numChapitre, $idPage, $numPage, $defaultStory)
     {
 
     ?>
+        <button type="button" class="btn btn-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"></path>
+            </svg>
+        </button>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Outil de configuration de la page</h5>
+            </div>
+            <div class="offcanvas-body">
+                <div>
+                    <button type="button" class="btn btn-primary" id="SavePage">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
+                        </svg>
+                        Sauvgarder et quitter
+                    </button>
+                    <button type="button" class="btn btn-primary" id="DontSavePage">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-x" viewBox="0 0 16 16">
+                            <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"></path>
+                            <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
+                        </svg>
+                        quitter sans sauvgarder
+                    </button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="delPege" data-bs-target="#supprConf">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"></path>
+                        </svg>
+                        Supprimer la page
+                    </button>
+                    <br>
+                    <br>
+                    
+                    <br>
+                    <br>
+                    <p>Vous pouvez ici modifier la page séléctionné (par défaut la page n°1). <br> Pour modifier une autre page , ajouter une noulle page ou un chapitre, sauvgarder et quitté cette page avec le boutton ci-dessus.</p>
+                </div>
+            </div>
+        </div>
         <div class="form-group" id="test23">
-            <h3 class="mb-3 storyElement">Vous êtes sur la page <?=$numPage?> du chapitre <?= $numChapitre?> </h3>
-            <button class="btn btn-primary btn-lg storyElement" role="button" id="SavePage">save and quit </button>
-            <button class="btn btn-primary btn-lg storyElement" role="button" id="DontSavePage">just quit</button>
-            <button type="button" href="" class="btn btn-danger btn-lg storyElement" data-bs-toggle="modal" id="delPege" data-bs-target="#supprConf">supprimer la page </button>
+            <h2 class="mb-3 storyElement">Vous êtes sur la page N°<?= $numPage ?> du chapitre <?= $numChapitre ?> </h2>
+
 
             <textarea class="form-control" id="story" rows="40"><?= $defaultStory ?></textarea>
         </div>
@@ -99,7 +137,7 @@ class Vue_CLivre extends vueGenerique
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
-                        <a type="button" href="index.php?module=CLivre&action=delPage&token=<?= $_SESSION['token']?>&idLivre=<?= $idLivre ?>&idChapitre=<?= $idChapitre ?>&idPage=<?= $idPage ?>" class="btn btn-danger">SUPPRIMER</a>
+                        <a type="button" href="index.php?module=CLivre&action=delPage&token=<?= $_SESSION['token'] ?>&idLivre=<?= $idLivre ?>&idChapitre=<?= $idChapitre ?>&idPage=<?= $idPage ?>" class="btn btn-danger">SUPPRIMER</a>
                     </div>
                 </div>
             </div>
@@ -214,7 +252,7 @@ class Vue_CLivre extends vueGenerique
                 ?>
 
                     <div class="col pages">
-                        <a href="index.php?module=CLivre&action=print_write_Pages&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&numeroChap=<?= $allInfo[1][$i]["numeroChap"]?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-primary btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
+                        <a href="index.php?module=CLivre&action=print_write_Pages&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&numeroChap=<?= $allInfo[1][$i]["numeroChap"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-primary btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
                     </div>
                 <?php
 
