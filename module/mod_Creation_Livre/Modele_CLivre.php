@@ -204,7 +204,7 @@ class Modele_CLivre extends Connexion
     public function getChapitre($idLivre)
     {
         $arr = array($idLivre);
-        $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ?");
+        $prepare = parent::$bdd->prepare("SELECT * FROM Chapitre where id_livre = ? ORDER BY numeroChap DESC");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetchAll();
         return $result;
@@ -213,7 +213,7 @@ class Modele_CLivre extends Connexion
     public function getPage($idChapitre)
     {
         $arr = array($idChapitre);
-        $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ?");
+        $prepare = parent::$bdd->prepare("SELECT * FROM Page where id_chapitre = ? order by numeroPage DESC");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetchAll();
         return $result;
