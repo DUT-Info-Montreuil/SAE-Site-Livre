@@ -42,6 +42,10 @@ class Modele_Livre extends Connexion
         $prepare = parent::$bdd->prepare("SELECT titre,id FROM Chapitre where numeroChap=? and id_livre=?;");
         $exec = $prepare->execute(array($chapitre,$livre));
         $result = $prepare->fetch();
+        if ($result == false){
+            $result["titre"] = "Aucun chapitre n'a été créé pour ce livre";
+            $result["id"] = -1;
+            }
         return $result;
 
     }
