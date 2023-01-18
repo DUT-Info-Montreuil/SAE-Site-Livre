@@ -3,7 +3,7 @@
 class modele_profil extends Connexion {
     function verifExiste()
     {
-        $req = parent::$bdd->prepare("SELECT * FROM utilisateur WHERE id = ?");
+        $req = parent::$bdd->prepare("SELECT * FROM Utilisateur WHERE id = ?");
         $req->execute(array(htmlspecialchars($_GET["id"])));
         $resultat = $req->fetch();
         return $resultat;
