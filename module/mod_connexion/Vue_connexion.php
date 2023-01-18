@@ -125,7 +125,7 @@ class Vue_connexion extends vueGenerique
                                     <!-- Button -->
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-primary">
-                                            Créé ton compte !
+                                            Crée ton compte !
                                         </button>
                                     </div>
                                 </div>
