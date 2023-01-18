@@ -6,20 +6,20 @@ class Modele_Historique extends Connexion {
     }
     function verifExiste()
     {
-        $req = parent::$bdd->prepare("SELECT * FROM utilisateur WHERE id = ?");
+        $req = parent::$bdd->prepare("SELECT * FROM Utilisateur WHERE id = ?");
         $req->execute(array(htmlspecialchars($_GET["id"])));
         $resultat = $req->fetch();
         return $resultat;
     }
     public function getHistoriqueLecture() {
-        $prepare = parent::$bdd->prepare("select *, userName from livre inner join viewedbook hll on livre.id = hll.idLivre inner join utilisateur u on livre.IDAuteur = u.id where hll.idUser = ? ORDER BY hll.date_heure_lecture DESC");
+        $prepare = parent::$bdd->prepare("select *, userName from Livre inner join ViewedBook hll on Livre.id = hll.idLivre inner join Utilisateur u on Livre.IDAuteur = u.id where hll.idUser = ? ORDER BY hll.date_heure_lecture DESC");
         $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
         return $result;
     }
     public function getMonHistoriqueEcriture() {
-        $sql = "SELECT * FROM livre WHERE IDAuteur = ?";
+        $sql = "SELECT * FROM Livre WHERE IDAuteur = ?";
         $prepare = parent::$bdd->prepare($sql);
         $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
@@ -28,7 +28,7 @@ class Modele_Historique extends Connexion {
     }
 
     public function getHistoriqueEcriture() {
-        $sql = "SELECT * FROM livre WHERE IDAuteur = ?";
+        $sql = "SELECT * FROM Livre WHERE IDAuteur = ?";
         $prepare = parent::$bdd->prepare($sql);
         $tab = array(htmlspecialchars($_GET["id"]));
         $exec = $prepare->execute($tab);
@@ -37,7 +37,7 @@ class Modele_Historique extends Connexion {
     }
 
     public function getNomAutre(){
-        $sql = "SELECT userName FROM utilisateur WHERE id = ?";
+        $sql = "SELECT userName FROM Utilisateur WHERE id = ?";
         $prepare = parent::$bdd->prepare($sql);
         $tab = array(htmlspecialchars($_GET["id"]));
         $exec = $prepare->execute($tab);
