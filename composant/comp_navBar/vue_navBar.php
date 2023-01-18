@@ -74,7 +74,7 @@ class VueNavBar extends VueGenerique
                                         <svg class="bi bi-person-circle" width="16" height="16">
                                             <use xlink:href="#profileIcon" />
                                         </svg>
-                                        Profile
+                                        Profil
                                     </a></li>
                                 <li>
                                     <hr class="dropdown-divider">
