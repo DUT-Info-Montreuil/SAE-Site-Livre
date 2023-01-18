@@ -34,7 +34,7 @@ class Vue_connexion extends vueGenerique
                                 </a>
                                 <h1 class="mb-1 fw-bold">Connecte toi</h1>
                                 <span>Tu n'as pas de compte?
-                                    <a href="index.php?action=print_signup&module=connexion" class="ms-1">Créé en un !</a></span>
+                                    <a href="index.php?action=print_signup&module=connexion" class="ms-1">Crée en un !</a></span>
                             </div>
                             <!-- Form -->
                             <form method="post" action="index.php?action=login&module=connexion">
@@ -125,7 +125,7 @@ class Vue_connexion extends vueGenerique
                                     <!-- Button -->
                                     <div class="d-grid">
                                         <button type="submit" class="btn btn-primary">
-                                            Créé ton compte !
+                                            Crée ton compte !
                                         </button>
                                     </div>
                                 </div>

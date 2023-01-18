@@ -10,8 +10,7 @@ class Vue_Historique extends VueGenerique
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light"> Historique d'écriture de <a href="index.php?module=profil&action=afficherProfil&id=<?=htmlspecialchars($_GET['id'])?>" title="se rendre sur le profil de <?= $nom?>"><?= $nom ?></a> </h1>
                     <p class="lead text-muted">Ici se trouvent tous les livres que <?= $nom ?> écrit ou a fini
-                        d'écrire. Ils sont classé par ordre de date, du plus recemment modifié au plus ancien modifié.
-                        Vous pouvez les lires en cliquant sur le bouton "lire" de l'un de
+                        d'écrire. Vous pouvez les lires en cliquant sur le bouton "Reprendre l'écriture" de l'un de
                         ses livres.</p>
                 </div>
             </div>
@@ -44,7 +43,7 @@ class Vue_Historique extends VueGenerique
                                             if($key2["idLivre"] === $key["id"]){
                                                 $livreLu = true;
                                                 ?>
-                                                <a type="button" href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=<?=$key2["dernier_chapitre_lu"]?>" class="btn btn-outline-primary">reprendre la lecture</a>
+                                                <a type="button" href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=<?=$key2["dernier_chapitre_lu"]?>" class="btn btn-outline-primary">Reprendre la lecture</a>
                                                 <div class="card-bottom">
                                                     <p class="card-text"><small class="text-muted">lu il y
                                                             a <?php $dateDiff = date_diff(new DateTime(date("Y-m-d H:i:s", strtotime($key2["date_heure_lecture"]))), new DateTime(date("Y-m-d H:i:s")));
@@ -89,8 +88,8 @@ class Vue_Historique extends VueGenerique
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light">Mon Historique de lecture</h1>
                     <p class="lead text-muted">Ici se trouvent tous les livres que vous avez commencé à lire ou fini de
-                        lire. Ils sont classé par ordre de date, du plus recemment lu au plus ancien lu. Vous pouvez
-                        reprendre votre lecture en cliquant sur le bouton "reprendre la lecture" de l'un de vos livres.</p>
+                        lire. Ils sont classés par ordre de date, du plus recemment lu au plus ancien lu. Vous pouvez
+                        reprendre votre lecture en cliquant sur le bouton "Reprendre la lecture" de l'un de vos livres.</p>
                 </div>
             </div>
         </section>
@@ -118,7 +117,7 @@ class Vue_Historique extends VueGenerique
                                         <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                         <a type="button"
                                            href="index.php?module=livre&idLivre=<?= $key["idLivre"] ?>&Chapitre=<?= $key["dernier_chapitre_lu"] ?>"
-                                           class="btn btn-outline-primary">reprendre la lecture</a>
+                                           class="btn btn-outline-primary">Reprendre la lecture</a>
                                     </div>
                                     <div class="card-bottom">
                                         <p class="card-text"><small
@@ -157,7 +156,7 @@ class Vue_Historique extends VueGenerique
                     <h1 class="fw-light">Mon Historique d'écriture</h1>
                     <p class="lead text-muted">Ici se trouvent tous les livres que vous avez commencé à écrire ou fini
                         d'écrire. Ils sont classés par ordre de date, du plus récemment modifié au plus ancien modifié.
-                        Vous pouvez reprendre votre écriture en cliquant sur le bouton "reprendre l'écriture" de l'un de
+                        Vous pouvez reprendre votre écriture en cliquant sur le bouton "Reprendre l'écriture" de l'un de
                         vos livres.</p>
                 </div>
             </div>
@@ -186,7 +185,7 @@ class Vue_Historique extends VueGenerique
                                         <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                         <a type="button"
                                            href="index.php?module=CLivre&action=menu_write_book&idLivre=<?= $key["id"] ?>"
-                                           class="btn btn-outline-primary">reprendre l'écriture</a>
+                                           class="btn btn-outline-primary">Reprendre l'écriture</a>
                                     </div>
                                 </div>
                             </div>

@@ -20,12 +20,10 @@ class vue_profil extends vueGenerique
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                <img src="/ressource/defaultAvatar/avatardefault_92824.png"
                                      alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
                                 <h5 class="my-3" id="nomProfil"><?php echo $autreNom ?></h5>
-                                <p class="text-muted mb-1">Full Stack Developer</p>
-                                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                                 <div class="d-flex justify-content-center mb-2">
                                     <button type="button" class="btn btn-outline-dark" id="suivre">Suivre</button>
                                 </div>
@@ -65,7 +63,7 @@ class vue_profil extends vueGenerique
                                     },
                                 }).done(function (data) {
                                     if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
-                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
+                                        alert("Cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                     } else {
                                         $("#suivre").first().fadeOut("speed", function fadeNext() {
                                             $("#img-check-suivi").hide();
@@ -90,7 +88,7 @@ class vue_profil extends vueGenerique
                                     },
                                 }).done(function (data) {
                                     if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
-                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
+                                        alert("Cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                     } else {
                                         $("#img-check-suivi").slideUp();
                                         $("#suivi").fadeOut("speed", function fadeNext() {
@@ -133,7 +131,7 @@ class vue_profil extends vueGenerique
                                                                     ?>
                                                                     <a type="button"
                                                                        href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=<?= $key2["dernier_chapitre_lu"] ?>"
-                                                                       class="btn btn-outline-dark">reprendre la
+                                                                       class="btn btn-outline-dark">Reprendre la
                                                                         lecture</a>
                                                                     <div class="card-bottom">
                                                                         <p class="card-text"><small class="text-muted">lu
@@ -150,7 +148,7 @@ class vue_profil extends vueGenerique
                                                                 ?>
                                                                 <a type="button"
                                                                    href="index.php?module=livre&idLivre=<?= $key["id"] ?>&Chapitre=1"
-                                                                   class="btn btn-outline-dark">commencer la
+                                                                   class="btn btn-outline-dark">Commencer la
                                                                     lecture</a>
                                                                 <?php
                                                             }
@@ -169,7 +167,7 @@ class vue_profil extends vueGenerique
                                     <div class="card-bottom text-center mb-2">
                                         <a href="index.php?module=historique&action=historiqueEcriture&id=<?= htmlspecialchars($_GET['id']) ?>"
                                            type="button"
-                                           class="btn btn-outline-secondary">voir plus</a>
+                                           class="btn btn-outline-secondary">Voir plus</a>
                                     </div>
                                 </div>
                             </div>
@@ -223,12 +221,10 @@ class vue_profil extends vueGenerique
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                <img src="/ressource/defaultAvatar/avatardefault_92824.png"
                                      alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
                                 <h5 class="my-3" id="nomProfil"><?php echo $_SESSION["identifiant"] ?></h5>
-                                <p class="text-muted mb-1">Full Stack Developer</p>
-                                <p class="text-muted mb-4">Bay Area, San Francisco, CA</p>
                             </div>
                         </div>
                         <div class="card mb-4 mb-lg-4">
@@ -246,7 +242,7 @@ class vue_profil extends vueGenerique
                                            autocomplete="off">
                                     <label class="btn btn-outline-secondary" for="btnHistoryWrite"
                                            id="btnHistoryWriteLabel">
-                                        Ecriture
+                                        Écriture
                                     </label>
                                 </div>
                                 <div class="list-group" id="read-list-history">
@@ -271,7 +267,7 @@ class vue_profil extends vueGenerique
                                                             <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                                             <a type="button"
                                                                href="index.php?module=livre&idLivre=<?= $key["idLivre"] ?>&Chapitre=<?= $key["dernier_chapitre_lu"] ?>"
-                                                               class="btn btn-outline-dark">reprendre la lecture</a>
+                                                               class="btn btn-outline-dark">Reprendre la lecture</a>
                                                         </div>
                                                         <div class="card-bottom">
                                                             <p class="card-text"><small
@@ -289,13 +285,13 @@ class vue_profil extends vueGenerique
                                             <?php
                                         }
                                     } else {
-                                        echo "vous n'avez pas encore lu de livres";
+                                        echo "Vous n'avez pas encore lu de livres";
                                     }
 
                                     ?>
                                     <div class="card-bottom text-center mb-2">
                                         <a href="index.php?module=historique&action=historiqueLecture" type="button"
-                                           class="btn btn-outline-secondary">voir plus</a>
+                                           class="btn btn-outline-secondary">Voir plus</a>
                                     </div>
                                 </div>
 
@@ -321,7 +317,7 @@ class vue_profil extends vueGenerique
                                                             <p class="card-text"><?= $key["resumeLivre"] ?></p>
                                                             <a type="button"
                                                                href="index.php?module=CLivre&action=menu_write_book&idLivre=<?=$key['id']?>"
-                                                               class="btn btn-outline-dark">reprendre l'écriture</a>
+                                                               class="btn btn-outline-dark">Reprendre l'écriture</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -329,14 +325,14 @@ class vue_profil extends vueGenerique
                                             <?php
                                         }
                                     } else {
-                                        echo "vous n'avez pas encore écrit de livres";
+                                        echo "Vous n'avez pas encore écrit de livres";
                                     }
 
                                     ?>
                                     <div class="card-bottom text-center mb-2">
                                         <a href="index.php?module=historique&action=historiqueEcriture&id=<?= $_SESSION['id'] ?>"
                                            type="button"
-                                           class="btn btn-outline-secondary">voir plus</a>
+                                           class="btn btn-outline-secondary">Voir plus</a>
                                     </div>
                                 </div>
                                 <script>
@@ -423,7 +419,7 @@ class vue_profil extends vueGenerique
                                                     },
                                                 }).done(function (data) {
                                                     if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
-                                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
+                                                        alert("Cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                                     } else {
                                                         if (data.length < 100) {
                                                             $("#name").text($("#inputName").val());
@@ -511,7 +507,7 @@ class vue_profil extends vueGenerique
                                                     },
                                                 }).done(function (data) {
                                                     if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
-                                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
+                                                        alert("Cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                                     } else {
                                                         if (data.length < 100) {
                                                             $("#email").text($("#inputEmail").val());
@@ -596,7 +592,7 @@ class vue_profil extends vueGenerique
                                                     },
                                                 }).done(function (data) {
                                                     if (<?=$_SESSION['expiration_jeton']?> < Date.now().toString().slice(0, 10)) {
-                                                        alert("cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
+                                                        alert("Cela fait plus de 10 minutes que vous êtes sur la page, à des fins de sécurité, veuillez actualiser la page");
                                                     } else {
                                                         if (data.length < 100) {
                                                             $("#password").text($("#inputMDP").val());
@@ -626,7 +622,7 @@ class vue_profil extends vueGenerique
                                 <?php
                                 if (count($mesAbonnements) === 0) {
 
-                                    echo "vous n'êtes abonné à personne";
+                                    echo "Vous n'êtes abonné à personne";
                                 }
                                 foreach ($mesAbonnements as $key) {
                                     ?>

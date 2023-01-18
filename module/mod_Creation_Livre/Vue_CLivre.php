@@ -16,26 +16,27 @@ class Vue_CLivre extends vueGenerique
             <main>
                 <div class="row g-5" id="creaLivre">
                     <div>
-                        <h4 class="mb-3">Créé ton propre livre !</h4>
+                        <h4 class="mb-3">Crée ton propre livre !</h4>
                         <form class="needs-validation" method="post" action="index.php?action=create_book&module=CLivre&token=<?= $_SESSION['token'] ?>" enctype="multipart/form-data" novalidate>
 
                             <div class="row g-3">
                                 <div class="col-sm-6 col-lg-4 " id="TitreCrea">
-                                    <label for="Titre" class="form-label" required="required">Titre du livre</label>
+                                    <label for="Titre" class="form-label"  required="required">Titre du livre</label>
                                     <input type="text" class="form-control" name="title" placeholder="Titre de votre histoire" required>
                                 </div>
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">premiere de couverture <span class="text-muted">(Optional)</label>
+                                        <label for="formFile" class="form-label">Première de couverture <span class="text-muted">(Optionel)</label>
                                         <input name="fileToUpload" class="form-control" type="file" id="fileToUpload" accept="image/png">
+                                        <span class="text-muted"> Les images utilisées sur notre site doivent être libres de droits et nous déclinons toute responsabilité en cas de violation de droits d'auteur. </span>
                                     </div>
                                 </div>
 
 
 
                                 <div class="col-12">
-                                    <label for="Resume" class="form-label">Resumé </label>
-                                    <input type="text" class="form-control" name="resume" placeholder="le petit resumé ">
+                                    <label for="Resume" class="form-label">Résumé </label>
+                                    <input type="text" class="form-control" name="resume" placeholder="Le petit résumé ">
                                 </div>
                             </div>
                             <hr class="my-4">
@@ -60,7 +61,7 @@ class Vue_CLivre extends vueGenerique
                             </div>
                             <hr class="my-4">
 
-                            <button class="w-100 btn btn-warning btn-lg" type="submit">créé le livre !</button>
+                            <button class="w-100 btn btn-warning btn-lg" type="submit">Créer le livre !</button>
                         </form>
                     </div>
                 </div>
@@ -93,14 +94,14 @@ class Vue_CLivre extends vueGenerique
                             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
                             <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
                         </svg>
-                        Sauvgarder et quitter
+                        Sauvegarder et quitter
                     </button>
                     <button type="button" class="btn btn-warning" id="DontSavePage">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-x" viewBox="0 0 16 16">
                             <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"></path>
                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
                         </svg>
-                        quitter sans sauvgarder
+                        quitter sans sauvegarder
                     </button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="delPege" data-bs-target="#supprConf">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -138,7 +139,7 @@ class Vue_CLivre extends vueGenerique
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        etes vous sur de vouloir supprimer la page <?= $numPage ?> ?
+                        êtes vous sûr de vouloir supprimer la page <?= $numPage ?> ?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
@@ -270,11 +271,8 @@ class Vue_CLivre extends vueGenerique
         <?php
         }
 
-
-
-
-
         ?>
+        <span class="text-muted"> <br> Tout le contenu textuel des livres proposés sur notre site doit être libre de droits et nous déclinons toute responsabilité en cas de violation de droits d'auteur. </span>
         <script>
             $(window).on('load', function() {
                         //tout dans un div + boucle sur les child pour cree on input event pout tout les child

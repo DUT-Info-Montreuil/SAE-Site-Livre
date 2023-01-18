@@ -42,8 +42,8 @@ class Vue_Accueil extends vueGenerique
       <div class="container py-4">
         <div class="row gx-5">
           <div class="col text-center ">
-            <a href="index.php?action=print_create_book&module=CLivre" class="btn btn-warning btn-lg justify-content-center px-4 mx-2 fs-3" role="button" id="EcrireLivre">Ecrire un livre</a>
-            <a href="index.php?module=bibliotheque" class="btn btn-warning btn-lg justify-content-center px-4 mx-2 fs-3" role="button" id="VoireLIVRE">Voir plus de livre</a>
+            <a href="index.php?action=print_create_book&module=CLivre" class="btn btn-warning btn-lg justify-content-center px-4 mx-2 fs-3" role="button" id="EcrireLivre">Écrire un livre</a>
+            <a href="index.php?module=bibliotheque" class="btn btn-warning btn-lg justify-content-center px-4 mx-2 fs-3" role="button" id="VoireLIVRE">Voir plus de livres</a>
 
           </div>
         </div>
