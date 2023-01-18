@@ -83,7 +83,7 @@ class VueNavBar extends VueGenerique
                                         <svg class="bi" width="16" height="16">
                                             <use xlink:href="#powerIcon" />
                                         </svg>
-                                        deconnexion
+                                        Se déconnecter
                                     </a>
                                 </li>
                             </ul>
@@ -93,7 +93,7 @@ class VueNavBar extends VueGenerique
                     } else { ?>
                         <div class="text-end">
                             <!-- <a href="index.php?action=print_signup&module=connexion" class="btn btn-outline-light me-2" role="button">sign up</a>  -->
-                            <a href="index.php?action=print_login&module=connexion" class="btn btn-warning" role="button">Login</a>
+                            <a href="index.php?action=print_login&module=connexion" class="btn btn-warning" role="button">Se connecter</a>
                         </div>
                     <?php
                     }
