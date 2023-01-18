@@ -11,7 +11,7 @@ class Vue_Historique extends VueGenerique
                     <h1 class="fw-light"> Historique d'écriture de <a href="index.php?module=profil&action=afficherProfil&id=<?=htmlspecialchars($_GET['id'])?>" title="se rendre sur le profil de <?= $nom?>"><?= $nom ?></a> </h1>
                     <p class="lead text-muted">Ici se trouvent tous les livres que <?= $nom ?> écrit ou a fini
                         d'écrire. Ils sont classé par ordre de date, du plus recemment modifié au plus ancien modifié.
-                        Vous pouvez les lires en cliquant sur le bouton "lire" de l'un de
+                        Vous pouvez les lires en cliquant sur le bouton "reprendre l'écriture" de l'un de
                         ses livres.</p>
                 </div>
             </div>
