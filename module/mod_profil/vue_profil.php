@@ -20,7 +20,7 @@ class vue_profil extends vueGenerique
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                <img src="/ressource/defaultAvatar/avatardefault_92824.png"
                                      alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
                                 <h5 class="my-3" id="nomProfil"><?php echo $autreNom ?></h5>
@@ -221,7 +221,7 @@ class vue_profil extends vueGenerique
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body text-center">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                <img src="/ressource/defaultAvatar/avatardefault_92824.png"
                                      alt="avatar"
                                      class="rounded-circle img-fluid" style="width: 150px;">
                                 <h5 class="my-3" id="nomProfil"><?php echo $_SESSION["identifiant"] ?></h5>
