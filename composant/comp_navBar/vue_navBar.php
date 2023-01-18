@@ -44,7 +44,7 @@ class VueNavBar extends VueGenerique
                     </ul>
 
                     <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                        <input type="search" class="form-control form-control-dark text-bg-dark" id="searchLivres" placeholder="Search..." aria-label="Search" list="listeLivres">
+                        <input type="search" class="form-control form-control-dark text-bg-dark" id="searchLivres" placeholder="Rechercher..." aria-label="Search" list="listeLivres">
                         <datalist id="listeLivres">
                             <?php
                             foreach ($livres as $livre) {
