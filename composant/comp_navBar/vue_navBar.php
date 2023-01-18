@@ -77,14 +77,6 @@ class VueNavBar extends VueGenerique
                                         Profile
                                     </a></li>
                                 <li>
-                                    <a class="dropdown-item d-flex gap-2 align-items-center" href="index.php?module=profil&action=afficherProfil&id=12">
-                                        <svg class="bi bi-book" width="16" height="16">
-                                            <use xlink:href="#bookIcon" />
-                                        </svg>
-                                        other action
-                                    </a>
-                                </li>
-                                <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item d-flex gap-2 align-items-center" href="index.php?module=connexion&action=disconnect">
