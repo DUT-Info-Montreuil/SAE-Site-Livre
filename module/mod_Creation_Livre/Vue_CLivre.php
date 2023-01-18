@@ -16,7 +16,7 @@ class Vue_CLivre extends vueGenerique
             <main>
                 <div class="row g-5" id="creaLivre">
                     <div>
-                        <h4 class="mb-3">Créé ton propre livre !</h4>
+                        <h4 class="mb-3">Crée ton propre livre !</h4>
                         <form class="needs-validation" method="post" action="index.php?action=create_book&module=CLivre&token=<?= $_SESSION['token'] ?>" enctype="multipart/form-data" novalidate>
 
                             <div class="row g-3">
@@ -26,7 +26,7 @@ class Vue_CLivre extends vueGenerique
                                 </div>
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">premiere de couverture <span class="text-muted">(Optional)</label>
+                                        <label for="formFile" class="form-label">Première de couverture <span class="text-muted">(Optionel)</label>
                                         <input name="fileToUpload" class="form-control" type="file" id="fileToUpload" accept="image/png">
                                         <span class="text-muted"> Les images utilisées sur notre site doivent être libres de droits et nous déclinons toute responsabilité en cas de violation de droits d'auteur. </span>
                                     </div>
@@ -35,8 +35,8 @@ class Vue_CLivre extends vueGenerique
 
 
                                 <div class="col-12">
-                                    <label for="Resume" class="form-label">Resumé </label>
-                                    <input type="text" class="form-control" name="resume" placeholder="le petit resumé ">
+                                    <label for="Resume" class="form-label">Résumé </label>
+                                    <input type="text" class="form-control" name="resume" placeholder="Le petit résumé ">
                                 </div>
                             </div>
                             <hr class="my-4">
@@ -61,7 +61,7 @@ class Vue_CLivre extends vueGenerique
                             </div>
                             <hr class="my-4">
 
-                            <button class="w-100 btn btn-warning btn-lg" type="submit">créé le livre !</button>
+                            <button class="w-100 btn btn-warning btn-lg" type="submit">Créer le livre !</button>
                         </form>
                     </div>
                 </div>
