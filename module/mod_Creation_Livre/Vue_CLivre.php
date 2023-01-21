@@ -244,41 +244,70 @@ class Vue_CLivre extends vueGenerique
     public function menu_write_book($allInfo)
     {
     ?>
+        <h1 style="text-align: center"> Titre du livre </h1>
         <textarea class="form-control border" id="Title" rows="2" cols="20" maxlength="50"><?= $allInfo[0][0]["titre"] ?></textarea>
+        <h2 style="text-align: center"> Description du livre </h2>
         <textarea class="form-control border" id="ResumeLivre" rows="5" cols="30" maxlength="1000"><?= $allInfo[0][0]["resumeLivre"] ?></textarea>
-        <a href="index.php?module=CLivre&action=newChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-warning btn-lg" role="button">cree un nouveau chapitre</a>
 
-        <?php
-        for ($i = 0; $i < count($allInfo[1]); $i++) {
-        ?>
-            <textarea class="form-control border Chapitre" id=<?= $allInfo[1][$i]["id"] ?> rows="1" cols="25" maxlength="25"><?= $allInfo[1][$i]["titre"] ?></textarea>
-            <a href="index.php?module=CLivre&action=delChapter&<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
-            <div class="row row-cols-md-3 g-1">
-                <?php
+        <h2 style="text-align: center; margin-top: 2em"> Chapitres </h2>
 
-                for ($j = 0; $j < count($allInfo[2][$i]); $j++) {
+        <ul class="nav nav-tabs" style="width: 70%; margin: auto" id="chapitreTabs">
+            <?php
+            for ($i = 0; $i < count($allInfo[1]); $i++) {
                 ?>
+                <li class="nav-item Chapitre" id="<?= $allInfo[1][$i]["id"] ?>">
+                    <a class="nav-link chapUnselected <?= $allInfo[1][$i]["id"] ?>" id="unSelchap<?= $allInfo[1][$i]["id"] ?>" style="cursor: pointer" aria-current="page"><?= $allInfo[1][$i]["titre"] ?></a>
+                    <textarea class="nav-link chapSelected <?= $allInfo[1][$i]["id"]?>" id="chap<?= $allInfo[1][$i]["id"]?>" rows='1' cols='25' maxlength='25'><?= $allInfo[1][$i]["titre"] ?></textarea>
+                    <h3 class="idChap<?= $allInfo[1][$i]["id"] ?> chapSpec" style="text-align: center; margin-bottom: 10px">Pages</h3>
+                    <div class="container" style="width: 10em;">
+                        <div class="row gy-1">
+                    <?php
+                    for ($j = 0; $j < count($allInfo[2][$i]); $j++) {
+                    ?>
+                        <div class="col-2 pages idChap<?= $allInfo[1][$i]["id"] ?> chapSpec">
+                            <a href="index.php?module=CLivre&action=print_write_Pages&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&numeroChap=<?= $allInfo[1][$i]["numeroChap"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" style="cursor: pointer" class="btn btn-warning" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
+                        </div>
+                    <?php
 
-                    <div class="col pages">
-                        <a href="index.php?module=CLivre&action=print_write_Pages&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&numeroChap=<?= $allInfo[1][$i]["numeroChap"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-warning btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
+                    }
+
+                    ?>
+                        </div>
+                        <a href="index.php?module=CLivre&action=newPage&token=<?=$_SESSION["token"]?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-warning idChap<?= $allInfo[1][$i]["id"] ?> chapSpec Chapitre" style="cursor: pointer" role="button">créer page</a>
                     </div>
+                </li>
                 <?php
-
-                }
+            }
                 ?>
-            </div>
-            <a href="index.php?module=CLivre&action=newPage&token=<?=$_SESSION["token"]?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-warning btn-lg" role="button">cree une nouvel page pour le chapitre</a>
-        <?php
-        }
+            <li class="nav-item Chapitre">
+                <a class="nav-link btn btn-warning btn-lg" style="color: black; background: #ffc107" href="index.php?module=CLivre&action=newChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>" style="cursor: pointer">créer chapitre</a>
+            </li>
+        </ul>
 
-        ?>
+            </div>
+
         <span class="text-muted"> <br> Tout le contenu textuel des livres proposés sur notre site doit être libre de droits et nous déclinons toute responsabilité en cas de violation de droits d'auteur. </span>
         <script>
-            $(window).on('load', function() {
+            $('.chapSpec').hide();
+            $('.Chapitre').find(".chapSelected").hide();
+            $('.Chapitre').children().click(function(){
+                if($(this).hasClass("chapUnselected")){
+                    $('.chapSpec').hide();
+                    $text = $(".chapSelected:visible").val();
+                    $id = $(".chapSelected:visible").attr("id");
+                    $(".chapSelected").hide();
+                    $(".chapUnselected").show();
+                    $(".Chapitre").find("#unSel"+$id).text($text);
+                    $(this).hide();
+                    $(this).next().show();
+                    $('.Chapitre').find(".idChap"+$(this).attr("class").split(" ")[2]).show();
+                    $(this).next().focus();
+                }
+            });
+
+            /*$(window).on('load', function() {
                         //tout dans un div + boucle sur les child pour cree on input event pout tout les child
-                        //boucle sur all info et quand $i == i alors on recup l'id et on la post 
-
-
+                        //boucle sur all info et quand $i == i alors on recup l'id et on la post
 
                         var timer = null;
                         $('#Title').on('input', function() {
@@ -306,8 +335,6 @@ class Vue_CLivre extends vueGenerique
                             }, 1000);
 
                         });
-
-
 
                         var timer = null;
                         $('#ResumeLivre').on('input', function() {
@@ -363,7 +390,7 @@ class Vue_CLivre extends vueGenerique
 
 
 
-                        });
+                        });*/
         </script>
 
 
