@@ -75,7 +75,7 @@ class Vue_CLivre extends vueGenerique
     }
     public function write_Pages($idLivre, $idChapitre, $numChapitre, $idPage, $numPage, $defaultStory)
     {
-
+           
     ?>
         <button type="button" class="btn btn-warning" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">

@@ -56,7 +56,7 @@ class Controleur_CLivre
         if (isset($_SESSION['connected']) && isset($_GET['idLivre']) && isset($_GET['idChapitre']) && isset($_GET['idPage']) && isset($_GET['numPage']) && isset($_GET['numeroChap'])) {
             if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
                 FonctionUtile::generateToken();
-                $this->vue->write_Pages($_GET['idLivre'], $_GET['idChapitre'], $_GET["numeroChap"], $_GET['idPage'], $_GET['numPage'], $this->modele->getStory($_GET['idLivre'], $_GET['idPage'])); // il faut chercher pour la page temp avant d'afficher la page officielle
+                $this->vue->write_Pages($_GET['idLivre'], $_GET['idChapitre'], $_GET["numeroChap"], $_GET['idPage'], $_GET['numPage'], $this->modele->getStory($_GET['idChapitre'], $_GET['idPage'])); // il faut chercher pour la page temp avant d'afficher la page officielle
             } else {
                 header('Location: index.php');
             }

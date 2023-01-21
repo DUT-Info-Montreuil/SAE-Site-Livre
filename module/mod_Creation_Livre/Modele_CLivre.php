@@ -181,22 +181,23 @@ class Modele_CLivre extends Connexion
     public function getStory($idChapitre, $idPage)
     {
         $arr = array($idChapitre, $idPage);
-        $prepareTemp = parent::$bdd->prepare("SELECT TexteDeLaPage FROM TempSave where id_chapitre = ? and idPage = ?;");
+        /*$prepareTemp = parent::$bdd->prepare("SELECT TexteDeLaPage FROM TempSave where id_chapitre = ? and idPage = ?;");
         $execTemp = $prepareTemp->execute($arr);
         $resultTemp = $prepareTemp->fetch();
         if ($resultTemp != false) {
             if ($resultTemp["TexteDeLaPage"] != "") {
                 return $resultTemp["TexteDeLaPage"];
             }
-        }
+        }*/
 
         $prepare = parent::$bdd->prepare("SELECT TexteDeLaPage FROM Page where id_Chapitre = ? and ID = ?");
         $exec = $prepare->execute($arr);
         $result = $prepare->fetch();
         if ($result == false) {
+            
             return "";
         }
-
+        
         return $result["TexteDeLaPage"];
     }
 
