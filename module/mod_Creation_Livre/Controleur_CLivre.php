@@ -96,8 +96,8 @@ class Controleur_CLivre
                         $this->vue->write_Pages($_GET['idLivre'], $idChapitre[0]["id"], $idChapitre[0]["numeroChap"], $idPage[0]["ID"], $numPage, "");
                     }
                 } else {
-                    $lastURL =  $_SERVER["HTTP_REFERER"];
-                    header('Location:' . $lastURL);
+                    //$lastURL =  $_SERVER["HTTP_REFERER"];
+                    //header('Location:' . $lastURL);
                 }
             } else {
                 header('Location: index.php');
@@ -115,8 +115,7 @@ class Controleur_CLivre
                     $this->modele->delPage($_GET["idLivre"],  $_GET['idChapitre'], $_GET['idPage'], 1);
                     $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
                 } else {
-                    $lastURL =  $_SERVER["HTTP_REFERER"];
-                    header('Location:' . $lastURL);
+                    header('location : index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
                 }
             } else {
                 header('Location: index.php');
@@ -133,10 +132,12 @@ class Controleur_CLivre
             if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
                 if (FonctionUtile::verifToken($_GET['token'])) {
                     $this->modele->newChapitre($_GET["idLivre"]);
-                    $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
+                    header('location: index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
+                    //$this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
                 } else {
-                    $lastURL =  $_SERVER["HTTP_REFERER"];
-                    header('Location:' . $lastURL);
+                    //$lastURL =  $_SERVER["HTTP_REFERER"];
+                    //header('Location:' . $lastURL);
+                    header('location : index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
                 }
             } else {
                 header('Location: index.php');
@@ -153,15 +154,19 @@ class Controleur_CLivre
             if ($this->modele->verifOwnerShip($_GET['idLivre'])) {
                 if (FonctionUtile::verifToken($_GET['token'])) {
                     $this->modele->delChapitre($_GET["idLivre"],  $_GET['idChapitre']);
-                    $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
+                    //$this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
+                    //header('location : index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
+                    echo "chap supprimer";
                 } else {
-                    $lastURL =  $_SERVER["HTTP_REFERER"];
-                    header('Location:' . $lastURL);
+                   
+                    header('location : index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
                 }
             } else {
+                
                 header('Location: index.php');
             }
         } else {
+            
             header('Location: index.php?module=connexion&action=print_login');
         }
     }

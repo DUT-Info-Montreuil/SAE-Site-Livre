@@ -251,7 +251,7 @@ class Vue_CLivre extends vueGenerique
         for ($i = 0; $i < count($allInfo[1]); $i++) {
         ?>
             <textarea class="form-control border Chapitre" id=<?= $allInfo[1][$i]["id"] ?> rows="1" cols="25" maxlength="25"><?= $allInfo[1][$i]["titre"] ?></textarea>
-            <a href="index.php?module=CLivre&action=delChapter&<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
+            <a href="index.php?module=CLivre&action=delChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimer chapitre</a>
             <div class="row row-cols-md-3 g-1">
                 <?php
 
@@ -283,6 +283,7 @@ class Vue_CLivre extends vueGenerique
 
 
                         var timer = null;
+                        console.log($('#Title').val());
                         $('#Title').on('input', function() {
                             console.log("input");
                             if (timer != null) {
@@ -311,14 +312,14 @@ class Vue_CLivre extends vueGenerique
 
 
 
-                        var timer = null;
+                        var timer2 = null;
                         $('#ResumeLivre').on('input', function() {
 
-                            if (timer != null) {
+                            if (timer2 != null) {
                                 clearTimeout(timer); //cancel the previous timer.
-                                timer = null;
+                                timer2 = null;
                             }
-                            timer = setTimeout(function() {
+                            timer2 = setTimeout(function() {
                                 //put your ajax call here
                                 $.ajax({
                                     url: 'ChangeInfoBook.php',
@@ -345,9 +346,6 @@ class Vue_CLivre extends vueGenerique
                                 clearTimeout(timer); //cancel the previous timer.
                                 timer = null;
                             }
-
-
-
                             timer = setTimeout(function() {
                                 $.ajax({
                                     url: 'ChangeInfoBook.php',
@@ -366,6 +364,7 @@ class Vue_CLivre extends vueGenerique
 
 
                         });
+                    });
         </script>
 
 

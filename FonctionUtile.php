@@ -30,6 +30,7 @@ class FonctionUtile extends Connexion {
             $prepare = parent::$bdd->prepare("UPDATE TokenCSRF SET Usable = 0 where token = ? AND idUser = ? AND Usable = 1");
             $arr = array($_SESSION['token'] , $_SESSION['id']);
             $exec = $prepare->execute($arr);
+            FonctionUtile::deleteToken();
             return true;
         }else{
             return false;
@@ -37,8 +38,8 @@ class FonctionUtile extends Connexion {
     }
     
     public static function deleteToken(){
-        $prepare = parent::$bdd->prepare("DELETE FROM TokenCSRF where token = ? AND idUser = ?");
-        $arr = array($_SESSION['token'] , time() , $_SESSION['id']);
+        $prepare = parent::$bdd->prepare("DELETE FROM TokenCSRF where token = ? AND idUser = ? AND Usable = 0");
+        $arr = array($_SESSION['token'] , $_SESSION['id']);
         $exec = $prepare->execute($arr);
     }
     
