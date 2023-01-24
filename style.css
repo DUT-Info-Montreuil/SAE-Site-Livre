@@ -70,6 +70,7 @@
 
 #Title {
     margin: auto;
+    margin-bottom: 1em;
     width: 50%;
     font-size: 50px;
     resize: none;
@@ -86,18 +87,30 @@
 
 
 .Chapitre {
-    margin: auto!important;
-    width: 50%!important;
-    font-size: 20px!important;
+    margin-right: 0!important;
+    margin-bottom: 0;
+    margin-top: 1em;
+    width: auto!important;
+    padding: 0;
+    font-size: 15px!important;
     resize: none!important;
 
 }
+
 
 .pages {
     margin-left: auto;
     margin-right: auto;
     padding: 15px;
     width: 120px;
+
+}
+
+.chapSpec{
+    margin:1px;
+    padding: 0;
+    width: auto;
+    font-size: 15px;
 
 }
 
@@ -120,4 +133,16 @@
     border: red!important;
     border-radius: 10cm!important;
 
-}   
+}
+
+.historyPicture{
+    object-fit: cover!important;
+    height:100%!important;
+    object-position: 50% 100%!important;
+}
+
+.historyPicture2{
+    object-fit: cover!important;
+    height:90%!important;
+    object-position: 50% 100%!important;
+}

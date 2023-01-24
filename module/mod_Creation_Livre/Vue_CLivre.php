@@ -16,26 +16,27 @@ class Vue_CLivre extends vueGenerique
             <main>
                 <div class="row g-5" id="creaLivre">
                     <div>
-                        <h4 class="mb-3">Créé ton propre livre !</h4>
+                        <h4 class="mb-3">Crée ton propre livre !</h4>
                         <form class="needs-validation" method="post" action="index.php?action=create_book&module=CLivre&token=<?= $_SESSION['token'] ?>" enctype="multipart/form-data" novalidate>
 
                             <div class="row g-3">
                                 <div class="col-sm-6 col-lg-4 " id="TitreCrea">
-                                    <label for="Titre" class="form-label" required="required">Titre du livre</label>
+                                    <label for="Titre" class="form-label"  required="required">Titre du livre</label>
                                     <input type="text" class="form-control" name="title" placeholder="Titre de votre histoire" required>
                                 </div>
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">premiere de couverture <span class="text-muted">(Optional)</label>
+                                        <label for="formFile" class="form-label">Première de couverture <span class="text-muted">(Optionel)</label>
                                         <input name="fileToUpload" class="form-control" type="file" id="fileToUpload" accept="image/png">
+                                        <span class="text-muted"> Les images utilisées sur notre site doivent être libres de droits et nous déclinons toute responsabilité en cas de violation de droits d'auteur. </span>
                                     </div>
                                 </div>
 
 
 
                                 <div class="col-12">
-                                    <label for="Resume" class="form-label">Resumé </label>
-                                    <input type="text" class="form-control" name="resume" placeholder="le petit resumé ">
+                                    <label for="Resume" class="form-label">Résumé </label>
+                                    <input type="text" class="form-control" name="resume" placeholder="Le petit résumé ">
                                 </div>
                             </div>
                             <hr class="my-4">
@@ -60,7 +61,7 @@ class Vue_CLivre extends vueGenerique
                             </div>
                             <hr class="my-4">
 
-                            <button class="w-100 btn btn-warning btn-lg" type="submit">créé le livre !</button>
+                            <button class="w-100 btn btn-warning btn-lg" type="submit">Créer le livre !</button>
                         </form>
                     </div>
                 </div>
@@ -93,14 +94,14 @@ class Vue_CLivre extends vueGenerique
                             <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
                             <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
                         </svg>
-                        Sauvgarder et quitter
+                        Sauvegarder et quitter
                     </button>
                     <button type="button" class="btn btn-warning" id="DontSavePage">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-x" viewBox="0 0 16 16">
                             <path d="M6.854 7.146a.5.5 0 1 0-.708.708L7.293 9l-1.147 1.146a.5.5 0 0 0 .708.708L8 9.707l1.146 1.147a.5.5 0 0 0 .708-.708L8.707 9l1.147-1.146a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146z"></path>
                             <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"></path>
                         </svg>
-                        quitter sans sauvgarder
+                        quitter sans sauvegarder
                     </button>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" id="delPege" data-bs-target="#supprConf">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
@@ -138,7 +139,7 @@ class Vue_CLivre extends vueGenerique
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        etes vous sur de vouloir supprimer la page <?= $numPage ?> ?
+                        êtes vous sûr de vouloir supprimer la page <?= $numPage ?> ?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">annuler</button>
@@ -243,8 +244,11 @@ class Vue_CLivre extends vueGenerique
     public function menu_write_book($allInfo)
     {
     ?>
+        <h1 style="text-align: center"> Titre du livre </h1>
         <textarea class="form-control border" id="Title" rows="2" cols="20" maxlength="50"><?= $allInfo[0][0]["titre"] ?></textarea>
+        <h2 style="text-align: center"> Description du livre </h2>
         <textarea class="form-control border" id="ResumeLivre" rows="5" cols="30" maxlength="1000"><?= $allInfo[0][0]["resumeLivre"] ?></textarea>
+
         <a href="index.php?module=CLivre&action=newChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-warning btn-lg" role="button">creer un nouveau chapitre</a>
 
         <?php
@@ -253,34 +257,69 @@ class Vue_CLivre extends vueGenerique
             <textarea class="form-control border Chapitre" id=<?= $allInfo[1][$i]["id"] ?> rows="1" cols="25" maxlength="25"><?= $allInfo[1][$i]["titre"] ?></textarea>
             <a href="index.php?module=CLivre&action=delChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimé chapitre</a>
             <div class="row row-cols-md-3 g-1">
-                <?php
+                
 
-                for ($j = 0; $j < count($allInfo[2][$i]); $j++) {
+
+        <h2 style="text-align: center; margin-top: 2em"> Chapitres </h2>
+
+
+        <ul class="nav nav-tabs" style="width: 70%; margin: auto" id="chapitreTabs">
+            <?php
+            for ($i = 0; $i < count($allInfo[1]); $i++) {
                 ?>
+                <li class="nav-item Chapitre" id="<?= $allInfo[1][$i]["id"] ?>">
+                    <a class="nav-link chapUnselected <?= $allInfo[1][$i]["id"] ?>" id="unSelchap<?= $allInfo[1][$i]["id"] ?>" style="cursor: pointer" aria-current="page"><?= $allInfo[1][$i]["titre"] ?></a>
+                    <textarea class="nav-link chapSelected <?= $allInfo[1][$i]["id"]?>" id="chap<?= $allInfo[1][$i]["id"]?>" rows='1' cols='25' maxlength='25'><?= $allInfo[1][$i]["titre"] ?></textarea>
+                    <h3 class="idChap<?= $allInfo[1][$i]["id"] ?> chapSpec" style="text-align: center; margin-bottom: 10px">Pages</h3>
+                    <div class="container" style="width: 10em;">
+                        <div class="row gy-1">
+                    <?php
+                    for ($j = 0; $j < count($allInfo[2][$i]); $j++) {
+                    ?>
+                        <div class="col-2 pages idChap<?= $allInfo[1][$i]["id"] ?> chapSpec">
+                            <a href="index.php?module=CLivre&action=print_write_Pages&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&numeroChap=<?= $allInfo[1][$i]["numeroChap"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" style="cursor: pointer" class="btn btn-warning" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
+                        </div>
+                    <?php
 
-                    <div class="col pages">
-                        <a href="index.php?module=CLivre&action=print_write_Pages&idLivre=<?= $allInfo[0][0]["id"] ?>&idChapitre=<?= $allInfo[1][$i]["id"] ?>&numeroChap=<?= $allInfo[1][$i]["numeroChap"] ?>&idPage=<?= $allInfo[2][$i][$j]["ID"] ?>&numPage=<?= $allInfo[2][$i][$j]["numeroPage"] ?>" class="btn btn-warning btn-lg" role="button" id=<?= $allInfo[2][$i][$j]["ID"] ?>><?= $allInfo[2][$i][$j]["numeroPage"] ?></a>
+                    }
+
+                    ?>
+                        </div>
+                        <a href="index.php?module=CLivre&action=newPage&token=<?=$_SESSION["token"]?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-warning idChap<?= $allInfo[1][$i]["id"] ?> chapSpec Chapitre" style="cursor: pointer" role="button">créer page</a>
                     </div>
+                </li>
                 <?php
-
-                }
+            }
                 ?>
+            <li class="nav-item Chapitre">
+                <a class="nav-link btn btn-warning btn-lg" style="color: black; background: #ffc107" href="index.php?module=CLivre&action=newChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>" style="cursor: pointer">créer chapitre</a>
+            </li>
+        </ul>
+
             </div>
-            <a href="index.php?module=CLivre&action=newPage&token=<?=$_SESSION["token"]?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-warning btn-lg" role="button">cree une nouvel page pour le chapitre</a>
-        <?php
-        }
 
-
-
-
-
-        ?>
+        <span class="text-muted"> <br> Tout le contenu textuel des livres proposés sur notre site doit être libre de droits et nous déclinons toute responsabilité en cas de violation de droits d'auteur. </span>
         <script>
+            $('.chapSpec').hide();
+            $('.Chapitre').find(".chapSelected").hide();
+            $('.Chapitre').children().click(function(){
+                if($(this).hasClass("chapUnselected")){
+                    $('.chapSpec').hide();
+                    $text = $(".chapSelected:visible").val();
+                    $id = $(".chapSelected:visible").attr("id");
+                    $(".chapSelected").hide();
+                    $(".chapUnselected").show();
+                    $(".Chapitre").find("#unSel"+$id).text($text);
+                    $(this).hide();
+                    $(this).next().show();
+                    $('.Chapitre').find(".idChap"+$(this).attr("class").split(" ")[2]).show();
+                    $(this).next().focus();
+                }
+            });
+
             $(window).on('load', function() {
                         //tout dans un div + boucle sur les child pour cree on input event pout tout les child
-                        //boucle sur all info et quand $i == i alors on recup l'id et on la post 
-
-
+                        //boucle sur all info et quand $i == i alors on recup l'id et on la post
 
                         var timer = null;
                         console.log($('#Title').val());
@@ -312,7 +351,10 @@ class Vue_CLivre extends vueGenerique
 
 
 
+
                         var timer2 = null;
+
+
                         $('#ResumeLivre').on('input', function() {
 
                             if (timer2 != null) {
@@ -363,9 +405,11 @@ class Vue_CLivre extends vueGenerique
 
 
 
+
                         });
                     });
         </script>
+
 
 
 <?php
@@ -373,10 +417,8 @@ class Vue_CLivre extends vueGenerique
 
 
 
-
     }
 }
-
-
-
 ?>
+
+

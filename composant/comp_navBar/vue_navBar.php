@@ -44,7 +44,7 @@ class VueNavBar extends VueGenerique
                     </ul>
 
                     <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                        <input type="search" class="form-control form-control-dark text-bg-dark" id="searchLivres" placeholder="Search..." aria-label="Search" list="listeLivres">
+                        <input type="search" class="form-control form-control-dark text-bg-dark" id="searchLivres" placeholder="Rechercher..." aria-label="Search" list="listeLivres">
                         <datalist id="listeLivres">
                             <?php
                             foreach ($livres as $livre) {
@@ -74,16 +74,8 @@ class VueNavBar extends VueGenerique
                                         <svg class="bi bi-person-circle" width="16" height="16">
                                             <use xlink:href="#profileIcon" />
                                         </svg>
-                                        Profile
+                                        Profil
                                     </a></li>
-                                <li>
-                                    <a class="dropdown-item d-flex gap-2 align-items-center" href="index.php?module=profil&action=afficherProfil&id=12">
-                                        <svg class="bi bi-book" width="16" height="16">
-                                            <use xlink:href="#bookIcon" />
-                                        </svg>
-                                        other action
-                                    </a>
-                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -91,7 +83,7 @@ class VueNavBar extends VueGenerique
                                         <svg class="bi" width="16" height="16">
                                             <use xlink:href="#powerIcon" />
                                         </svg>
-                                        deconnexion
+                                        Se déconnecter
                                     </a>
                                 </li>
                             </ul>
@@ -101,7 +93,7 @@ class VueNavBar extends VueGenerique
                     } else { ?>
                         <div class="text-end">
                             <!-- <a href="index.php?action=print_signup&module=connexion" class="btn btn-outline-light me-2" role="button">sign up</a>  -->
-                            <a href="index.php?action=print_login&module=connexion" class="btn btn-warning" role="button">Login</a>
+                            <a href="index.php?action=print_login&module=connexion" class="btn btn-warning" role="button">Se connecter</a>
                         </div>
                     <?php
                     }

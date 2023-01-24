@@ -36,7 +36,7 @@ class Vue_Livre extends vueGenerique
                     <div class="col-lg-3 me-lg-auto">
                         <div class="card border-0 shadow mb-6 mb-lg-0 text-bg-dark">
                             <div class="card">
-                                <?= "<img class=\"card-img-top \" src=\"ressource/bookCover/$idLivre\" alt=\"BookCover\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
+                                <?= "<img class=\"card-img-top \" src=\"ressource/bookCover/$idLivre.png\" alt=\"BookCover\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                             </div>
                             <div class="card-footer">
                                 <?= "<h5 class=\"card-title text-warning \"><strong>$auteur</strong></h5>" ?>
@@ -172,7 +172,7 @@ class Vue_Livre extends vueGenerique
                         </li>
                         <div class="btn-group dropup justify-content-center">
                             <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Séléctionne un chapitre
+                                Sélectionne un chapitre
                             </button>
                             <ul class="dropdown-menu">
                                 <?php
