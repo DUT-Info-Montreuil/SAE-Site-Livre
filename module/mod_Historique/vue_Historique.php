@@ -31,7 +31,7 @@ class Vue_Historique extends VueGenerique
                                 <div class="card text-center" style="width: 18rem; min-height: 20rem;">
                                     <div class="card-img-top">
                                         <?php echo "<a style=\"cursor: pointer\" href=\"index.php?module=livre&idLivre=".$key["id"]."\" id=\"imgLivre" . $key["id"] . "\">" ?>
-                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
+                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid historyPicture2\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                         </a>
                                     </div>
                                     <div class="card-body">
@@ -109,7 +109,7 @@ class Vue_Historique extends VueGenerique
                                 <div class="card text-center" style="width: 18rem; min-height: 20rem;">
                                     <div class="card-img-top">
                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["idLivre"] . "\" href=\"index.php?module=livre&idLivre=".$key["idLivre"]."\">" ?>
-                                        <?php echo "<img src=\"ressource/bookCover/" . $key["idLivre"] . ".png\" href=\"index.php?module=livre&idLivre=".$key["idLivre"]."\" class=\"img-fluid\" alt=\"...\"onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
+                                        <?php echo "<img src=\"ressource/bookCover/" . $key["idLivre"] . ".png\" href=\"index.php?module=livre&idLivre=".$key["idLivre"]."\" class=\"img-fluid historyPicture2\" alt=\"...\"onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                         </a>
                                     </div>
                                     <div class="card-body">
@@ -177,7 +177,7 @@ class Vue_Historique extends VueGenerique
                                 <div class="card text-center" style="width: 18rem; min-height: 20rem;">
                                     <div class="card-img-top">
                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\" href=\"index.php?module=CLivre&action=menu_write_book&idLivre=".$key["id"]."\">" ?>
-                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid\" alt=\"...\"onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
+                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid historyPicture2\" alt=\"...\"onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                         </a>
                                     </div>
                                     <div class="card-body">

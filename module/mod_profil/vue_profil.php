@@ -114,7 +114,7 @@ class vue_profil extends vueGenerique
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
                                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\" href=\"index.php?module=CLivre&action=menu_write_book&idLivre=".$key["id"]."\">" ?>
-                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start historyPicture\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -256,7 +256,7 @@ class vue_profil extends vueGenerique
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
                                                         <?php echo "<a style=\"cursor: pointer\" href=\"index.php?module=livre&idLivre=".$key["idLivre"]."\" id=\"imgLivre" . $key["idLivre"] . "\">" ?>
-                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["idLivre"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["idLivre"] . ".png\" class=\"img-fluid rounded-start historyPicture\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">
@@ -306,7 +306,7 @@ class vue_profil extends vueGenerique
                                                 <div class="row g-0">
                                                     <div class="col-md-4">
                                                         <?php echo "<a style=\"cursor: pointer\" id=\"imgLivre" . $key["id"] . "\" href=\"index.php?module=livre&idLivre=".$key["id"]."\">" ?>
-                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
+                                                        <?php echo "<img src=\"ressource/bookCover/" . $key["id"] . ".png\" class=\"img-fluid rounded-start historyPicture\" alt=\"...\" onerror=\"this.onerror=null;this.src='ressource/bookCover/default.png';\">" ?>
                                                         </a>
                                                     </div>
                                                     <div class="col-md-8">

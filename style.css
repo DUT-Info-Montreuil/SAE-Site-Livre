@@ -133,4 +133,16 @@
     border: red!important;
     border-radius: 10cm!important;
 
-}   
+}
+
+.historyPicture{
+    object-fit: cover!important;
+    height:100%!important;
+    object-position: 50% 100%!important;
+}
+
+.historyPicture2{
+    object-fit: cover!important;
+    height:90%!important;
+    object-position: 50% 100%!important;
+}
