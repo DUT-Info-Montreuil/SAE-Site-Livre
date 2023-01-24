@@ -101,8 +101,8 @@ class Vue_connexion extends vueGenerique
                                     </svg>
                                 </a>
                                 <h1 class="mb-1 fw-bold">Inscription</h1>
-                                <span>Tu as déja un compte?
-                                    <a href="index.php?action=print_login&module=connexion" class="ms-1">Connecte toi !</a></span>
+                                <span>Tu as déjà un compte?
+                                    <a href="index.php?action=print_login&module=connexion" class="ms-1">Connecte-toi !</a></span>
                             </div>
                             <!-- Form -->
                             <form method="post" action="index.php?action=signup&module=connexion">

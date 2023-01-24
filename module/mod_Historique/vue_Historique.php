@@ -10,8 +10,8 @@ class Vue_Historique extends VueGenerique
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light"> Historique d'écriture de <a href="index.php?module=profil&action=afficherProfil&id=<?=htmlspecialchars($_GET['id'])?>" title="se rendre sur le profil de <?= $nom?>"><?= $nom ?></a> </h1>
                     <p class="lead text-muted">Ici se trouvent tous les livres que <?= $nom ?> écrit ou a fini
-                        d'écrire. Vous pouvez les lires en cliquant sur le bouton "Reprendre l'écriture" de l'un de
-                        ses livres.</p>
+                        d'écrire. Vous pouvez les lire en cliquant sur le bouton "Reprendre l'écriture" de l'un de
+                        ces livres.</p>
                 </div>
             </div>
         </section>
@@ -88,8 +88,8 @@ class Vue_Historique extends VueGenerique
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light">Mon Historique de lecture</h1>
                     <p class="lead text-muted">Ici se trouvent tous les livres que vous avez commencé à lire ou fini de
-                        lire. Ils sont classés par ordre de date, du plus recemment lu au plus ancien lu. Vous pouvez
-                        reprendre votre lecture en cliquant sur le bouton "Reprendre la lecture" de l'un de vos livres.</p>
+                        lire. Ils sont classés par ordre de date, du plus récemment lu au plus anciennement lu. Vous pouvez
+                        reprendre votre lecture en cliquant sur le bouton "Reprendre la lecture" de l'un de ces livres.</p>
                 </div>
             </div>
         </section>
@@ -155,8 +155,7 @@ class Vue_Historique extends VueGenerique
                 <div class="col-lg-6 col-md-8 mx-auto">
                     <h1 class="fw-light">Mon Historique d'écriture</h1>
                     <p class="lead text-muted">Ici se trouvent tous les livres que vous avez commencé à écrire ou fini
-                        d'écrire. Ils sont classés par ordre de date, du plus récemment modifié au plus ancien modifié.
-                        Vous pouvez reprendre votre écriture en cliquant sur le bouton "Reprendre l'écriture" de l'un de
+                        d'écrire. Vous pouvez reprendre votre écriture en cliquant sur le bouton "Reprendre l'écriture" de l'un de
                         vos livres.</p>
                 </div>
             </div>

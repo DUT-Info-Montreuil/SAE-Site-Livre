@@ -26,7 +26,7 @@ class Vue_CLivre extends vueGenerique
                                 </div>
                                 <div class="col-6">
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">Première de couverture <span class="text-muted">(Optionel)</label>
+                                        <label for="formFile" class="form-label">Première de couverture <span class="text-muted">(Optionnel)</label>
                                         <input name="fileToUpload" class="form-control" type="file" id="fileToUpload" accept="image/png">
                                         <span class="text-muted"> Les images utilisées sur notre site doivent être libres de droits et nous déclinons toute responsabilité en cas de violation de droits d'auteur. </span>
                                     </div>
@@ -119,7 +119,7 @@ class Vue_CLivre extends vueGenerique
                     
                     <br>
                     <br>
-                    <p>Vous pouvez ici modifier la page séléctionné (par défaut la page n°1). <br> Pour modifier une autre page , ajouter une noulle page ou un chapitre, sauvgarder et quitté cette page avec le boutton ci-dessus.</p>
+                    <p>Vous pouvez ici modifier la page sélectionnée (par défaut la page n°1). <br> Pour modifier une autre page, ajoutez une nouvelle page ou un chapitre, sauvegardez et quittez cette page avec le bouton ci-dessus.</p>
                 </div>
             </div>
         </div>
@@ -275,7 +275,7 @@ class Vue_CLivre extends vueGenerique
                     <h3 class="idChap<?= $allInfo[1][$i]["id"] ?> chapSpec" style="text-align: center; margin-bottom: 10px">Pages</h3>
                     <div class="container" style="width: 10em;">
                         <div class="row gy-1">
-                    <a href="index.php?module=CLivre&action=delChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg chapSpec idChap<?= $allInfo[1][$i]["id"] ?>" role="button">supprimé chapitre</a>
+                    <a href="index.php?module=CLivre&action=delChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg chapSpec idChap<?= $allInfo[1][$i]["id"] ?>" role="button">supprimer chapitre</a>
                     <?php
                     for ($j = 0; $j < count($allInfo[2][$i]); $j++) {
                     ?>

@@ -172,7 +172,7 @@ class Vue_Livre extends vueGenerique
                         </li>
                         <div class="btn-group dropup justify-content-center">
                             <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Sélectionne un chapitre
+                                Sélectionner un chapitre
                             </button>
                             <ul class="dropdown-menu">
                                 <?php
