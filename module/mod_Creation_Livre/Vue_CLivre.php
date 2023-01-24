@@ -249,14 +249,16 @@ class Vue_CLivre extends vueGenerique
         <h2 style="text-align: center"> Description du livre </h2>
         <textarea class="form-control border" id="ResumeLivre" rows="5" cols="30" maxlength="1000"><?= $allInfo[0][0]["resumeLivre"] ?></textarea>
 
-        <a href="index.php?module=CLivre&action=newChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-warning btn-lg" role="button">creer un nouveau chapitre</a>
+        <!--<a href="index.php?module=CLivre&action=newChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>" class="btn btn-warning btn-lg" role="button">creer un nouveau chapitre</a>-->
 
         <?php
         for ($i = 0; $i < count($allInfo[1]); $i++) {
         ?>
-            <textarea class="form-control border Chapitre" id=<?= $allInfo[1][$i]["id"] ?> rows="1" cols="25" maxlength="25"><?= $allInfo[1][$i]["titre"] ?></textarea>
-            <a href="index.php?module=CLivre&action=delChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg" role="button">supprimé chapitre</a>
+             
+            <!--<textarea class="form-control border Chapitre" id=<?= $allInfo[1][$i]["id"] ?> rows="1" cols="25" maxlength="25"><?= $allInfo[1][$i]["titre"] ?></textarea>-->
+            
             <div class="row row-cols-md-3 g-1">
+        
                 
 
 
@@ -269,10 +271,11 @@ class Vue_CLivre extends vueGenerique
                 ?>
                 <li class="nav-item Chapitre" id="<?= $allInfo[1][$i]["id"] ?>">
                     <a class="nav-link chapUnselected <?= $allInfo[1][$i]["id"] ?>" id="unSelchap<?= $allInfo[1][$i]["id"] ?>" style="cursor: pointer" aria-current="page"><?= $allInfo[1][$i]["titre"] ?></a>
-                    <textarea class="nav-link chapSelected <?= $allInfo[1][$i]["id"]?>" id="chap<?= $allInfo[1][$i]["id"]?>" rows='1' cols='25' maxlength='25'><?= $allInfo[1][$i]["titre"] ?></textarea>
+                    <textarea class="nav-link chapSelected Chapitre <?= $allInfo[1][$i]["id"]?>" id="chap<?= $allInfo[1][$i]["id"]?>" rows='1' cols='25' maxlength='25'><?= $allInfo[1][$i]["titre"] ?></textarea>
                     <h3 class="idChap<?= $allInfo[1][$i]["id"] ?> chapSpec" style="text-align: center; margin-bottom: 10px">Pages</h3>
                     <div class="container" style="width: 10em;">
                         <div class="row gy-1">
+                    <a href="index.php?module=CLivre&action=delChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>&idChapitre=<?= $allInfo[1][$i]['id'] ?>" class="btn btn-danger btn-lg chapSpec idChap<?= $allInfo[1][$i]["id"] ?>" role="button">supprimé chapitre</a>
                     <?php
                     for ($j = 0; $j < count($allInfo[2][$i]); $j++) {
                     ?>
@@ -290,6 +293,7 @@ class Vue_CLivre extends vueGenerique
                 </li>
                 <?php
             }
+        }
                 ?>
             <li class="nav-item Chapitre">
                 <a class="nav-link btn btn-warning btn-lg" style="color: black; background: #ffc107" href="index.php?module=CLivre&action=newChapter&token=<?=$_SESSION["token"]?>&idLivre=<?= $allInfo[0][0]['id'] ?>" style="cursor: pointer">créer chapitre</a>
@@ -373,7 +377,7 @@ class Vue_CLivre extends vueGenerique
                                         whatHaveChanged: "resumeLivre"
 
 
-                                    }
+                                    },
 
                                 });
                             }, 1000);
@@ -394,7 +398,7 @@ class Vue_CLivre extends vueGenerique
                                     type: 'POST',
                                     data: {
                                         story: $event.target.value,
-                                        idChapitre: $event.target.id,
+                                        idChapitre: $event.target.id.replace("chap", ""),
                                         idLivre: <?= $allInfo[0][0]["id"] ?>,
                                         idAuteur: <?= $_SESSION['id'] ?>,
                                         whatHaveChanged: "Chapitre"
@@ -411,14 +415,8 @@ class Vue_CLivre extends vueGenerique
         </script>
 
 
-
 <?php
-
-
-
-
+        
     }
 }
 ?>
-
-
