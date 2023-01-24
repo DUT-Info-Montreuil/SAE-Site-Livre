@@ -3,7 +3,7 @@
 class modele_profil extends Connexion {
     function verifExiste()
     {
-        $req = parent::$bdd->prepare("SELECT * FROM utilisateur WHERE id = ?");
+        $req = parent::$bdd->prepare("SELECT * FROM Utilisateur WHERE id = ?");
         $req->execute(array(htmlspecialchars($_GET["id"])));
         $resultat = $req->fetch();
         return $resultat;
@@ -49,7 +49,7 @@ class modele_profil extends Connexion {
     }
 
     function getTousMesLivresLu(){
-        $prepare = parent::$bdd->prepare("select * from Livre inner join viewedbook hll on livre.id = hll.idLivre where hll.idUser = ? ORDER BY hll.date_heure_lecture DESC");
+        $prepare = parent::$bdd->prepare("select * from Livre inner join ViewedBook hll on Livre.id = hll.idLivre where hll.idUser = ? ORDER BY hll.date_heure_lecture DESC");
         $tab = array($_SESSION["id"]);
         $exec = $prepare->execute($tab);
         $result = $prepare->fetchAll();
