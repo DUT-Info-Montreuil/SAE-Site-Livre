@@ -98,6 +98,7 @@ class Controleur_CLivre
                 } else {
                     //$lastURL =  $_SERVER["HTTP_REFERER"];
                     //header('Location:' . $lastURL);
+                    header('location: index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
                 }
             } else {
                 header('Location: index.php');
@@ -115,7 +116,7 @@ class Controleur_CLivre
                     $this->modele->delPage($_GET["idLivre"],  $_GET['idChapitre'], $_GET['idPage'], 1);
                     $this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
                 } else {
-                    header('location : index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
+                    header('location: index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
                 }
             } else {
                 header('Location: index.php');
@@ -137,7 +138,7 @@ class Controleur_CLivre
                 } else {
                     //$lastURL =  $_SERVER["HTTP_REFERER"];
                     //header('Location:' . $lastURL);
-                    header('location : index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
+                    header('location: index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
                 }
             } else {
                 header('Location: index.php');
@@ -155,11 +156,11 @@ class Controleur_CLivre
                 if (FonctionUtile::verifToken($_GET['token'])) {
                     $this->modele->delChapitre($_GET["idLivre"],  $_GET['idChapitre']);
                     //$this->vue->menu_write_book($this->modele->getAllBookInfo($_GET['idLivre']));
-                    //header('location : index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
-                    echo "chap supprimer";
+                    header('location: index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
+                    
                 } else {
                    
-                    header('location : index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
+                    header('location: index.php?action=menu_write_book&module=CLivre&idLivre=' . $_GET['idLivre']);
                 }
             } else {
                 
