@@ -10,7 +10,7 @@ class Vue_Footer extends vueGenerique
 
     <div class="container">
       <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top border-dark">
-        <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc</p>
+        
 
         <a href="index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none mx-5">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
